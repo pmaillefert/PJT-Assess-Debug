@@ -846,7 +846,7 @@
 					};
 				}
 			}
-			function addGraph(i, data, min, max, choice) {
+			function addGraph(i, data, min, max) {
 				console.log("addgraph");
 				$.post('ajax', JSON.stringify({
 					"type": "svg",
@@ -855,7 +855,6 @@
 					"max": max,
 					"liste_cord": data[i]['coord'],
 					"width": 6,
-					"choice": choice,
 				}), function(data2) {
 					$('#main_graph').append(data2);
 				});
@@ -901,7 +900,7 @@
 				var num = 0;
 				$('#main_graph').show().empty();
 				$('#functions').show().empty();
-				addGraph(num, data['data'], val_min, val_max,choice);
+				addGraph(num, data['data'], val_min, val_max);
 				addFunctions(num, data['data'],val_min);
 				localStorage.setItem("assess_session", JSON.stringify(assess_session));
 				
@@ -915,7 +914,7 @@
 					assess_session.attributes.fonction.append(choice);
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
-					addGraph(num, data['data'], val_min, val_max,choice);
+					addGraph(num, data['data'], val_min, val_max);
 					addFunctions(num, data['data'],val_min);
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 					});
@@ -930,7 +929,7 @@
 					assess_session.attributes.numero.append(num);
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
-					addGraph(num, data['data'], val_min, val_max,choice);
+					addGraph(num, data['data'], val_min, val_max);
 					addFunctions(num, data['data'],val_min);
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 						
