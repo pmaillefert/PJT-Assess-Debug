@@ -6,7 +6,7 @@
 
 	<!---------------------- Scaling K_i coefficients ---------------------->
 	<div class="page-header">
-	  <h3>Scaling K<sub>i</sub> coefficients</h3>
+	  <h3>Scaling coefficients (K<sub>i</sub>)</h3>
 	</div>
 
 	<div class="alert alert-info" role="alert" id="update_box" >
