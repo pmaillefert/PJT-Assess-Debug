@@ -27,7 +27,7 @@
 
 <div id="nouveaubloc"></div>
 <div id="message">
-	<h4> Select the function you want there </h4>
+	<h4> Select the function you want </h4>
 </div>
 
 <div id="main_graph" class="col-lg-5"></div>
