@@ -990,7 +990,7 @@
 			$.post('ajax', JSON.stringify(json_2_send), function(data) {
 				$('#charts').show();
 				$('#nouveaubloc').show();
-				choix = "";
+				var choix = "";
 				if (val_min<0){
 					for (i in data['data']){
 						for (j in data['data'][i]['coord']){
@@ -1010,8 +1010,8 @@
 					for (var j = 0; j < LISTE.length; i++) {
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" id="try" class="essai" name="select2" value='LISTE[j]'></td></tr>');
 					}
-				$('.essai').on('click', function() {
-				choix = this.value;
+				
+				choix = 'logarithmic';
 				}
 				$('.radio_choice').on('click', function() {
 					if (choix == "") {
