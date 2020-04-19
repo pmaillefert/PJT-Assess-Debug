@@ -890,9 +890,9 @@
 					regressions_text = availableRegressions(data['data'][i]);
 					$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 				}
-				var choice = "";
+				
 				$('.ice').on('click', function() {
-					choice = this.value;
+					var choice = this.value;
 					console.log( "Your choice : "+choice);
 					}
 				
