@@ -76,7 +76,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width, choice):
 
     else: 
         for func in dictionary.keys():
-            if func == 'exp':
+            if func == 'exp'  and choice == 1:
                 a = dictionary[func]['a']
                 b = dictionary[func]['b']
                 c = dictionary[func]['c']
@@ -90,14 +90,14 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width, choice):
                 plt.plot(x, funcquad(xneg, a, b, c), '#458C8C',
                          label="Quad Fitted Curve")
 
-            elif func == 'pow':
+            elif func == 'pow' and choice == 2:
                 a = dictionary[func]['a']
                 b = dictionary[func]['b']
                 c = dictionary[func]['c']
                 plt.plot(x, funcpuis(xneg, a, b, c), '#6DA63C',
                          label="Pow Fitted Curve")
 
-            elif func == 'log':
+            elif func == 'log'  and choice == 0:
                 a = dictionary[func]['a']
                 b = dictionary[func]['b']
                 c = dictionary[func]['c']
@@ -105,7 +105,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width, choice):
                 plt.plot(x, funclog(xneg, a, b, c, d),
                          '#D9585A', label="Log Fitted Curve")
 
-            elif func == 'lin':
+            elif func == 'lin'  and choice == 3:
                 a = dictionary[func]['a']
                 b = dictionary[func]['b']
                 plt.plot(x, funclin(xneg, a, b), '#D9B504', label="Lin Fitted Curve")
