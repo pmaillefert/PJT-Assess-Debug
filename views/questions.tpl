@@ -1002,7 +1002,7 @@
 					$('#nouveaubloc').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 					LISTE=['logarithmic','exponential','power','linear'];
 					for (var i = 0; i < LISTE.length; i++) {
-					$('#NEWcurves_choice').append('<tr><td><input id=try type="radio" class="essai" name="select" value=' + i + '></td><td>' + LISTE[i] + '</td></tr>');
+					$('#NEWcurves_choice').append('<tr><td><input id=try type="radio" class="essai" name="select" val=' + i + '></td><td>' + LISTE[i] + '</td></tr>');
 					}
 					$('.essai').on('click', function() {
 						choix = this.val;
