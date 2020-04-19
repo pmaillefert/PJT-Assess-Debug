@@ -894,6 +894,7 @@
 				$('.radio_choice').on('click', function() {
 					choice = this.value
 				console.log( "Your choice : " + choice)
+				}
 				$('.radio_choice').on('click', function() {
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
