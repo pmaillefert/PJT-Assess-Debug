@@ -892,8 +892,7 @@
 				}
 				
 				$('.ice').on('click', function() {
-					var choice = this.value;
-					console.log( "Your choice : "+choice);
+					console.log(this.value);
 					}
 				
 				$('.hoice').on('click', function() {
