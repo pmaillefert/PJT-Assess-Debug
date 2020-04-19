@@ -893,9 +893,6 @@
 				}
 				
 				
-				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-				if (assess_session.attributes.fonction.length == 0) {
-				assess_session.attributes.numero = [];
 				
 				$('.ice').on('click', function() {
 					$('#ton_choix').empty();
