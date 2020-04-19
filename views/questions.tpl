@@ -893,6 +893,7 @@
 				
 				
 				$('.ice').on('click', function() {
+					$('#ton_choix').empty();
 					var choice = this.value;
 					$('#ton_choix').append(choice);
 					});
