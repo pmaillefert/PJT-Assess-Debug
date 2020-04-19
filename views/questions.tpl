@@ -893,10 +893,10 @@
 				}
 				
 				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-				if (assess_session.attributes.fonction.length == '') {
+				if (assess_session.attributes.fonction[0] == '') {
 						assess_session.attributes.fonction[0]='linear'}
 				if (assess_session.attributes.numero[0] == 100) {
-						assess_session.attributes.numero[0]=0}
+						assess_session.attributes.numero[0]=0};
 				localStorage.setItem("assess_session", JSON.stringify(assess_session));
 				
 				$('.ice').on('click', function() {
