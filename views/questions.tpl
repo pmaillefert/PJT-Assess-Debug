@@ -1021,7 +1021,7 @@
 						addGraph(Number(this.value), data['data'], val_min, val_max);
 						addFunctions(Number(this.value), data['data'],val_min);
 						
-					}
+					
 				});
 			});
 
