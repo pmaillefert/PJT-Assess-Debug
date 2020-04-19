@@ -892,8 +892,8 @@
 					$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 				}
 				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-				assess_session.attributes.fonction = [];
-				assess_session.attributes.numero = [];
+				assess_session.fonction = [];
+				assess_session.numero = [];
 				
 				var choice = 0 ;
 				var num = 0;
@@ -908,9 +908,9 @@
 					var choice = this.value;
 					$('#ton_choix').append("You chose " + choice);
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-					assess_session.attributes.fonction = [];
-					var num = assess_session.attributes.numero[0]
-					assess_session.attributes.fonction.append(choice);
+					assess_session.fonction = [];
+					var num = assess_session.numero[0]
+					assess_session.fonction.append(choice);
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
 					addGraph(num, data['data'], val_min, val_max);
@@ -922,10 +922,10 @@
 				
 				$('.hoice').on('click', function() {
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-					assess_session.attributes.numero = [];
-					var choice = assess_session.attributes.fonction[0];
+					assess_session.numero = [];
+					var choice = assess_session.fonction[0];
 					var num = Number(this.value);
-					assess_session.attributes.numero.append(num);
+					assess_session.numero.append(num);
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
 					addGraph(num, data['data'], val_min, val_max);
