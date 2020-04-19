@@ -6,11 +6,11 @@ import io
 from functions import *
 
 
-def generate_svg_plot(dictionary, min, max, liste_cord, width):
+def generate_svg_plot(dictionary, min, max, liste_cord, width, choice):
 
     # img
     imgdata = io.BytesIO()
-    choix= "logarithmic"
+    
     # creation des listes des abscisses et ordonnees
     lx = []
     ly = []
@@ -37,7 +37,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width):
                 a = dictionary[func]['a']
                 b = dictionary[func]['b']
                 c = dictionary[func]['c']
-		if choix=='exponential':
+		if choice=='exponential':
                 	plt.plot(x, funcexp(x, a, b, c), '#401539',
                          	label="Exp Fitted Curve")
 
@@ -52,7 +52,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width):
                 a = dictionary[func]['a']
                 b = dictionary[func]['b']
                 c = dictionary[func]['c']
-		if choix == 'power':
+		if choice == 'power':
                 	plt.plot(x, funcpuis(x, a, b, c), '#6DA63C',
                          	label="Pow Fitted Curve")
 
@@ -61,14 +61,14 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width):
                 b = dictionary[func]['b']
                 c = dictionary[func]['c']
                 d = dictionary[func]['d']
-		if choix == 'logarithmic':
+		if choice == 'logarithmic':
                 	plt.plot(x, funclog(x, a, b, c, d),
                          	'#D9585A', label="Log Fitted Curve")
 
             elif func == 'lin':
                 a = dictionary[func]['a']
                 b = dictionary[func]['b']
-		if choix == 'linear':
+		if choice == 'linear':
                 	plt.plot(x, funclin(x, a, b), '#D9B504', label="Lin Fitted Curve")
 
             elif func =='expo-power':
