@@ -642,7 +642,10 @@
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		$('.calc_util_quanti').click(function() {
 			// we store the name of the attribute
+			var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 			
+			assess_session.fonction = [];
+			localStorage.setItem("assess_session", JSON.stringify(assess_session));
 			var name = $(this).attr('id').slice(2);
 			console.log(name);
 			// we hide the slect div
@@ -893,27 +896,48 @@
 					$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 				}
 				
+				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+				assess_session.fonction = [];
+				assess_session.numero = [];
+				assess_session.fonction.append("linear");
+				assess_session.numero.append(0);
+				var choice = assess_session.fonction[0];
+				var num = assess_session.numero[0];
+				$('#main_graph').show().empty();
+				$('#functions').show().empty();
+				addGraph(num, data['data'], val_min, val_max,choice);
+				addFunctions(num, data['data'],val_min);
+				localStorage.setItem("assess_session", JSON.stringify(assess_session));
 				
 				$('.ice').on('click', function() {
 					$('#ton_choix').empty();
 					var choice = this.value;
 					$('#ton_choix').append("You chose " + choice);
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-			
 					assess_session.fonction = [];
+					var num = assess_session.numero[0]
 					assess_session.fonction.append(choice);
+					$('#main_graph').show().empty();
+					$('#functions').show().empty();
+					addGraph(num, data['data'], val_min, val_max,choice);
+					addFunctions(num, data['data'],val_min);
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 					});
 					
+			
+				
 				$('.hoice').on('click', function() {
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-					if (assess_session.fonction != []) {
-						var choice = assess_session.fonction[0];
-						$('#main_graph').show().empty();
-						$('#functions').show().empty();
-						addGraph(Number(this.value), data['data'], val_min, val_max,choice);
-						addFunctions(Number(this.value), data['data'],val_min);
-						};
+					assess_session.numero = [];
+					var choice = assess_session.fonction[0];
+					var num = Number(this.value);
+					assess_session.numero.append(num);
+					$('#main_graph').show().empty();
+					$('#functions').show().empty();
+					addGraph(Number(num, data['data'], val_min, val_max,choice);
+					addFunctions(num, data['data'],val_min);
+					localStorage.setItem("assess_session", JSON.stringify(assess_session));
+						
 					});
 			});
 		});
