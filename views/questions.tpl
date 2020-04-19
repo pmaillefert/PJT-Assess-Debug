@@ -642,10 +642,7 @@
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		$('.calc_util_quanti').click(function() {
 			// we store the name of the attribute
-			var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 			
-			assess_session.fonction = [];
-			localStorage.setItem("assess_session", JSON.stringify(assess_session));
 			var name = $(this).attr('id').slice(2);
 			console.log(name);
 			// we hide the slect div
@@ -934,7 +931,7 @@
 					assess_session.numero.append(num);
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
-					addGraph(Number(num, data['data'], val_min, val_max,choice);
+					addGraph(num, data['data'], val_min, val_max,choice);
 					addFunctions(num, data['data'],val_min);
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 						
