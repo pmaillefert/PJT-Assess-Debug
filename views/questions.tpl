@@ -891,17 +891,7 @@
 					regressions_text = availableRegressions(data['data'][i]);
 					$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 				}
-				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-				assess_session.fonction = [];
-				assess_session.numero = [];
 				
-				var choice = 0 ;
-				var num = 0;
-				$('#main_graph').show().empty();
-				$('#functions').show().empty();
-				addGraph(num, data['data'], val_min, val_max);
-				addFunctions(num, data['data'],val_min);
-				localStorage.setItem("assess_session", JSON.stringify(assess_session));
 				
 				$('.ice').on('click', function() {
 					$('#ton_choix').empty();
