@@ -822,14 +822,14 @@ function list(){
 		k_utility_multilinear.push(null);
 	}
 
-	
+	//MODIF2020
 	$('#table_attributes').html("");
 	// We fill the table
 	for (var i=0; i < maList.length; i++){
 
 		var monAttribut=assess_session.attributes[maList[i].ID_attribute],
 			text_table = '<tr>'+
-						'<td>K' + maList[i].ID + '</td>'+
+						'<td>' + maList[i].ID + '</td>'+
 						'<td>'+ monAttribut.name + '</td>'+
 						'<td id="charts_'+i+'"></td>'+
 						'<td id="functions_'+i+'"></td>'+
