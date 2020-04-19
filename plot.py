@@ -10,11 +10,11 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width):
 
     # img
     imgdata = io.BytesIO()
-    
+
     # creation des listes des abscisses et ordonnees
     lx = []
     ly = []
-	
+
     for coord in liste_cord:
         lx.append(coord[0])
         ly.append(coord[1])
@@ -33,7 +33,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width):
 
     if min >= 0 :
         for func in dictionary.keys():
-            if func == 'exp' :
+            if func == 'exp':
                 a = dictionary[func]['a']
                 b = dictionary[func]['b']
                 c = dictionary[func]['c']
@@ -62,10 +62,10 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width):
                 plt.plot(x, funclog(x, a, b, c, d),
                          '#D9585A', label="Log Fitted Curve")
 
-            elif func == 'lin' :
+            elif func == 'lin':
                 a = dictionary[func]['a']
                 b = dictionary[func]['b']
-                	plt.plot(x, funclin(x, a, b), '#D9B504', label="Lin Fitted Curve")
+                plt.plot(x, funclin(x, a, b), '#D9B504', label="Lin Fitted Curve")
 
             elif func =='expo-power':
                 a = dictionary[func]['a']
@@ -76,7 +76,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width):
 
     else: 
         for func in dictionary.keys():
-            if func == 'exp'  :
+            if func == 'exp':
                 a = dictionary[func]['a']
                 b = dictionary[func]['b']
                 c = dictionary[func]['c']
@@ -97,7 +97,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width):
                 plt.plot(x, funcpuis(xneg, a, b, c), '#6DA63C',
                          label="Pow Fitted Curve")
 
-            elif func == 'log'  :
+            elif func == 'log':
                 a = dictionary[func]['a']
                 b = dictionary[func]['b']
                 c = dictionary[func]['c']
@@ -105,7 +105,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width):
                 plt.plot(x, funclog(xneg, a, b, c, d),
                          '#D9585A', label="Log Fitted Curve")
 
-            elif func == 'lin' :
+            elif func == 'lin':
                 a = dictionary[func]['a']
                 b = dictionary[func]['b']
                 plt.plot(x, funclin(xneg, a, b), '#D9B504', label="Lin Fitted Curve")
