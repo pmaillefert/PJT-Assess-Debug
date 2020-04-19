@@ -1094,7 +1094,7 @@ function GK_calculated() {
 		for (var i=0; i < maList.length; i++) {
 
 			var monAttribut = assess_session.attributes[maList[i].ID_attribute];
-			var text = '<tr><td>K' + maList[i].ID + '</td>';
+			var text = '<tr><td>' + maList[i].ID + '</td>';
 			text += '<td>' + monAttribut.name + '</td>';
 			text += '<td id="charts_' + i + '"></td>';
 			text += '<td id="functions_' + i + '">'+assess_session.k_calculus[get_Active_Method()].GU.utilities[i].type+' (r2='+assess_session.k_calculus[get_Active_Method()].GU.utilities[i].r2+')</td>';
