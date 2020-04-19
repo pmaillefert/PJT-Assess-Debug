@@ -26,6 +26,7 @@
 </div>
 
 <div id="nouveaubloc"></div>
+<div id="message"></div>
 
 <div id="main_graph" class="col-lg-5"></div>
 <div id="functions" class="col-lg-7"></div>
@@ -47,6 +48,8 @@
 		$('#charts').hide();
 		$('#main_graph').hide();
 		$('#functions').hide();
+		$('#message').hide();
+		$('#nouveaubloc').hide();
 
 		var assess_session = JSON.parse(localStorage.getItem("assess_session")),
 			settings = assess_session.settings;
@@ -955,11 +958,12 @@
 				}
 			}
 
-			function addGraph(i, data, min, max) {
+			function addGraph(i, data, min, max, choix) {
 				console.log("addgraph");
 				$.post('ajax', JSON.stringify({
 					"type": "svg",
 					"data": data[i],
+					"choix": choix
 					"min": min,
 					"max": max,
 					"liste_cord": data[i]['coord'],
@@ -983,6 +987,8 @@
 			
 			$.post('ajax', JSON.stringify(json_2_send), function(data) {
 				$('#charts').show();
+				$('#nouveaubloc').show();
+				choix = "";
 				if (val_min<0){
 					for (i in data['data']){
 						for (j in data['data'][i]['coord']){
@@ -997,19 +1003,24 @@
 					regressions_text = availableRegressions(data['data'][i]);
 					$('#curves_choice').append('<tr><td><input type="radio" id="courbes" class="radio_choice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 				}
-				$('.radio_choice').on('click', function() {
-				
-					$('#nouveaubloc').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
+				$('#nouveaubloc').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 					LISTE=['logarithmic','exponential','power','linear'];
 					for (var j = 0; j < LISTE.length; i++) {
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" id="try" class="essai" name="select2" value='LISTE[j]'></td></tr>');
 					}
-					$('.essai').on('click', function() {
-						choix = $('#try').value;
+				$('.essai').on('click', function() {
+				choix = this.value;
+				}
+				$('.radio_choice').on('click', function() {
+					if (choix == "") {
+						$('#message').show("fast")
+						}
+					else {
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
-						addGraph(Number($(#'courbes').value), data['data'], val_min, val_max);
-						addFunctions(Number(this.value), data['data'],val_min);
+						addGraph(Number(this.value), data['data'], val_min, val_max, choix);
+						addFunctions(Number(this.value), data['data'],val_min,);
+						}
 					}
 				});
 			});
