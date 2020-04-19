@@ -1012,7 +1012,7 @@
 				
 				}
 				
-				choix = 'logarithmic';
+				
 				$('.radio_choice').on('click', function() {
 					
 					
