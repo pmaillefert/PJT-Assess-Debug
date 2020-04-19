@@ -27,7 +27,7 @@
 
 <div id="nouveaubloc"></div>
 <div id="message">
-	<h4> Select the function </h4>
+	<h4> Select the function you want</h4>
 </div>
 
 <div id="main_graph" class="col-lg-5"></div>
@@ -1021,7 +1021,7 @@
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
 						addGraph(Number(this.value), data['data'], val_min, val_max);
-						addFunctions(Number(this.value), data['data'],val_min,);
+						addFunctions(Number(this.value), data['data'],val_min);
 						}
 					}
 				});
