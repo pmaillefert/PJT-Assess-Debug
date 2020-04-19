@@ -892,7 +892,9 @@
 				}
 				
 				
-				
+				$('.ice').on('click', function() {
+					var choice = this.value;
+					});
 				$('.hoice').on('click', function() {
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
