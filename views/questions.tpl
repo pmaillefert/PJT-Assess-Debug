@@ -882,12 +882,7 @@
 						};
 					};
 				}
-				var indice;
-			for (var j = 0; j < assess_session.attributes.length; j++) {
-				if (assess_session.attributes[j].name == name) {
-					indice = j;
-				}
-			}
+				
 				console.log(JSON.stringify(json_2_send));
 				$('#nouveaubloc').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				LISTE=['logarithmic','exponential','power','linear'];
@@ -899,14 +894,19 @@
 					regressions_text = availableRegressions(data['data'][i]);
 					$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 				}
-				
+				var ind = 0 ;
+			for (var j = 0; j < assess_session.attributes.length; j++) {
+				if (assess_session.attributes[j].name == name) {
+					indice = j;
+				}
+			}
 				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-				if (assess_session.attributes[indice].fonction[0] == '') {
-						assess_session.attributes[indice].fonction[0]='linear'}
-				if (assess_session.attributes[indice].numero[0] == 100) {
-						assess_session.attributes[indice].numero[0]=0};
+				if (assess_session.attributes[ind].fonction[0] == '') {
+						assess_session.attributes[ind].fonction[0]='linear'}
+				if (assess_session.attributes[ind].numero[0] == 100) {
+						assess_session.attributes[ind].numero[0]=0};
 				localStorage.setItem("assess_session", JSON.stringify(assess_session));
-				$('#test').append(assess_session.attributes[indice].fonction[0]);
+				$('#test').append(assess_session.attributes[ind].fonction[0]);
 				
 				$('.ice').on('click', function() {
 					$('#ton_choix').empty();
@@ -914,8 +914,8 @@
 					$('#ton_choix').append("You chose " + choice);
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					
-					assess_session.attributes[indice].fonction[0]= choice;
-					var num = assess_session.attributes[indice].numero[0];
+					assess_session.attributes[ind].fonction[0]= choice;
+					var num = assess_session.attributes[ind].numero[0];
 					
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
@@ -930,8 +930,8 @@
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					
 					
-					var choice = assess_session.attributes[indice].fonction[0];
-					assess_session.attributes[indice].numero[0] = Number(this.value);
+					var choice = assess_session.attributes[ind].fonction[0];
+					assess_session.attributes[ind].numero[0] = Number(this.value);
 					
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
