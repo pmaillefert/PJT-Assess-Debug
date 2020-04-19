@@ -206,7 +206,7 @@ $(function() {
 				"proba_le": 0.3,
 				"language": "english",
 				"display": "trees"
-				},
+				}
 			
 			
 			
