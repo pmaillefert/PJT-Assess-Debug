@@ -894,12 +894,11 @@
 				}
 				
 				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-				assess_session.fonction = [];
-				assess_session.numero = [];
-				assess_session.fonction.append("linear");
-				assess_session.numero.append(0);
-				var choice = assess_session.fonction[0];
-				var num = assess_session.numero[0];
+				assess_session.attributes.fonction = [];
+				assess_session.attributes.numero = [];
+				
+				var choice = "linear" ;
+				var num = 0;
 				$('#main_graph').show().empty();
 				$('#functions').show().empty();
 				addGraph(num, data['data'], val_min, val_max,choice);
@@ -911,9 +910,9 @@
 					var choice = this.value;
 					$('#ton_choix').append("You chose " + choice);
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-					assess_session.fonction = [];
-					var num = assess_session.numero[0]
-					assess_session.fonction.append(choice);
+					assess_session.attributes.fonction = [];
+					var num = assess_session.attributes.numero[0]
+					assess_session.attributes.fonction.append(choice);
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
 					addGraph(num, data['data'], val_min, val_max,choice);
@@ -925,10 +924,10 @@
 				
 				$('.hoice').on('click', function() {
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-					assess_session.numero = [];
-					var choice = assess_session.fonction[0];
+					assess_session.attributes.numero = [];
+					var choice = assess_session.attributes.fonction[0];
 					var num = Number(this.value);
-					assess_session.numero.append(num);
+					assess_session.attributes.numero.append(num);
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
 					addGraph(num, data['data'], val_min, val_max,choice);
