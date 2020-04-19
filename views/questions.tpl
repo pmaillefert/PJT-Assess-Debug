@@ -24,8 +24,9 @@
 <div id="charts">
 	<h2>Select the regression function you want to use</h2>
 </div>
-<div id ="nouveaubloc"></div>
-<div id ="message"><h6>Choose a function</h6></div>
+<div id ="nouveaubloc"><h6>Choose a function</h6></div>
+
+
 <div id="main_graph" class="col-lg-5"></div>
 <div id="functions" class="col-lg-7"></div>
 
@@ -46,6 +47,8 @@
 		$('#charts').hide();
 		$('#main_graph').hide();
 		$('#functions').hide();
+		$('#nouveaubloc').hide();
+		
 		var assess_session = JSON.parse(localStorage.getItem("assess_session")),
 			settings = assess_session.settings;
 		// We fill the table of the existing attributes and assessments
@@ -868,6 +871,7 @@
 			
 			$.post('ajax', JSON.stringify(json_2_send), function(data) {
 				$('#charts').show();
+				$('#nouveaubloc').show()
 				if (val_min<0){
 					for (i in data['data']){
 						for (j in data['data'][i]['coord']){
@@ -886,6 +890,7 @@
 					regressions_text = availableRegressions(data['data'][i]);
 					$('#curves_choice').append('<tr><td><input type="radio" class="radio_choice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 				}
+				
 				$('.radio_choice').on('click', function() {
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
