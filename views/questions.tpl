@@ -879,7 +879,7 @@
 				$('#nouveaubloc').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				LISTE=['logarithmic','exponential','power','linear'];
 				for (var i = 0; i < LISTE.length; i++) {
-					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="radio_choice" name="select2" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td></tr>');
+					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="radio_choice" name="select2" value=' +LISTE[i]+ '></td><tr>');
 				}
 				$('#charts').append('<table id="curves_choice" class="table"><thead><tr><th></th><th>Points used</th><th>Available regressions: r2</th></tr></thead></table>');
 				for (var i = 0; i < data['data'].length; i++) {
