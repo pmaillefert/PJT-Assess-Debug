@@ -895,7 +895,7 @@
 				$('.ice').on('click', function() {
 					$('#ton_choix').empty();
 					var choice = this.value;
-					$('#ton_choix').append(choice);
+					$('#ton_choix').append("You chose " + choice);
 					});
 					
 				$('.hoice').on('click', function() {
