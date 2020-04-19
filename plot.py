@@ -6,15 +6,15 @@ import io
 from functions import *
 
 
-def generate_svg_plot(dictionary, min, max, liste_cord, width, choix):
+def generate_svg_plot(dictionary, min, max, liste_cord, width):
 
     # img
     imgdata = io.BytesIO()
-
+    choix= "logarithmic"
     # creation des listes des abscisses et ordonnees
     lx = []
     ly = []
-
+	
     for coord in liste_cord:
         lx.append(coord[0])
         ly.append(coord[1])
