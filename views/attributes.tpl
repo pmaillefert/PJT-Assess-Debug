@@ -207,8 +207,7 @@ $(function() {
 				"language": "english",
 				"display": "trees"
 				},
-			"fonction":[],
-			"numero:[],
+			
 			
 			
 		};
@@ -450,7 +449,9 @@ $(function() {
 							'number': 0,
 							'points': {},
 							'utility': {}
-						}
+								}
+						'fonction':[],
+						'numero':[]
 					};
 				}	
 				edit_mode=false;
