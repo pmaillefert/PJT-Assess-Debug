@@ -904,7 +904,7 @@
 				if (assess_session.attributes[ind].fonction[0] == '') {
 						assess_session.attributes[ind].fonction[0]='linear'}
 				if (assess_session.attributes[ind].numero[0] == 100) {
-						assess_session.attributes[ind].numero[0]=0};
+						assess_session.attributes[ind].numero[0]='0'};
 				localStorage.setItem("assess_session", JSON.stringify(assess_session));
 				$('#test').append(assess_session.attributes[ind].fonction);
 				
