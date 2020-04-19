@@ -998,16 +998,16 @@
 					};
 				}
 				console.log(JSON.stringify(json_2_send));
-				var choix = "";
+				
 				$('#charts').append('<table id="curves_choice" class="table"><thead><tr><th></th><th>Points used</th><th>Available regressions: r2</th></tr></thead></table>');
 				for (var i = 0; i < data['data'].length; i++) {
 					regressions_text = availableRegressions(data['data'][i]);
-					$('#curves_choice').append('<tr><td><input type="radio" id="courbes" class="radio_choice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
+					$('#curves_choice').append('<tr><td><input type="radio" class="radio_choice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 				}
 				$('#nouveaubloc').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 					LISTE=['logarithmic','exponential','power','linear'];
 					for (var j = 0; j < LISTE.length; i++) {
-					$('#NEWcurves_choice').append('<tr><td><input type="radio" id="try" class="essai" name="select2" value='LISTE[j]'></td></tr>');
+					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="essai" name="select2" value='LISTE[j]'></td></tr>');
 					}
 				
 				}
