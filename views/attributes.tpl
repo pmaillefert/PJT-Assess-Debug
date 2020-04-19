@@ -208,7 +208,7 @@ $(function() {
 				"display": "trees"
 				},
 			"fonction":[]
-			}
+			
 			
 		};
 		localStorage.setItem("assess_session", JSON.stringify(assess_session));
