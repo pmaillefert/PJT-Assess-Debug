@@ -25,7 +25,7 @@
 	<h2>Select the regression function you want to use</h2>
 </div>
 <div id ="nouveaubloc"><h6>Choose a function</h6></div>
-
+<div id="ton_choix"></div>
 
 <div id="main_graph" class="col-lg-5"></div>
 <div id="functions" class="col-lg-7"></div>
@@ -894,7 +894,7 @@
 				
 				$('.ice').on('click', function() {
 					var choice = this.value;
-					console.log(choice);
+					$('#ton_choix').append(choice);
 					});
 					
 				$('.hoice').on('click', function() {
