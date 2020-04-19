@@ -426,7 +426,9 @@ $(function() {
 						'number': 0,
 						'points': {},
 						'utility': {}
-					}
+						}
+					'fonction':[],
+					'numero':[]
 				});
 			} else {
 				if (confirm("Are you sure you want to edit the attribute? All assessements will be deleted") == true) {
@@ -516,7 +518,9 @@ $(function() {
 						'number': 0,
 						'points': {},
 						'utility': {}
-					}
+							}
+					'fonction':[],
+					'numero':[]
 				});
 			} else {
 				if (confirm("Are you sure you want to edit this attribute? All assessements will be deleted") == true) {
@@ -535,7 +539,9 @@ $(function() {
 							'number': 0,
 							'points': {},
 							'utility': {}
-						}
+								}
+						'fonction':[],
+						'numero':[]
 					};
 				}
 				edit_mode=false;
