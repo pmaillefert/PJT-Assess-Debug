@@ -1008,7 +1008,7 @@
 						choix = $('#try.value');
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
-						addGraph(Number(i), data['data'], val_min, val_max);
+						addGraph(Number($(#'courbes.value')), data['data'], val_min, val_max);
 						addFunctions(Number(this.value), data['data'],val_min);
 					}
 				});
