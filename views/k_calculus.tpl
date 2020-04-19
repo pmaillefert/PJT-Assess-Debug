@@ -43,7 +43,7 @@
 	<!---------------------- K computation ---------------------->
 	<div id="K_computation">
 		<div class="page-header">
-		  <h3>K computation</h3>
+		  <h3>Computation of K</h3>
 		</div>
 
 		<div class="alert alert-info" role="alert" id="calculatek_box_multiplicative" >
