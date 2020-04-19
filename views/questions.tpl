@@ -888,10 +888,10 @@
 				$('#charts').append('<table id="curves_choice" class="table"><thead><tr><th></th><th>Points used</th><th>Available regressions: r2</th></tr></thead></table>');
 				for (var i = 0; i < data['data'].length; i++) {
 					regressions_text = availableRegressions(data['data'][i]);
-					$('#curves_choice').append('<tr><td><input type="radio" class="radio_choice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
+					$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 				}
 				
-				$('#curves_choice.radio_choice').on('click', function() {
+				$('.hoice').on('click', function() {
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
 					addGraph(Number(this.value), data['data'], val_min, val_max);
