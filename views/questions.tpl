@@ -1006,7 +1006,7 @@
 				}
 				$('#nouveaubloc').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 					LISTE=['logarithmic','exponential','power','linear'];
-					for (var j = 0; j < LISTE.length; i++) {
+					for (var j = 0; j < LISTE.length; j++) {
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="essai" name="select2" value='LISTE[j]'></td></tr>');
 					}
 				
