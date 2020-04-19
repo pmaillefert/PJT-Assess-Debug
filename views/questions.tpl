@@ -1005,10 +1005,10 @@
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" id="try" class="essai" name="select2" value='LISTE[j]'></td></tr>');
 					}
 					$('.essai').on('click', function() {
-						choix = $('#try.value');
+						choix = $('#try').value;
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
-						addGraph(Number($(#'courbes.value')), data['data'], val_min, val_max);
+						addGraph(Number($(#'courbes').value), data['data'], val_min, val_max);
 						addFunctions(Number(this.value), data['data'],val_min);
 					}
 				});
