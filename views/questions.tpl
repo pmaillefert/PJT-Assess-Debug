@@ -891,9 +891,7 @@
 					$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 				}
 				
-				$('.ice').on('click', function() {
-					console.log(this.value);
-					}
+				
 				
 				$('.hoice').on('click', function() {
 					$('#main_graph').show().empty();
