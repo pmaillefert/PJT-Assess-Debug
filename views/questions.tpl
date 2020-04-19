@@ -885,7 +885,7 @@
 				$('#nouveaubloc').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				LISTE=['logarithmic','exponential','power','linear'];
 				for (var i = 0; i < LISTE.length; i++) {
-					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="ice" name="select2" value=' +LISTE[i]+ '></td><td>' + LISTE[i] + '</td><tr>');
+					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="ice" name="select2" value=' +i+ '></td><td>' + LISTE[i] + '</td><tr>');
 				}
 				$('#charts').append('<table id="curves_choice" class="table"><thead><tr><th></th><th>Points used</th><th>Available regressions: r2</th></tr></thead></table>');
 				for (var i = 0; i < data['data'].length; i++) {
@@ -897,7 +897,7 @@
 				assess_session.attributes.fonction = [];
 				assess_session.attributes.numero = [];
 				
-				var choice = "linear" ;
+				var choice = 0 ;
 				var num = 0;
 				$('#main_graph').show().empty();
 				$('#functions').show().empty();
