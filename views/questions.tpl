@@ -900,7 +900,7 @@
 					$('#ton_choix').append("You chose " + choice);
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					if (assess_session.attributes.numero.length == 0) {
-						assess_session.attributes.numero.append(0)};
+						assess_session.attributes.numero.append(0)}
 					assess_session.attributes.fonction = [];
 					var num = assess_session.attributes.numero[0]
 					assess_session.attributes.fonction.append(choice);
@@ -916,7 +916,7 @@
 				$('.hoice').on('click', function() {
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					if (assess_session.attributes.fonction.length == 0) {
-						assess_session.attributes.fonction.append('linear')};
+						assess_session.attributes.fonction.append('linear')}
 					assess_session.attributes.numero = [];
 					var choice = assess_session.attributes.fonction[0];
 					var num = Number(this.value);
