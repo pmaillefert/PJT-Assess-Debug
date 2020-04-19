@@ -960,12 +960,11 @@
 				}
 			}
 
-			function addGraph(i, data, min, max, choix) {
+			function addGraph(i, data, min, max) {
 				console.log("addgraph");
 				$.post('ajax', JSON.stringify({
 					"type": "svg",
 					"data": data[i],
-					"choix": choix
 					"min": min,
 					"max": max,
 					"liste_cord": data[i]['coord'],
@@ -1011,8 +1010,9 @@
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" id="try" class="essai" name="select2" value='LISTE[j]'></td></tr>');
 					}
 				
-				choix = 'logarithmic';
 				}
+				var choix = "";
+				choix = 'logarithmic';
 				$('.radio_choice').on('click', function() {
 					if (choix == "") {
 						$('#message').show("fast")
@@ -1020,7 +1020,7 @@
 					else {
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
-						addGraph(Number(this.value), data['data'], val_min, val_max, choix);
+						addGraph(Number(this.value), data['data'], val_min, val_max);
 						addFunctions(Number(this.value), data['data'],val_min,);
 						}
 					}
