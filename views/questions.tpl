@@ -27,7 +27,7 @@
 
 <div id="nouveaubloc"></div>
 <div id="message">
-	<h4> Select the function you want </h4>
+	<h4> Select the function </h4>
 </div>
 
 <div id="main_graph" class="col-lg-5"></div>
@@ -990,7 +990,7 @@
 			$.post('ajax', JSON.stringify(json_2_send), function(data) {
 				$('#charts').show();
 				$('#nouveaubloc').show();
-				var choix = "";
+				
 				if (val_min<0){
 					for (i in data['data']){
 						for (j in data['data'][i]['coord']){
@@ -999,7 +999,7 @@
 					};
 				}
 				console.log(JSON.stringify(json_2_send));
-				
+				var choix = "";
 				$('#charts').append('<table id="curves_choice" class="table"><thead><tr><th></th><th>Points used</th><th>Available regressions: r2</th></tr></thead></table>');
 				for (var i = 0; i < data['data'].length; i++) {
 					regressions_text = availableRegressions(data['data'][i]);
