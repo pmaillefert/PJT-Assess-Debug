@@ -70,7 +70,7 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>K</th>
+					<th>Attribute's ID</th>
 					<th>Attribute</th>
 					<th>Graph</th>
 					<th>Utility function</th>
