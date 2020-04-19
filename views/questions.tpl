@@ -896,6 +896,11 @@
 					$('#ton_choix').empty();
 					var choice = this.value;
 					$('#ton_choix').append("You chose " + choice);
+					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+			
+					assess_session.fonction = [];
+					assess_session.fonction.append(choice);
+					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 					});
 					
 				$('.hoice').on('click', function() {
@@ -903,7 +908,7 @@
 					$('#functions').show().empty();
 					addGraph(Number(this.value), data['data'], val_min, val_max);
 					addFunctions(Number(this.value), data['data'],val_min);
-				});
+					});
 			});
 		});
 	
