@@ -897,7 +897,7 @@
 				var ind = 0 ;
 			for (var j = 0; j < assess_session.attributes.length; j++) {
 				if (assess_session.attributes[j].name == name) {
-					indice = j;
+					ind = j;
 				}
 			}
 				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
