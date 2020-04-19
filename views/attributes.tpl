@@ -206,7 +206,10 @@ $(function() {
 				"proba_le": 0.3,
 				"language": "english",
 				"display": "trees"
+				},
+			"fonction":[]
 			}
+			
 		};
 		localStorage.setItem("assess_session", JSON.stringify(assess_session));
 	};
