@@ -980,10 +980,6 @@
 				return text;
 			}
 
-			$('#nouveaubloc').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
-				LISTE=['logarithmic','exponential','power','linear']
-				for (var i = 0; i < LISTE.length; i++) {
-					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="radio_choice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td></tr>');
 			
 			$.post('ajax', JSON.stringify(json_2_send), function(data) {
 				$('#charts').show();
@@ -1006,6 +1002,11 @@
 					$('#functions').show().empty();
 					addGraph(Number(this.value), data['data'], val_min, val_max);
 					addFunctions(Number(this.value), data['data'],val_min);
+					$('#nouveaubloc').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
+					LISTE=['logarithmic','exponential','power','linear'];
+					for (var i = 0; i < LISTE.length; i++) {
+					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="radio_choice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td></tr>');
+			
 				});
 			});
 
