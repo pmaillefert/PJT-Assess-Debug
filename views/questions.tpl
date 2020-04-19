@@ -20,7 +20,9 @@
 </div>
 
 <div id="trees"></div>
-
+<div id="test">
+	<h2>test</h2>
+</div>
 <div id="charts">
 	<h2>Select the regression function you want to use</h2>
 </div>
@@ -898,6 +900,7 @@
 				if (assess_session.attributes.numero[0] == 100) {
 						assess_session.attributes.numero[0]=0};
 				localStorage.setItem("assess_session", JSON.stringify(assess_session));
+				$('#test').append(assess_session.attributes.fonction[0]);
 				
 				$('.ice').on('click', function() {
 					$('#ton_choix').empty();
