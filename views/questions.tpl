@@ -24,7 +24,8 @@
 <div id="charts">
 	<h2>Select the regression function you want to use</h2>
 </div>
-
+<div id ="nouveaubloc"></div>
+<div id ="message"><h6>Choose a function</h6></div>
 <div id="main_graph" class="col-lg-5"></div>
 <div id="functions" class="col-lg-7"></div>
 
@@ -875,7 +876,11 @@
 					};
 				}
 				console.log(JSON.stringify(json_2_send));
-				
+				$('#nouveaubloc').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
+				LISTE=['logarithmic','exponential','power','linear'];
+				for (var i = 0; i < LISTE.length; i++) {
+					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="radio_choice" name="select2" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td></tr>');
+				}
 				$('#charts').append('<table id="curves_choice" class="table"><thead><tr><th></th><th>Points used</th><th>Available regressions: r2</th></tr></thead></table>');
 				for (var i = 0; i < data['data'].length; i++) {
 					regressions_text = availableRegressions(data['data'][i]);
