@@ -902,7 +902,7 @@
 					if (assess_session.attributes.numero.length == 0) {
 						assess_session.attributes.numero.append(0)}
 					assess_session.attributes.fonction = [];
-					var num = assess_session.attributes.numero[0]
+					var num = assess_session.attributes.numero[0];
 					assess_session.attributes.fonction.append(choice);
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
