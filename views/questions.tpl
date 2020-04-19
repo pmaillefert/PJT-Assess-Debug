@@ -1011,18 +1011,16 @@
 					}
 				
 				}
-				var choix = "";
+				
 				choix = 'logarithmic';
 				$('.radio_choice').on('click', function() {
-					if (choix == "") {
-						$('#message').show("fast")
-						}
-					else {
+					
+					
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
 						addGraph(Number(this.value), data['data'], val_min, val_max);
 						addFunctions(Number(this.value), data['data'],val_min);
-						}
+						
 					}
 				});
 			});
