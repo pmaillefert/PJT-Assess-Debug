@@ -1004,12 +1004,12 @@
 					for (var i = 0; i < LISTE.length; i++) {
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="radio_choice" name="select" value=' + i + '></td><td>' + LISTE[i] + '</td></tr>');
 					}
-			
+					$('.radio_choice').on('click', function() {
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
 					addGraph(Number(this.value), data['data'], val_min, val_max);
 					addFunctions(Number(this.value), data['data'],val_min);
-					
+					}
 				});
 			});
 
