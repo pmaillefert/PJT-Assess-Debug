@@ -52,6 +52,7 @@
 		$('#functions').hide();
 		$('#nouveaubloc').hide();
 		
+		
 		var assess_session = JSON.parse(localStorage.getItem("assess_session")),
 			settings = assess_session.settings;
 		// We fill the table of the existing attributes and assessments
@@ -648,6 +649,7 @@
 			
 			var name = $(this).attr('id').slice(2);
 			console.log(name);
+			$('#boutontrial').append('<h3> test2 </h3>');
 			// we hide the slect div
 			$('#select').hide();
 			// which index is it ?
@@ -901,7 +903,7 @@
 			for (var j = 0; j < assess_session.attributes.length; j++) {
 				if (assess_session.attributes[j].name == name) {
 					ind = j;
-					$('#boutontrial').append('<p> ind </p>');
+					$('#boutontrial').append('<p>'+ ind + '</p>');
 				}
 			}
 				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
