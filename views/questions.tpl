@@ -897,6 +897,7 @@
 				}
 				var name = $(this).attr('id').slice(2);
 				var ind = 0 ;
+				$('#boutontrial').append('<p> test2 </p>');
 			for (var j = 0; j < assess_session.attributes.length; j++) {
 				if (assess_session.attributes[j].name == name) {
 					ind = j;
