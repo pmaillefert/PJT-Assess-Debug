@@ -894,6 +894,7 @@
 					regressions_text = availableRegressions(data['data'][i]);
 					$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 				}
+				var name = $(this).attr('id').slice(2);
 				var ind = 0 ;
 			for (var j = 0; j < assess_session.attributes.length; j++) {
 				if (assess_session.attributes[j].name == name) {
