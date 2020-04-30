@@ -28,6 +28,7 @@
 </div>
 <div id ="nouveaubloc"><h6>Choose a function</h6></div>
 <div id="ton_choix"></div>
+<div id="boutontrial"></div>
 
 <div id="main_graph" class="col-lg-5"></div>
 <div id="functions" class="col-lg-7"></div>
@@ -899,7 +900,7 @@
 			for (var j = 0; j < assess_session.attributes.length; j++) {
 				if (assess_session.attributes[j].name == name) {
 					ind = j;
-					console.log(ind);
+					$('#boutontrial').append('<p> ind </p>');
 				}
 			}
 				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
