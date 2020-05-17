@@ -807,6 +807,7 @@ $(function(){
 });
 
 
+
 function list(){
 	var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 
@@ -855,18 +856,17 @@ function list(){
 				
 				json_2_send["points"] = points;
 				$.post('ajax', JSON.stringify(json_2_send), function (data) {
+					
 					$.post('ajax', JSON.stringify({
 						"type": "svg",
 						"data": data,
 						"min": val_min,
 						"max": val_max,
 						"liste_cord": points,
-						"width": 3,
-						"choice": "logarithmic"
+						"width": 3
 					}), function (data2) {
 
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
-					};
 						for (var key in data) {
 
 							var functions = "";
@@ -1096,7 +1096,7 @@ function GK_calculated() {
 		for (var i=0; i < maList.length; i++) {
 
 			var monAttribut = assess_session.attributes[maList[i].ID_attribute];
-			var text = '<tr><td>K' + maList[i].ID + '</td>';
+			var text = '<tr><td>' + maList[i].ID + '</td>';
 			text += '<td>' + monAttribut.name + '</td>';
 			text += '<td id="charts_' + i + '"></td>';
 			text += '<td id="functions_' + i + '">'+assess_session.k_calculus[get_Active_Method()].GU.utilities[i].type+' (r2='+assess_session.k_calculus[get_Active_Method()].GU.utilities[i].r2+')</td>';
