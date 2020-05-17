@@ -897,22 +897,17 @@
 					regressions_text = availableRegressions(data['data'][i]);
 					$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 				}
-				var name = $(this).attr('id').slice(2);
-				var ind = 0 ;
-				$('#boutontrial').append('<p> test2 </p>');
-			for (var j = 0; j < assess_session.attributes.length; j++) {
-				if (assess_session.attributes[j].name == name) {
-					ind = j;
-					$('#boutontrial').append('<p>'+ ind + '</p>');
-				}
-			}
 				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-				if (assess_session.attributes[ind].fonction == '') {
-						assess_session.attributes[ind].fonction ='linear'}
-				if (assess_session.attributes[ind].numero == 0) {
-						assess_session.attributes[ind].numero =0};
+				$('#boutontrial').append('<p>'+ indice + '</p>');
+				
+			
+				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+				if (assess_session.attributes[indice].fonction == '') {
+						assess_session.attributes[indice].fonction ='linear'}
+				if (assess_session.attributes[indice].numero == 0) {
+						assess_session.attributes[indice].numero =0};
 				localStorage.setItem("assess_session", JSON.stringify(assess_session));
-				$('#test').append(assess_session.attributes[ind].fonction);
+				$('#test').append(assess_session.attributes[indice].fonction);
 				
 				$('.ice').on('click', function() {
 					$('#ton_choix').empty();
@@ -920,8 +915,8 @@
 					$('#ton_choix').append("You chose " + choice);
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					
-					assess_session.attributes[ind].fonction = choice;
-					var num = assess_session.attributes[ind].numero;
+					assess_session.attributes[indice].fonction = choice;
+					var num = assess_session.attributes[indice].numero;
 					
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
@@ -936,8 +931,8 @@
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					
 					
-					var choice = assess_session.attributes[ind].fonction;
-					assess_session.attributes[ind].numero = Number(this.value);
+					var choice = assess_session.attributes[indice].fonction;
+					assess_session.attributes[indice].numero = Number(this.value);
 					
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
