@@ -6,7 +6,7 @@ import io
 from functions import *
 
 
-def generate_svg_plot(dictionary, min, max, liste_cord, width):
+def generate_svg_plot(dictionary, min, max, liste_cord, width, choice):
 
     # img
     imgdata = io.BytesIO()
