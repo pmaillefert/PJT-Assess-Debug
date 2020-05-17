@@ -851,7 +851,7 @@
 					};
 				}
 			}
-			function addGraph(i, data, min, max) {
+			function addGraph(i, data, min, max, choice) {
 				console.log("addgraph");
 				$.post('ajax', JSON.stringify({
 					"type": "svg",
@@ -860,6 +860,7 @@
 					"max": max,
 					"liste_cord": data[i]['coord'],
 					"width": 6,
+					"choice":choice,
 				}), function(data2) {
 					$('#main_graph').append(data2);
 				});
@@ -920,7 +921,7 @@
 					
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
-					addGraph(num, data['data'], val_min, val_max);
+					addGraph(num, data['data'], val_min, val_max, choice);
 					addFunctions(num, data['data'],val_min);
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 					});
@@ -936,7 +937,7 @@
 					
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
-					addGraph(Number(this.value), data['data'], val_min, val_max);
+					addGraph(Number(this.value), data['data'], val_min, val_max,choice);
 					addFunctions(Number(this.value), data['data'],val_min);
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 						
