@@ -856,7 +856,7 @@ function list(){
 				
 				json_2_send["points"] = points;
 				$.post('ajax', JSON.stringify(json_2_send), function (data) {
-					var choice = 'logarithmic'
+					
 					$.post('ajax', JSON.stringify({
 						"type": "svg",
 						"data": data,
@@ -864,7 +864,7 @@ function list(){
 						"max": val_max,
 						"liste_cord": points,
 						"width": 3,
-						"choice": choice
+						"choice": 'logarithmic'
 					}), function (data2) {
 
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
