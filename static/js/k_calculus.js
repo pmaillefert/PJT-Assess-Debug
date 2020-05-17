@@ -825,6 +825,7 @@ function list(){
 	//MODIF2020
 	$('#table_attributes').html("");
 	// We fill the table
+	
 	for (var i=0; i < maList.length; i++){
 
 		var monAttribut=assess_session.attributes[maList[i].ID_attribute],
@@ -836,6 +837,8 @@ function list(){
 						'</tr>';
 
 		$('#table_attributes').append(text_table);
+		var choice = assess_session.attributes[i].fonction;
+		var num = assess_session.attributes[i].numero;
 
 		(function(_i) {
 			var json_2_send = {"type": "calc_util", "points":[]},
@@ -861,45 +864,46 @@ function list(){
 						"min": val_min,
 						"max": val_max,
 						"liste_cord": points,
-						"width": 3
+						"width": 3,
+						"choice":choice
 					}), function (data2) {
 
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
 						for (var key in data) {
 
 							var functions = "";
-							if (key == 'exp') {
+							if (key == 'exp') and (choice == 'exponential') {
 								functions= '<label style="color:#401539"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_exp"> Exponential (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data[key]['type']='exp';
 								(function(_data){$('#checkbox_'+_i+'_exp').click(function(){update_utility(_i, _data)});})(data[key]);
 
 							}
-							else if (key == 'log'){
+							else if (key == 'log') and (choice == 'logarithmic'){
 								functions='<label style="color:#D9585A"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_log"> Logarithmic (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data[key]['type']='log';
 								(function(_data){$('#checkbox_'+_i+'_log').click(function(){update_utility(_i, _data)});})(data[key]);
 							}
-							else if (key == 'pow'){
+							else if (key == 'pow')and (choice == 'power'){
 								functions='<label style="color:#6DA63C"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_pow"> Power (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data[key]['type']='pow';
 								(function(_data){$('#checkbox_'+_i+'_pow').click(function(){update_utility(_i, _data)});})(data[key]);
 							}
-							else if (key == 'quad'){
+							else if (key == 'quad')and (choice == 'quadratic'){
 								functions='<label style="color:#458C8C"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_quad"> Quadratic (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data[key]['type']='quad';
 								(function(_data){$('#checkbox_'+_i+'_quad').click(function(){update_utility(_i, _data)});})(data[key]);
 							}
-							else if (key == 'lin'){
+							else if (key == 'lin')and (choice == 'linear'){
 								functions='<label style="color:#D9B504"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_lin"> Linear (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data[key]['type']='lin';
 								(function(_data){$('#checkbox_'+_i+'_lin').click(function(){update_utility(_i, _data)});})(data[key]);
 							}
-							else if (key == 'expo-power'){
+							else if (key == 'expo-power')and (choice == 'exponential-power'){
 								functions='<label style="color:#26C4EC"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_expo-power"> Expo-Power (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data[key]['type']='expo-power';
