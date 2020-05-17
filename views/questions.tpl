@@ -947,7 +947,14 @@
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 						
 					});
-				
+				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+				if (assess_session.attributes[indice].numero != 0){
+					if (assess_session.attributes[indice].fonction != ''){
+						addGraph(assess_session.attributes[indice].numero, data['data'], val_min, val_max, assess_session.attributes[indice].fonction);
+						addFunctions(assess_session.attributes[indice].numero, data['data'],val_min);
+					};
+				};
+				localStorage.setItem("assess_session", JSON.stringify(assess_session));
 			});
 		});
 	
