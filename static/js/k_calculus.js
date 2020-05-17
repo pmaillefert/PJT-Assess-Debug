@@ -855,6 +855,7 @@ function list(){
 				points.push([val_max, (mode == "Normal" ? 1 : 0)]);
 				
 				json_2_send["points"] = points;
+				console.log(points);
 				$.post('ajax', JSON.stringify(json_2_send), function (data) {
 					
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
@@ -871,7 +872,7 @@ function list(){
 					
 					$.post('ajax', JSON.stringify({
 						"type": "svg",
-						"data": data,
+						"data": data['data'][_i],
 						"min": val_min,
 						"max": val_max,
 						"liste_cord": points2,
