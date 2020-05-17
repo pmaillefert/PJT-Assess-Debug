@@ -855,6 +855,7 @@ function list(){
 			
 				
 				json_2_send["points"] = points;
+				
 				var choice = assess_session.attributes[maList[i].ID_attribute].fonction;
 				var num = assess_session.attributes[maList[i].ID_attribute].numero;
 				var points2 = assess_session.attributes[maList[i].ID_attribute].points;
@@ -865,7 +866,7 @@ function list(){
 						"data": data,
 						"min": val_min,
 						"max": val_max,
-						"liste_cord": points2['coord'],
+						"liste_cord": points,
 						"width": 3,
 						"choice":choice
 					}), function (data2) {
