@@ -907,7 +907,10 @@
 				
 			
 				
-				
+				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+				assess_session.attributes[indice].fonction = '';
+				assess_session.attributes[indice].numero = 0;
+				localStorage.setItem("assess_session", JSON.stringify(assess_session));
 				
 				$('.ice').on('click', function() {
 					$('#ton_choix').empty();
@@ -917,12 +920,14 @@
 					
 					assess_session.attributes[indice].fonction = choice;
 					var num = assess_session.attributes[indice].numero;
-					
-					$('#main_graph').show().empty();
-					$('#functions').show().empty();
-					addGraph(num, data['data'], val_min, val_max, choice);
-					addFunctions(num, data['data'],val_min);
+					if (num!=0){
+						$('#main_graph').show().empty();
+						$('#functions').show().empty();
+						addGraph(num, data['data'], val_min, val_max, choice);
+						addFunctions(num, data['data'],val_min);
+						};
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
+						
 					});
 					
 			
@@ -933,11 +938,12 @@
 					
 					var choice = assess_session.attributes[indice].fonction;
 					assess_session.attributes[indice].numero = Number(this.value);
-					
-					$('#main_graph').show().empty();
-					$('#functions').show().empty();
-					addGraph(Number(this.value), data['data'], val_min, val_max, choice);
-					addFunctions(Number(this.value), data['data'],val_min);
+					if (choice != ''){
+						$('#main_graph').show().empty();
+						$('#functions').show().empty();
+						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
+						addFunctions(Number(this.value), data['data'],val_min);
+						};
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 						
 					});
