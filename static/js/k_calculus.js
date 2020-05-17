@@ -846,8 +846,14 @@ function list(){
 				val_min=monAttribut.val_min,
 				mode = monAttribut.mode,
 				points_dict = monAttribut.questionnaire.points,
-				points=points2;
-
+				points=[];
+				for (key in points_dict) {
+				points.push([parseFloat(key), parseFloat(points_dict[key])]);
+			};
+			
+			if (points.length > 0 && monAttribut.checked) {
+				points.push([val_min, (mode == "Normal" ? 0 : 1)]);
+				points.push([val_max, (mode == "Normal" ? 1 : 0)]);
 			
 				
 				json_2_send["points"] = points;
@@ -857,7 +863,7 @@ function list(){
 						"data": data,
 						"min": val_min,
 						"max": val_max,
-						"liste_cord": points,
+						"liste_cord": points2['coord'],
 						"width": 3,
 						"choice":choice
 					}), function (data2) {
