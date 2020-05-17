@@ -866,6 +866,7 @@ function list(){
 					}), function (data2) {
 
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
+					};
 						for (var key in data) {
 
 							var functions = "";
