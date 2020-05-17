@@ -861,8 +861,12 @@ function list(){
 					var choice= assess_session.attributes[maList[i].ID].fonction;
 					var num= assess_session.attributes[maList[i].ID].numero;
 					var points2= assess_session.attributes[maList[i].ID].points;
-					if (choice==''){ choice = 'logarithmic'};
-					if (points2==[]){ points2=points};
+					if (choice==''){ 
+						choice = 'logarithmic';
+					};
+					if (points2==[]){ 
+						points2=points;
+					};
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 					
 					$.post('ajax', JSON.stringify({
