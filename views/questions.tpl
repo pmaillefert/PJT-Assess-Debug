@@ -925,7 +925,7 @@
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
 						var h =data['data'];
-						assess_session.attributes[indice].points = h[i];
+						assess_session.attributes[indice].points = h[num];
 						addGraph(num, data['data'], val_min, val_max, choice);
 						addFunctions(num, data['data'],val_min);
 						};
@@ -945,7 +945,7 @@
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
 						var h =data['data'];
-						assess_session.attributes[indice].points = h[i];
+						assess_session.attributes[indice].points = h[Number(this.value)];
 						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
 						addFunctions(Number(this.value), data['data'],val_min);
 						};
