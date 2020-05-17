@@ -863,6 +863,7 @@ function list(){
 					var points2= assess_session.attributes[maList[i].ID].points;
 					if (choice==''){ choice = 'logarithmic'};
 					if (points2==[]){ points2=points};
+					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 					
 					$.post('ajax', JSON.stringify({
 						"type": "svg",
@@ -871,7 +872,7 @@ function list(){
 						"max": val_max,
 						"liste_cord": points2,
 						"width": 3,
-						"choice" = choice
+						"choice" = choice,
 					}), function (data2) {
 
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
