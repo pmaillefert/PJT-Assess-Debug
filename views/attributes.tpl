@@ -424,8 +424,8 @@ $(function() {
 						'points': {},
 						'utility': {}
 					},
-						'fonction':[''],
-						'numero': ['100']
+						'fonction':'',
+						'numero': '0'
 				});
 			} else {
 				if (confirm("Are you sure you want to edit the attribute? All assessements will be deleted") == true) {
@@ -449,8 +449,8 @@ $(function() {
 							'points': {},
 							'utility': {}
 									},
-						'fonction':[''],
-						'numero': ['100']
+						'fonction':'',
+						'numero': '0'
 					};
 				}	
 				edit_mode=false;
@@ -516,8 +516,8 @@ $(function() {
 						'points': {},
 						'utility': {}
 					},
-						'fonction':[''],
-						'numero': ['100']
+						'fonction':'',
+						'numero': '0'
 				});
 			} else {
 				if (confirm("Are you sure you want to edit this attribute? All assessements will be deleted") == true) {
@@ -537,8 +537,8 @@ $(function() {
 							'points': {},
 							'utility': {}
 						},
-						'fonction':[''],
-						'numero': ['100']
+						'fonction':'',
+						'numero': '100'
 					};
 				}
 				edit_mode=false;
