@@ -910,6 +910,7 @@
 				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 				assess_session.attributes[indice].fonction = '';
 				assess_session.attributes[indice].numero = 0;
+				assess_session.attributes[indice].points = [];
 				localStorage.setItem("assess_session", JSON.stringify(assess_session));
 				
 				$('.ice').on('click', function() {
@@ -923,6 +924,8 @@
 					if (num!=0){
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
+						var h =data['data'];
+						assess_session.attributes[indice].points = h[i];
 						addGraph(num, data['data'], val_min, val_max, choice);
 						addFunctions(num, data['data'],val_min);
 						};
@@ -941,6 +944,8 @@
 					if (choice != ''){
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
+						var h =data['data'];
+						assess_session.attributes[indice].points = h[i];
 						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
 						addFunctions(Number(this.value), data['data'],val_min);
 						};
