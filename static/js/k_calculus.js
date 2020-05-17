@@ -839,12 +839,12 @@ function list(){
 		$('#table_attributes').append(text_table);
 
 		(function(_i) {
-			var json_2_send = {"type": "calc_util", "points":[]},
-				val_max=monAttribut.val_max,
-				val_min=monAttribut.val_min,
-				mode = monAttribut.mode,
-				points_dict = monAttribut.questionnaire.points,
-				points=[];
+			var json_2_send = {"type": "calc_util"};
+			var val_max=monAttribut.val_max;
+			var val_min=monAttribut.val_min;
+			var mode = monAttribut.mode;
+			var points_dict = monAttribut.questionnaire.points;
+			var points=[];
 
 			for (key in points_dict) {
 				points.push([parseFloat(key), parseFloat(points_dict[key])]);
@@ -858,9 +858,9 @@ function list(){
 				$.post('ajax', JSON.stringify(json_2_send), function (data) {
 					
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-					var choice= assess_session.attributes[maList[i].ID].fonction;
-					var num= assess_session.attributes[maList[i].ID].numero;
-					var points2= assess_session.attributes[maList[i].ID].points;
+					var choice= assess_session.attributes[maList[_i].ID].fonction;
+					var num= assess_session.attributes[maList[_i].ID].numero;
+					var points2= assess_session.attributes[maList[_i].ID].points;
 					if (choice==''){ 
 						choice = 'logarithmic';
 					};
