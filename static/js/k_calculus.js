@@ -807,6 +807,7 @@ $(function(){
 });
 
 
+
 function list(){
 	var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 
@@ -822,22 +823,21 @@ function list(){
 		k_utility_multilinear.push(null);
 	}
 
-	//MODIF2020
+	
 	$('#table_attributes').html("");
 	// We fill the table
-	
 	for (var i=0; i < maList.length; i++){
 
 		var monAttribut=assess_session.attributes[maList[i].ID_attribute],
 			text_table = '<tr>'+
-						'<td>' + maList[i].ID + '</td>'+
+						'<td>K' + maList[i].ID + '</td>'+
 						'<td>'+ monAttribut.name + '</td>'+
 						'<td id="charts_'+i+'"></td>'+
 						'<td id="functions_'+i+'"></td>'+
 						'</tr>';
 
 		$('#table_attributes').append(text_table);
-		
+
 		(function(_i) {
 			var json_2_send = {"type": "calc_util", "points":[]},
 				val_max=monAttribut.val_max,
@@ -845,22 +845,18 @@ function list(){
 				mode = monAttribut.mode,
 				points_dict = monAttribut.questionnaire.points,
 				points=[];
-				for (key in points_dict) {
+
+			for (key in points_dict) {
 				points.push([parseFloat(key), parseFloat(points_dict[key])]);
 			};
 			
 			if (points.length > 0 && monAttribut.checked) {
 				points.push([val_min, (mode == "Normal" ? 0 : 1)]);
 				points.push([val_max, (mode == "Normal" ? 1 : 0)]);
-			
 				
 				json_2_send["points"] = points;
-				
-				var choice = assess_session.attributes[maList[i].ID_attribute].fonction;
-				var num = assess_session.attributes[maList[i].ID_attribute].numero;
-				var points2 = assess_session.attributes[maList[i].ID_attribute].points;
-				
 				$.post('ajax', JSON.stringify(json_2_send), function (data) {
+					var choice = 'logarithmic'
 					$.post('ajax', JSON.stringify({
 						"type": "svg",
 						"data": data,
@@ -868,45 +864,45 @@ function list(){
 						"max": val_max,
 						"liste_cord": points,
 						"width": 3,
-						"choice":choice
+						"choice": choice
 					}), function (data2) {
 
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
 						for (var key in data) {
 
 							var functions = "";
-							if (key == 'exp') and (choice == 'exponential') {
+							if (key == 'exp') {
 								functions= '<label style="color:#401539"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_exp"> Exponential (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data[key]['type']='exp';
 								(function(_data){$('#checkbox_'+_i+'_exp').click(function(){update_utility(_i, _data)});})(data[key]);
 
 							}
-							else if (key == 'log') and (choice == 'logarithmic'){
+							else if (key == 'log'){
 								functions='<label style="color:#D9585A"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_log"> Logarithmic (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data[key]['type']='log';
 								(function(_data){$('#checkbox_'+_i+'_log').click(function(){update_utility(_i, _data)});})(data[key]);
 							}
-							else if (key == 'pow')and (choice == 'power'){
+							else if (key == 'pow'){
 								functions='<label style="color:#6DA63C"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_pow"> Power (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data[key]['type']='pow';
 								(function(_data){$('#checkbox_'+_i+'_pow').click(function(){update_utility(_i, _data)});})(data[key]);
 							}
-							else if (key == 'quad')and (choice == 'quadratic'){
+							else if (key == 'quad'){
 								functions='<label style="color:#458C8C"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_quad"> Quadratic (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data[key]['type']='quad';
 								(function(_data){$('#checkbox_'+_i+'_quad').click(function(){update_utility(_i, _data)});})(data[key]);
 							}
-							else if (key == 'lin')and (choice == 'linear'){
+							else if (key == 'lin'){
 								functions='<label style="color:#D9B504"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_lin"> Linear (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data[key]['type']='lin';
 								(function(_data){$('#checkbox_'+_i+'_lin').click(function(){update_utility(_i, _data)});})(data[key]);
 							}
-							else if (key == 'expo-power')and (choice == 'exponential-power'){
+							else if (key == 'expo-power'){
 								functions='<label style="color:#26C4EC"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_expo-power"> Expo-Power (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data[key]['type']='expo-power';
