@@ -937,7 +937,7 @@
 					
 					$('#main_graph').show().empty();
 					$('#functions').show().empty();
-					addGraph(Number(this.value), data['data'], val_min, val_max,choice);
+					addGraph(Number(this.value), data['data'], val_min, val_max, choice);
 					addFunctions(Number(this.value), data['data'],val_min);
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 						
