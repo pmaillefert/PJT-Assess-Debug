@@ -20,15 +20,13 @@
 </div>
 
 <div id="trees"></div>
-<div id="test">
-	<h2>test</h2>
-</div>
+
 <div id="charts">
 	<h2>Select the regression function you want to use</h2>
 </div>
 <div id ="nouveaubloc"><h6>Choose a function</h6></div>
 <div id="ton_choix"></div>
-<div id="boutontrial"></div>
+
 
 <div id="main_graph" class="col-lg-5"></div>
 <div id="functions" class="col-lg-7"></div>
@@ -652,7 +650,7 @@
 			
 			
 			
-			$('#boutontrial').append('<h3> test2 </h3>');
+			
 			// we hide the slect div
 			$('#select').hide();
 			// which index is it ?
@@ -902,8 +900,7 @@
 					regressions_text = availableRegressions(data['data'][i]);
 					$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 				}
-				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-				$('#boutontrial').append('<p>'+ indice + '</p>');
+				
 				
 			
 				
