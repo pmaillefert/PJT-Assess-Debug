@@ -858,26 +858,14 @@ function list(){
 				console.log(points);
 				$.post('ajax', JSON.stringify(json_2_send), function (data) {
 					
-					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-					var choice= assess_session.attributes[maList[_i].ID].fonction;
-					var num= assess_session.attributes[maList[_i].ID].numero;
-					var points2= assess_session.attributes[maList[_i].ID].points;
-					if (choice==''){ 
-						choice = 'logarithmic';
-					};
-					if (points2==[]){ 
-						points2=points;
-					};
-					localStorage.setItem("assess_session", JSON.stringify(assess_session));
-					
 					$.post('ajax', JSON.stringify({
 						"type": "svg",
-						"data": data['data'][_i],
+						"data": data,
 						"min": val_min,
 						"max": val_max,
-						"liste_cord": points2,
+						"liste_cord": points,
 						"width": 3,
-						"choice" = choice,
+						"choice" = 'logarithmic',
 					}), function (data2) {
 
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
