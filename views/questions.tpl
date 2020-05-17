@@ -649,6 +649,12 @@
 			
 			var name = $(this).attr('id').slice(2);
 			console.log(name);
+			
+			var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+			assess_session.attributes[indice].fonction == '';
+			assess_session.attributes[indice].numero =0;
+			localStorage.setItem("assess_session", JSON.stringify(assess_session));
+			
 			$('#boutontrial').append('<h3> test2 </h3>');
 			// we hide the slect div
 			$('#select').hide();
@@ -902,13 +908,8 @@
 				$('#boutontrial').append('<p>'+ indice + '</p>');
 				
 			
-				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-				if (assess_session.attributes[indice].fonction == '') {
-						assess_session.attributes[indice].fonction ='linear'}
-				if (assess_session.attributes[indice].numero == 0) {
-						assess_session.attributes[indice].numero =0};
-				localStorage.setItem("assess_session", JSON.stringify(assess_session));
-				$('#test').append(assess_session.attributes[indice].fonction);
+				
+				
 				
 				$('.ice').on('click', function() {
 					$('#ton_choix').empty();
