@@ -837,24 +837,18 @@ function list(){
 						'</tr>';
 
 		$('#table_attributes').append(text_table);
-		var choice = assess_session.attributes[i].fonction;
-		var num = assess_session.attributes[i].numero;
-
+		var choice = assess_session.attributes[maList[i].ID_attribute].fonction;
+		var num = assess_session.attributes[maList[i].ID_attribute].numero;
+		var points2 = assess_session.attributes[maList[i].ID_attribute].points;
 		(function(_i) {
 			var json_2_send = {"type": "calc_util", "points":[]},
 				val_max=monAttribut.val_max,
 				val_min=monAttribut.val_min,
 				mode = monAttribut.mode,
 				points_dict = monAttribut.questionnaire.points,
-				points=[];
+				points=points2;
 
-			for (key in points_dict) {
-				points.push([parseFloat(key), parseFloat(points_dict[key])]);
-			};
 			
-			if (points.length > 0 && monAttribut.checked) {
-				points.push([val_min, (mode == "Normal" ? 0 : 1)]);
-				points.push([val_max, (mode == "Normal" ? 1 : 0)]);
 				
 				json_2_send["points"] = points;
 				$.post('ajax', JSON.stringify(json_2_send), function (data) {
