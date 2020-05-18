@@ -785,10 +785,16 @@ function K_Calculate_Multiplicative() {
 }
 
 
+
+
+
+
+
+
+
 //#######################################################################################
 //###########   Choose utility function corresponding to attribute     ##################
 //#######################################################################################
-
 
 var k_utility_multilinear=[],
 	k_utility_multiplicative=[];
@@ -855,8 +861,7 @@ function list(){
 						"min": val_min,
 						"max": val_max,
 						"liste_cord": points,
-						"width": 3,
-						"choice": '',
+						"width": 3
 					}), function (data2) {
 
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
@@ -913,8 +918,7 @@ function list(){
 	}
 }
 
-		
-					
+
 
 function update_utility(i, data){
 	if(get_Active_Method()==0){  //multiplicative
