@@ -916,11 +916,7 @@
 				
 			
 				
-				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-				assess_session.attributes[indice].fonction = '';
-				assess_session.attributes[indice].numero = 10000;
-				assess_session.attributes[indice].points = [];
-				localStorage.setItem("assess_session", JSON.stringify(assess_session));
+				
 				
 				$('.ice').on('click', function() {
 					$('#ton_choix').empty();
