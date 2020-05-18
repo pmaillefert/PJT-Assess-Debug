@@ -827,7 +827,10 @@ function list(){
 	$('#table_attributes').html("");
 	// We fill the table
 	for (var i=0; i < maList.length; i++){
-
+		
+		var choice = assess_session.attributes[maList[i].ID].fonction;
+		var num= assess_session.attributes[maList[i].ID].numero;
+		var points2= assess_session.attributes[maList[i].ID].points;
 		var monAttribut=assess_session.attributes[maList[i].ID_attribute],
 			text_table = '<tr>'+
 						'<td>K' + maList[i].ID + '</td>'+
@@ -844,18 +847,10 @@ function list(){
 				mode = monAttribut.mode,
 				points_dict = monAttribut.questionnaire.points,
 				points=[],
-				assess_session = JSON.parse(localStorage.getItem("assess_session")),
-				choice = assess_session.attributes[maList[_i].ID].fonction,
-				num= assess_session.attributes[maList[_i].ID].numero,
-				points2= assess_session.attributes[maList[_i].ID].points;
+				
+				
 	
-			if (choice==''){ 
-					choice = 'logarithmic';
-					};
-			if (points2==[]){ 
-					points2=points;
-					};
-			localStorage.setItem("assess_session", JSON.stringify(assess_session));
+			
 					
 			for (key in points_dict) {
 				points.push([parseFloat(key), parseFloat(points_dict[key])]);
@@ -864,7 +859,13 @@ function list(){
 			if (points.length > 0 && monAttribut.checked) {
 				points.push([val_min, (mode == "Normal" ? 0 : 1)]);
 				points.push([val_max, (mode == "Normal" ? 1 : 0)]);
-				
+			if (choice==''){ 
+					choice = 'logarithmic';
+					};
+			if (points2==[]){ 
+					points2=points;
+					};
+			localStorage.setItem("assess_session", JSON.stringify(assess_session));
 				json_2_send["points"] = points;
 				$.post('ajax', JSON.stringify(json_2_send), function (data) {
 					
