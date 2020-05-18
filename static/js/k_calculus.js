@@ -832,7 +832,7 @@ function list(){
 		
 		var monAttribut=assess_session.attributes[maList[i].ID_attribute],
 			text_table = '<tr>'+
-						'<td>' 'K'+ maList[i].ID + '</td>'+
+						'<td>''</td>'+
 						'<td>'+ monAttribut.name + '</td>'+
 						'<td id="charts_'+i+'"></td>'+
 						'<td id="functions_'+i+'"></td>'+
