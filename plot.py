@@ -37,7 +37,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width, choice):
                 a = dictionary[func]['a']
                 b = dictionary[func]['b']
                 c = dictionary[func]['c']
-		if choice == 'exponential':
+		
 			
                 	plt.plot(x, funcexp(x, a, b, c), '#401539',
                         	 label="Exp Fitted Curve")
