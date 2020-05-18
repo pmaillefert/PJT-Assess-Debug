@@ -54,27 +54,7 @@
 		</div>
 		<br/>
 	</div>
-	<!---------------------- Choose utility function for each attributes ---------------------->
-	<div class="page-header">
-	  <h3>Choose utility function for each attributes</h3>
-	</div>
-	<div id="attribute" >
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Attribute's ID</th>
-					<th>Attribute</th>
-					<th>Graph</th>
-					<th>Utility function</th>
-				</tr>
-			</thead>
-			<tbody id="table_attributes"></tbody>
-		</table>
-	</div>
-	<div style="text-align:center;" >
-		<button type="button" class="btn btn-default btn-lg" id="button_generate_list" style="text-align:center">Generate graph</button>
-		<br/>
-	</div>
+	
 	<!---------------------- Determine the multi-attribute utility function ---------------------->
 	<div class="page-header">
 	  <h3>Determine the multi-attribute utility function</h3>
