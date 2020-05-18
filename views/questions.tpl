@@ -906,7 +906,7 @@
 				
 				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 				assess_session.attributes[indice].fonction = '';
-				assess_session.attributes[indice].numero = 0;
+				assess_session.attributes[indice].numero = 10000;
 				assess_session.attributes[indice].points = [];
 				localStorage.setItem("assess_session", JSON.stringify(assess_session));
 				
@@ -918,7 +918,7 @@
 					
 					assess_session.attributes[indice].fonction = choice;
 					var num = assess_session.attributes[indice].numero;
-					if (num!=0){
+					if (num!=10000){
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
 						var h =data['data'];
