@@ -837,14 +837,13 @@ function list(){
 						'</tr>';
 
 		$('#table_attributes').append(text_table);
-
-		(function(_i) {
-			var json_2_send = {"type": "calc_util"};
-			var val_max=monAttribut.val_max;
-			var val_min=monAttribut.val_min;
-			var mode = monAttribut.mode;
-			var points_dict = monAttribut.questionnaire.points;
-			var points=[];
+(function(_i) {
+			var json_2_send = {"type": "calc_util", "points":[]},
+				val_max=monAttribut.val_max,
+				val_min=monAttribut.val_min,
+				mode = monAttribut.mode,
+				points_dict = monAttribut.questionnaire.points,
+				points=[];
 
 			for (key in points_dict) {
 				points.push([parseFloat(key), parseFloat(points_dict[key])]);
@@ -855,9 +854,7 @@ function list(){
 				points.push([val_max, (mode == "Normal" ? 1 : 0)]);
 				
 				json_2_send["points"] = points;
-				console.log(points);
 				$.post('ajax', JSON.stringify(json_2_send), function (data) {
-					
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					var choice = assess_session.attributes[maList[_i].ID].fonction;
 					var num= assess_session.attributes[maList[_i].ID].numero;
@@ -870,6 +867,7 @@ function list(){
 					};
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 					
+					
 					$.post('ajax', JSON.stringify({
 						"type": "svg",
 						"data": data,
@@ -877,7 +875,7 @@ function list(){
 						"max": val_max,
 						"liste_cord": points2,
 						"width": 3,
-						"choice" = choice,
+						"choice": choice,
 					}), function (data2) {
 
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
@@ -933,8 +931,9 @@ function list(){
 		})(i);
 	}
 }
-
-
+		
+					
+					
 
 function update_utility(i, data){
 	if(get_Active_Method()==0){  //multiplicative
