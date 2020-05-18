@@ -856,7 +856,7 @@ function list(){
 						"max": val_max,
 						"liste_cord": points,
 						"width": 3,
-						"choice": "logarithmic",
+						"choice": ''
 					}), function (data2) {
 
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
