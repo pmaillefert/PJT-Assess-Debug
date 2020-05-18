@@ -878,9 +878,11 @@ function list(){
 					"max": max,
 					"liste_cord": data[i]['coord'],
 					"width": 3,
-					"choice":choice,
+					"choice":choice
 				}), function(data2) {
 					$('#charts_' + i').append('<div>' + data2 + '</div>');
+					$('#test').append(data2);
+					$('#test').append(<h2> test <h2/>);
 					for (var key in data) {
 
 							var functions = "";
