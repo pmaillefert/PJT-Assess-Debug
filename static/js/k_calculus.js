@@ -852,7 +852,7 @@ function list(){
 			if (points.length > 0 && monAttribut.checked) {
 				points.push([val_min, (mode == "Normal" ? 0 : 1)]);
 				points.push([val_max, (mode == "Normal" ? 1 : 0)]);
-				
+				var choice = 'exponential';
 				json_2_send["points"] = points;
 				$.post('ajax', JSON.stringify(json_2_send), function (data) {
 					$.post('ajax', JSON.stringify({
@@ -862,7 +862,7 @@ function list(){
 						"max": val_max,
 						"liste_cord": points,
 						"width": 3,
-						"choice": 'exponential',
+						"choice": choice,
 					}), function (data2) {
 
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
