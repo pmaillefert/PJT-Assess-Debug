@@ -785,13 +785,6 @@ function K_Calculate_Multiplicative() {
 }
 
 
-
-
-
-
-
-
-
 //#######################################################################################
 //###########   Choose utility function corresponding to attribute     ##################
 //#######################################################################################
@@ -885,8 +878,11 @@ function list(){
 					$('#test').append(<h2> test <h2/>);
 					
 				});
-			}
+			};
+				       
+				       
 			function addFunctions(i, data, mini) {
+					
 				var delta = Math.abs(mini).toString();
 				for (var key in data[i]) {
 					
@@ -1005,16 +1001,8 @@ function list(){
 				}
 			};
 			function addTextForm1(div_function, copie, render, key, excel) {
-				console.log("addtextform");
-				if (settings.language=="french") {
-					excel=excel.replace(/\./gi,",");
-				}
-				var copy_button_dpl = $('<button class="btn functions_text_form" id="btn_dpl_' + key + '" data-clipboard-text="' + copie + '" title="Click to copy me.">Copy to clipboard (DPL format)</button>');
-				var copy_button_excel = $('<button class="btn functions_text_form" id="btn_excel_' + key + '" data-clipboard-text="' + excel + '" title="Click to copy me.">Copy to clipboard (Excel format)</button>');
-				var copy_button_latex = $('<button class="btn functions_text_form" id="btn_latex_' + key + '" data-clipboard-text="' + render + '" title="Click to copy me.">Copy to clipboard (LaTeX format)</button>');
-				if (settings.language=="french") {
-					render=render.replace(/\./gi,",");
-				}
+				
+				
 				var ajax_render = {
 					"type": "latex_render",
 					"formula": render
@@ -1227,7 +1215,7 @@ function GK_calculated() {
 		for (var i=0; i < maList.length; i++) {
 
 			var monAttribut = assess_session.attributes[maList[i].ID_attribute];
-			var text = '<tr><td>' + maList[i].ID + '</td>';
+			var text = '<tr><td>K' + maList[i].ID + '</td>';
 			text += '<td>' + monAttribut.name + '</td>';
 			text += '<td id="charts_' + i + '"></td>';
 			text += '<td id="functions_' + i + '">'+assess_session.k_calculus[get_Active_Method()].GU.utilities[i].type+' (r2='+assess_session.k_calculus[get_Active_Method()].GU.utilities[i].r2+')</td>';
