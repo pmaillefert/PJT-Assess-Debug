@@ -8,7 +8,7 @@
 	<div class="page-header">
 	  <h3>Scaling coefficients (K<sub>i</sub>)</h3>
 	</div>
-
+	
 	<div class="alert alert-info" role="alert" id="update_box" >
 	  <button type="button" class="btn btn-info" id="update"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
 	  <span id="update_attributes_number"></span> <span id="update_attributes_plurial">attributes are activated</span> but <span id="update_k_number"></span> <span id="update_k_number_plurial">are</span> used for the computation of the K<sub>i</sub>. You need to refresh the list of the K<sub>i</sub>. All the scaling constants’ values will be reset.
@@ -16,7 +16,7 @@
 
 	<div id="error_message"></div>
 	<div id="message"></div>
-
+	<div id="test></div>
 	<div id="button_method" style="text-align:center;">
 		<button type="button" class="btn btn-default btn-lg" id="button_multiplicative">Multiplicative</button>
 		<button type="button" class="btn btn-default btn-lg" id="button_multilinear">Multilinear</button>
