@@ -900,6 +900,14 @@
 						};
 					};
 				}
+				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+				if (assess_session.attributes[indice].numero != 10000){
+					if (assess_session.attributes[indice].fonction != ''){
+						addGraph(assess_session.attributes[indice].numero, data['data'], val_min, val_max, assess_session.attributes[indice].fonction);
+						addFunctions(assess_session.attributes[indice].numero, data['data'],val_min,assess_session.attributes[indice].fonction);
+					};
+				};
+				localStorage.setItem("assess_session", JSON.stringify(assess_session));
 				
 				console.log(JSON.stringify(json_2_send));
 				$('#nouveaubloc').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
@@ -916,14 +924,7 @@
 				
 			
 				
-				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-				if (assess_session.attributes[indice].numero != 10000){
-					if (assess_session.attributes[indice].fonction != ''){
-						addGraph(assess_session.attributes[indice].numero, data['data'], val_min, val_max, assess_session.attributes[indice].fonction);
-						addFunctions(assess_session.attributes[indice].numero, data['data'],val_min,assess_session.attributes[indice].fonction);
-					};
-				};
-				localStorage.setItem("assess_session", JSON.stringify(assess_session));
+				
 				
 				
 				
