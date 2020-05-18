@@ -923,7 +923,7 @@
 						addFunctions(assess_session.attributes[indice].numero, data['data'],val_min,choice);
 					};
 				};
-				localStorage.setItem("assess_session", JSON.stringify(assess_session));
+				
 				
 				$('.ice').on('click', function() {
 					$('#ton_choix').empty();
