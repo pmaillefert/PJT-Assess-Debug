@@ -63,7 +63,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width, choice):
                 b = dictionary[func]['b']
                 c = dictionary[func]['c']
                 d = dictionary[func]['d']
-		
+		if choice == 'logarithmic':
                 	plt.plot(x, funclog(x, a, b, c, d),
                          	'#D9585A', label="Log Fitted Curve")
 
@@ -112,7 +112,7 @@ def generate_svg_plot(dictionary, min, max, liste_cord, width, choice):
                 b = dictionary[func]['b']
                 c = dictionary[func]['c']
                 d = dictionary[func]['d']
-		
+		if choice == 'logarithmic':
                 	plt.plot(x, funclog(xneg, a, b, c, d),
                          '#D9585A', label="Log Fitted Curve")
 
