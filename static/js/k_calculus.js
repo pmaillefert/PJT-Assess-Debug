@@ -879,7 +879,7 @@ function list(){
 					"width": 3,
 					"choice":choice,
 				}), function(data2) {
-					$('#charts_' + i').append(data2);
+					$('#charts_' + i').append('<div>' + data2 + '</div>');
 				});
 			}
 			
@@ -894,17 +894,17 @@ function list(){
 						};
 					};
 				}
-			var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+			
 			var num = assess_session.attributes[indice].numero;
 			var choice = assess_session.attributes[indice].fonction;
 			addGraph(num, data['data'], val_min, val_max, choice);
-			localStorage.setItem("assess_session", JSON.stringify(assess_session));
+			
 					
 			});
 						
 			
 	
-	}
+	};
 });
 		
 					
