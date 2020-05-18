@@ -828,9 +828,7 @@ function list(){
 	// We fill the table
 	for (var i=0; i < maList.length; i++){
 		
-		var choice = assess_session.attributes[maList[i].ID].fonction;
-		var num= assess_session.attributes[maList[i].ID].numero;
-		var points2= assess_session.attributes[maList[i].ID].points;
+		var indice = maList[i].ID
 		var monAttribut=assess_session.attributes[maList[i].ID_attribute],
 			text_table = '<tr>'+
 						'<td>K' + maList[i].ID + '</td>'+
@@ -840,99 +838,74 @@ function list(){
 						'</tr>';
 
 		$('#table_attributes').append(text_table);
-(function(_i) {
-			var json_2_send = {"type": "calc_util", "points":[]},
-				val_max=monAttribut.val_max,
-				val_min=monAttribut.val_min,
-				mode = monAttribut.mode,
-				points_dict = monAttribut.questionnaire.points,
-				points=[],
-				
-				
-	
+		
+			var val_min = assess_session.attributes[indice].val_min,
+				val_max = assess_session.attributes[indice].val_max,
+				mode = assess_session.attributes[indice].mode,
+				points_dict = assess_session.attributes[indice].questionnaire.points,
+				points=[];
 			
-					
 			for (key in points_dict) {
 				points.push([parseFloat(key), parseFloat(points_dict[key])]);
 			};
 			
-			if (points.length > 0 && monAttribut.checked) {
-				points.push([val_min, (mode == "Normal" ? 0 : 1)]);
-				points.push([val_max, (mode == "Normal" ? 1 : 0)]);
-			if (choice==''){ 
-					choice = 'logarithmic';
-					};
-			if (points2==[]){ 
-					points2=points;
-					};
-			localStorage.setItem("assess_session", JSON.stringify(assess_session));
-				json_2_send["points"] = points;
-				$.post('ajax', JSON.stringify(json_2_send), function (data) {
-					
-					
-					$.post('ajax', JSON.stringify({
-						"type": "svg",
-						"data": data,
-						"min": val_min,
-						"max": val_max,
-						"liste_cord": points2,
-						"width": 3,
-						"choice": choice,
-					}), function (data2) {
-
-						$('#charts_' + _i).append('<div>' + data2 + '</div>');
-						for (var key in data) {
-
-							var functions = "";
-							if (key == 'exp') {
-								functions= '<label style="color:#401539"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_exp"> Exponential (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
-								$('#functions_' + _i).append(functions);
-								data[key]['type']='exp';
-								(function(_data){$('#checkbox_'+_i+'_exp').click(function(){update_utility(_i, _data)});})(data[key]);
-
-							}
-							else if (key == 'log'){
-								functions='<label style="color:#D9585A"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_log"> Logarithmic (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
-								$('#functions_' + _i).append(functions);
-								data[key]['type']='log';
-								(function(_data){$('#checkbox_'+_i+'_log').click(function(){update_utility(_i, _data)});})(data[key]);
-							}
-							else if (key == 'pow'){
-								functions='<label style="color:#6DA63C"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_pow"> Power (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
-								$('#functions_' + _i).append(functions);
-								data[key]['type']='pow';
-								(function(_data){$('#checkbox_'+_i+'_pow').click(function(){update_utility(_i, _data)});})(data[key]);
-							}
-							else if (key == 'quad'){
-								functions='<label style="color:#458C8C"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_quad"> Quadratic (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
-								$('#functions_' + _i).append(functions);
-								data[key]['type']='quad';
-								(function(_data){$('#checkbox_'+_i+'_quad').click(function(){update_utility(_i, _data)});})(data[key]);
-							}
-							else if (key == 'lin'){
-								functions='<label style="color:#D9B504"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_lin"> Linear (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
-								$('#functions_' + _i).append(functions);
-								data[key]['type']='lin';
-								(function(_data){$('#checkbox_'+_i+'_lin').click(function(){update_utility(_i, _data)});})(data[key]);
-							}
-							else if (key == 'expo-power'){
-								functions='<label style="color:#26C4EC"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_expo-power"> Expo-Power (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
-								$('#functions_' + _i).append(functions);
-								data[key]['type']='expo-power';
-								(function(_data){$('#checkbox_'+_i+'_expo-power').click(function(){update_utility(_i, _data)});})(data[key]);
-							}
-						}
-					})
-				});
-			} else {
-				if(points.length == 0 && monAttribut.checked)
-					$('#charts_' + _i).append("Please assess a utility function for this attribute");
-				else if(!monAttribut.checked)
-					$('#charts_' + _i).append("The attribute is inactive");
+			points.push([val_min, (mode == "Normal" ? 0 : 1)]);
+			points.push([val_max, (mode == "Normal" ? 1 : 0)]);
+			
+			if (val_min<0) {
+				for (i in points) {
+					points[i][0]-=val_min;
+					console.log(points[i]);
+				};
 			}
-		})(i);
+			
+			
+			
+			var json_2_send = {
+				"type": "calc_util_multi"
+			};
+			json_2_send["points"] = points;
+			console.log(points);
+			
+					
+			function addGraph(i, data, min, max, choice) {
+				console.log("addgraph");
+				$.post('ajax', JSON.stringify({
+					"type": "svg",
+					"data": data[i],
+					"min": min,
+					"max": max,
+					"liste_cord": data[i]['coord'],
+					"width": 3,
+					"choice":choice,
+				}), function(data2) {
+					$('#charts_' + i').append('<div>' + data2 + '</div>');
+				});
+			}
+			
+			
+			$.post('ajax', JSON.stringify(json_2_send), function(data) {
+				$('#charts').show();
+				$('#nouveaubloc').show()
+				if (val_min<0){
+					for (i in data['data']){
+						for (j in data['data'][i]['coord']){
+							data['data'][i]['coord'][j][0]+=val_min;
+						};
+					};
+				}
+			var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+			var num = assess_session.attributes[indice].numero;
+			var choice = assess_session.attributes[indice].fonction;
+			addGraph(num, data['data'], val_min, val_max, choice);
+			localStorage.setItem("assess_session", JSON.stringify(assess_session));
+					
+			});
+						
+			
+	
 	}
-}
+});
 		
 					
 					
