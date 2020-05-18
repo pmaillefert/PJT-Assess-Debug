@@ -789,6 +789,7 @@ function K_Calculate_Multiplicative() {
 //###########   Choose utility function corresponding to attribute     ##################
 //#######################################################################################
 
+
 var k_utility_multilinear=[],
 	k_utility_multiplicative=[];
 
@@ -798,7 +799,6 @@ $(function(){
 			$("#button_generate_list").hide();
 	});
 });
-
 
 
 function list(){
@@ -820,225 +820,100 @@ function list(){
 	$('#table_attributes').html("");
 	// We fill the table
 	for (var i=0; i < maList.length; i++){
-		
-		var indice = maList[i].ID;
-		
+
 		var monAttribut=assess_session.attributes[maList[i].ID_attribute],
 			text_table = '<tr>'+
-						'<td>''</td>'+
+						'<td>K' + maList[i].ID + '</td>'+
 						'<td>'+ monAttribut.name + '</td>'+
 						'<td id="charts_'+i+'"></td>'+
 						'<td id="functions_'+i+'"></td>'+
 						'</tr>';
 
 		$('#table_attributes').append(text_table);
-		
-			var val_min = assess_session.attributes[indice].val_min,
-				val_max = assess_session.attributes[indice].val_max,
-				mode = assess_session.attributes[indice].mode,
-				points_dict = assess_session.attributes[indice].questionnaire.points,
+
+		(function(_i) {
+			var json_2_send = {"type": "calc_util", "points":[]},
+				val_max=monAttribut.val_max,
+				val_min=monAttribut.val_min,
+				mode = monAttribut.mode,
+				points_dict = monAttribut.questionnaire.points,
 				points=[];
-			
+
 			for (key in points_dict) {
 				points.push([parseFloat(key), parseFloat(points_dict[key])]);
 			};
 			
-			points.push([val_min, (mode == "Normal" ? 0 : 1)]);
-			points.push([val_max, (mode == "Normal" ? 1 : 0)]);
-			
-			if (val_min<0) {
-				for (i in points) {
-					points[i][0]-=val_min;
-					console.log(points[i]);
-				};
+			if (points.length > 0 && monAttribut.checked) {
+				points.push([val_min, (mode == "Normal" ? 0 : 1)]);
+				points.push([val_max, (mode == "Normal" ? 1 : 0)]);
+				
+				json_2_send["points"] = points;
+				$.post('ajax', JSON.stringify(json_2_send), function (data) {
+					$.post('ajax', JSON.stringify({
+						"type": "svg",
+						"data": data,
+						"min": val_min,
+						"max": val_max,
+						"liste_cord": points,
+						"width": 3,
+						"choice": "logarithmic",
+					}), function (data2) {
+
+						$('#charts_' + _i).append('<div>' + data2 + '</div>');
+						for (var key in data) {
+
+							var functions = "";
+							if (key == 'exp') {
+								functions= '<label style="color:#401539"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_exp"> Exponential (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
+								$('#functions_' + _i).append(functions);
+								data[key]['type']='exp';
+								(function(_data){$('#checkbox_'+_i+'_exp').click(function(){update_utility(_i, _data)});})(data[key]);
+
+							}
+							else if (key == 'log'){
+								functions='<label style="color:#D9585A"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_log"> Logarithmic (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
+								$('#functions_' + _i).append(functions);
+								data[key]['type']='log';
+								(function(_data){$('#checkbox_'+_i+'_log').click(function(){update_utility(_i, _data)});})(data[key]);
+							}
+							else if (key == 'pow'){
+								functions='<label style="color:#6DA63C"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_pow"> Power (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
+								$('#functions_' + _i).append(functions);
+								data[key]['type']='pow';
+								(function(_data){$('#checkbox_'+_i+'_pow').click(function(){update_utility(_i, _data)});})(data[key]);
+							}
+							else if (key == 'quad'){
+								functions='<label style="color:#458C8C"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_quad"> Quadratic (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
+								$('#functions_' + _i).append(functions);
+								data[key]['type']='quad';
+								(function(_data){$('#checkbox_'+_i+'_quad').click(function(){update_utility(_i, _data)});})(data[key]);
+							}
+							else if (key == 'lin'){
+								functions='<label style="color:#D9B504"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_lin"> Linear (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
+								$('#functions_' + _i).append(functions);
+								data[key]['type']='lin';
+								(function(_data){$('#checkbox_'+_i+'_lin').click(function(){update_utility(_i, _data)});})(data[key]);
+							}
+							else if (key == 'expo-power'){
+								functions='<label style="color:#26C4EC"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_expo-power"> Expo-Power (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
+								$('#functions_' + _i).append(functions);
+								data[key]['type']='expo-power';
+								(function(_data){$('#checkbox_'+_i+'_expo-power').click(function(){update_utility(_i, _data)});})(data[key]);
+							}
+						}
+					})
+				});
+			} else {
+				if(points.length == 0 && monAttribut.checked)
+					$('#charts_' + _i).append("Please assess a utility function for this attribute");
+				else if(!monAttribut.checked)
+					$('#charts_' + _i).append("The attribute is inactive");
 			}
-			
-			
-			
-			var json_2_send = {
-				"type": "calc_util_multi"
-			};
-			json_2_send["points"] = points;
-			console.log(points);
-			
-					
-			function addGraph(i, data, min, max, choice) {
-				console.log("addgraph");
-				$.post('ajax', JSON.stringify({
-					"type": "svg",
-					"data": data[i],
-					"min": min,
-					"max": max,
-					"liste_cord": data[i]['coord'],
-					"width": 3,
-					"choice":choice
-				}), function(data2) {
-					$('#charts_' + i').append('<div>' + data2 + '</div>');
-					$('#test').append(data2);
-					$('#test').append(<h2> test <h2/>);
-					
-				});
-			};
-				       
-				       
-			function addFunctions(i, data, mini) {
-					
-				var delta = Math.abs(mini).toString();
-				for (var key in data[i]) {
-					
-					if (mini<0){
-						if (key == 'exp') {
-							var div_function = $('<div id="' + key + '" class="functions_graph" style="overflow-x: auto;"><h3 style="color:#401539">Exponential</h3><br />Coefficient of determination: ' + Math.round(data[i][key]['r2'] * 100) / 100 + '<br /><br/></div>');
-							var copie = reduce_signe(data[i][key]['a']) + "*exp(" + reduce_signe(-data[i][key]['b']) + "(x+" + delta +"))" + reduce_signe(data[i][key]['c']);
-							var render = reduce_signe(data[i][key]['a'],false, false) + 'e^{' + reduce_signe(-data[i][key]['b'],false) + '(x+' + delta + ')}' + reduce_signe(data[i][key]['c'],false);
-							var excel = reduce_signe(data[i][key]['a']) + "*EXP(" + reduce_signe(-data[i][key]['b']) + "*(x+" + delta + "))" + reduce_signe(data[i][key]['c']);
-							addTextForm1(div_function, copie, render, key, excel);
-						} else if (key == 'log') {
-							var div_function = $('<div id="' + key + '" class="functions_graph" style="overflow-x: auto;"><h3 style="color:#D9585A">Logarithmic</h3><br />Coefficient of determination: ' + Math.round(data[i][key]['r2'] * 100) / 100 + '<br /><br/></div>');
-							var copie = reduce_signe(data[i][key]['a']) + "*log(" + reduce_signe(data[i][key]['b']) + "(x+" + delta+"))" + reduce_signe(data[i][key]['c']) + ")" + reduce_signe(data[i][key]['d']);
-							var render = reduce_signe(data[i][key]['a'], false, false) + "\\log(" + reduce_signe(data[i][key]['b'], false, false) + "(x+"+ delta + ")" + reduce_signe(data[i][key]['c'],false) + ")" + reduce_signe(data[i][key]['d'],false);
-							var excel = reduce_signe(data[i][key]['a']) + "*LN(" + reduce_signe(data[i][key]['b']) + "(x+"+ delta + ")" + reduce_signe(data[i][key]['c']) + ")" + reduce_signe(data[i][key]['d']);
-							addTextForm1(div_function, copie, render, key, excel);
-						} else if (key == 'pow') {
-							var div_function = $('<div id="' + key + '" class="functions_graph" style="overflow-x: auto;"><h3 style="color:#6DA63C">Power</h3><br />Coefficient of determination: ' + Math.round(data[i][key]['r2'] * 100) / 100 + '<br /><br/></div>');
-							var copie = reduce_signe(data[i][key]['a']) + "*(pow((x+" + delta + ")," + (1 - data[i][key]['b']) + ")-1)/(" + reduce_signe(1 - data[i][key]['b']) + ")" + reduce_signe(data[i][key]['c']);
-							var render = reduce_signe(data[i][key]['a'], false, false) + "\\frac{(x+" + delta + ")^{" + reduce_signe(1 - data[i][key]['b'], false) + "}-1}{" + reduce_signe(1 - data[i][key]['b'], false) + "}" + reduce_signe(data[i][key]['c'], false);
-							var excel = reduce_signe(data[i][key]['a']) + "*((x+" + delta + ")^" + (1 - data[i][key]['b']) + "-1)/(" + reduce_signe(1 - data[i][key]['b']) + ")" + reduce_signe(data[i][key]['c']);
-							addTextForm1(div_function, copie, render, key, excel);
-						} else if (key == 'quad') {
-							var div_function = $('<div id="' + key + '" class="functions_graph" style="overflow-x: auto;"><h3 style="color:#458C8C">Quadratic</h3><br />Coefficient of determination: ' + Math.round(data[i][key]['r2'] * 100) / 100 + '<br /><br/></div>');
-							var copie = reduce_signe(data[i][key]['c']) + "*(x+"+delta+")" + reduce_signe(-data[i][key]['b']) + "*pow((x+"+delta+"),2)" + reduce_signe(data[i][key]['a']);
-							var render = reduce_signe(data[i][key]['c'], false, false) + "(x+"+delta+")" + reduce_signe(-data[i][key]['b'], false) + "(x+"+delta+")^{2}" + reduce_signe(data[i][key]['a'], false);
-							var excel = reduce_signe(data[i][key]['c']) + "*(x+" + delta + ")^" + reduce_signe(-data[i][key]['b']) + "*(x+" + delta + ")^2" + reduce_signe(data[i][key]['a']);
-							addTextForm1(div_function, copie, render, key, excel);
-						} else if (key == 'lin') {
-							var div_function = $('<div id="' + key + '" class="functions_graph" style="overflow-x: auto;"><h3 style="color:#D9B504">Linear</h3><br />Coefficient of determination: ' + Math.round(data[i][key]['r2'] * 100) / 100 + '<br /><br/></div>');
-							var copie = reduce_signe(data[i][key]['a']) + "*(x+" + delta + ")" + reduce_signe(data[i][key]['b']);
-							var render = reduce_signe(data[i][key]['a'], false, false) + "(x+" + delta + ")" + reduce_signe(data[i][key]['b'], false);
-							var excel = reduce_signe(data[i][key]['a']) + "*(x+" + delta + ")" + reduce_signe(data[i][key]['b']);
-							addTextForm1(div_function, copie, render, key, excel);
-						} else if (key=='expo-power') {
-							var div_function = $('<div id="' + key + '" class="functions_graph" style="overflow-x: auto;"><h3 style="color:#26C4EC">Expo-Power</h3><br />Coefficient of determination: ' + Math.round(data[i][key]['r2'] * 100) / 100 + '<br /><br/></div>');
-							var copie = reduce_signe(data[i][key]['a']) + "+exp(-(" + reduce_signe(data[i][key]['b']) + ")*pow((x+"+delta+")," + reduce_signe(data[i][key]['c']) + "))" ;
-							var render = reduce_signe(data[i][key]['a'], false, false) + "+exp(" + reduce_signe(-data[i][key]['b'], false, false) + "*(x+"+delta+")^{" + reduce_signe(data[i][key]['c'], false, false) + "})" ;
-							var excel = reduce_signe(data[i][key]['a']) + "+EXP(-(" + reduce_signe(data[i][key]['b']) + ")*(x+"+delta+")^" + reduce_signe(data[i][key]['c']) + ")" ;
-							addTextForm1(div_function, copie, render, key, excel);
-						}
-					
-					}else{
-						if (key == 'exp') {
-							var div_function = $('<div id="' + key + '" class="functions_graph" style="overflow-x: auto;"><h3 style="color:#401539">Exponential</h3><br />Coefficient of determination: ' + Math.round(data[i][key]['r2'] * 100) / 100 + '<br /><br/></div>');
-							var copie = reduce_signe(data[i][key]['a']) + "*exp(" + reduce_signe(-data[i][key]['b']) + "x)" + reduce_signe(data[i][key]['c']);
-							var render = reduce_signe(data[i][key]['a'],false, false) + 'e^{' + reduce_signe(-data[i][key]['b'],false) + 'x}' + reduce_signe(data[i][key]['c'],false);
-							var excel = reduce_signe(data[i][key]['a']) + "*EXP(" + reduce_signe(-data[i][key]['b']) + "*x)" + reduce_signe(data[i][key]['c']);
-							addTextForm1(div_function, copie, render, key, excel);
-						} else if (key == 'log') {
-							var div_function = $('<div id="' + key + '" class="functions_graph" style="overflow-x: auto;"><h3 style="color:#D9585A">Logarithmic</h3><br />Coefficient of determination: ' + Math.round(data[i][key]['r2'] * 100) / 100 + '<br /><br/></div>');
-							var copie = reduce_signe(data[i][key]['a']) + "*log(" + reduce_signe(data[i][key]['b']) + "x" + reduce_signe(data[i][key]['c']) + ")" + reduce_signe(data[i][key]['d']);
-							var render = reduce_signe(data[i][key]['a'], false, false) + "\\log(" + reduce_signe(data[i][key]['b'], false, false) + "x" + reduce_signe(data[i][key]['c'],false) + ")" + reduce_signe(data[i][key]['d'],false);
-							var excel = reduce_signe(data[i][key]['a']) + "*LN(" + reduce_signe(data[i][key]['b']) + "x" + reduce_signe(data[i][key]['c']) + ")" + reduce_signe(data[i][key]['d']);
-							addTextForm1(div_function, copie, render, key, excel);
-						} else if (key == 'pow') {
-							var div_function = $('<div id="' + key + '" class="functions_graph" style="overflow-x: auto;"><h3 style="color:#6DA63C">Power</h3><br />Coefficient of determination: ' + Math.round(data[i][key]['r2'] * 100) / 100 + '<br /><br/></div>');
-							var copie = reduce_signe(data[i][key]['a']) + "*(pow(x," + (1 - data[i][key]['b']) + ")-1)/(" + reduce_signe(1 - data[i][key]['b']) + ")" + reduce_signe(data[i][key]['c']);
-							var render = reduce_signe(data[i][key]['a'], false, false) + "\\frac{x^{" + reduce_signe(1 - data[i][key]['b'], false) + "}-1}{" + reduce_signe(1 - data[i][key]['b'], false) + "}" + reduce_signe(data[i][key]['c'], false);
-							var excel = reduce_signe(data[i][key]['a']) + "*(x^" + (1 - data[i][key]['b']) + "-1)/(" + reduce_signe(1 - data[i][key]['b']) + ")" + reduce_signe(data[i][key]['c']);
-							addTextForm1(div_function, copie, render, key, excel);
-						} else if (key == 'quad') {
-							var div_function = $('<div id="' + key + '" class="functions_graph" style="overflow-x: auto;"><h3 style="color:#458C8C">Quadratic</h3><br />Coefficient of determination: ' + Math.round(data[i][key]['r2'] * 100) / 100 + '<br /><br/></div>');
-							var copie = reduce_signe(data[i][key]['c']) + "*x" + reduce_signe(-data[i][key]['b']) + "*pow(x,2)" + reduce_signe(data[i][key]['a']);
-							var render = reduce_signe(data[i][key]['c'], false, false) + "x" + reduce_signe(-data[i][key]['b'], false) + "x^{2}" + reduce_signe(data[i][key]['a'], false);
-							var excel = reduce_signe(data[i][key]['c']) + "*x" + reduce_signe(-data[i][key]['b']) + "*x^2" + reduce_signe(data[i][key]['a']);
-							addTextForm1(div_function, copie, render, key, excel);
-						} else if (key == 'lin') {
-							var div_function = $('<div id="' + key + '" class="functions_graph" style="overflow-x: auto;"><h3 style="color:#D9B504">Linear</h3><br />Coefficient of determination: ' + Math.round(data[i][key]['r2'] * 100) / 100 + '<br /><br/></div>');
-							var copie = reduce_signe(data[i][key]['a']) + "*x" + reduce_signe(data[i][key]['b']);
-							var render = reduce_signe(data[i][key]['a'], false, false) + "x" + reduce_signe(data[i][key]['b'], false);
-							var excel = reduce_signe(data[i][key]['a']) + "*x" + reduce_signe(data[i][key]['b']);
-							addTextForm1(div_function, copie, render, key, excel);
-						} else if (key=='expo-power') {
-							var div_function = $('<div id="' + key + '" class="functions_graph" style="overflow-x: auto;"><h3 style="color:#26C4EC">Expo-Power</h3><br />Coefficient of determination: ' + Math.round(data[i][key]['r2'] * 100) / 100 + '<br /><br/></div>');
-							var copie = reduce_signe(data[i][key]['a']) + "+exp(-(" + reduce_signe(data[i][key]['b']) + ")*pow(x," + reduce_signe(data[i][key]['c']) + "))" ;
-							var render = reduce_signe(data[i][key]['a'], false, false) + "+exp(" + reduce_signe(-data[i][key]['b'], false, false) + "*x^{" + reduce_signe(data[i][key]['c'], false, false) + "})" ;
-							var excel = reduce_signe(data[i][key]['a']) + "+EXP(-(" + reduce_signe(data[i][key]['b']) + ")*x^" + reduce_signe(data[i][key]['c']) + ")" ;
-							addTextForm1(div_function, copie, render, key, excel);
-						}
-					};
-				}
-			};
-			function reduce_signe(nombre, dpl=true, signe=true) {
-				console.log("Reduce signe");
-				if (nombre >= 0 && signe==true) {
-					if (dpl==false) {
-						if (nombre > 999) {
-							return ("+" + nombre.toExponential(settings.decimals_equations)).replace("e+", "\\times10^{")+"}";
-						}
-						else if (nombre < 0.01) {
-							return ("+" + nombre.toExponential(settings.decimals_equations)).replace("e-", "\\times10^{-")+"}";
-						}
-						else {
-							return "+" + nombre.toPrecision(settings.decimals_equations);
-						}
-					}
-					else {
-						return "+" + nombre.toPrecision(settings.decimals_dpl);
-					}
-				} else {
-					if (dpl==false) {
-						if (Math.abs(nombre) > 999) {
-							return String(nombre.toExponential(settings.decimals_equations)).replace("e+","\\times10^{")+"}";
-						}
-						else if (Math.abs(nombre) < 0.01) {
-							return String(nombre.toExponential(settings.decimals_equations)).replace("e-", "\\times10^{-")+"}";
-						}
-						else {
-							return nombre.toPrecision(settings.decimals_equations);
-						}
-					}
-					else {
-						return nombre.toPrecision(settings.decimals_dpl);
-					}
-				}
-			};
-			function addTextForm1(div_function, copie, render, key, excel) {
-				
-				
-				var ajax_render = {
-					"type": "latex_render",
-					"formula": render
-				};
-				$.post('ajax', JSON.stringify(ajax_render), function (data) {
-					div_function.append("<img src='data:image/png;base64,"+ data +"' alt='"+key+"' />");
-					
-				});
-				$('#functions_' + _i).append(div_function);
-				
-			};
-			$.post('ajax', JSON.stringify(json_2_send), function(data) {
-				
-				
-				if (val_min<0){
-					for (i in data['data']){
-						for (j in data['data'][i]['coord']){
-							data['data'][i]['coord'][j][0]+=val_min;
-						};
-					};
-				}
-			
-			var num = assess_session.attributes[indice].numero;
-			var choice = assess_session.attributes[indice].fonction;
-			addGraph(num, data['data'], val_min, val_max, choice);
-			addFunctions(num, data['data'],val_min);
-			
-					
-			});
-						
-			
-	
+		})(i);
 	}
-};
+}
+
 		
-					
 					
 
 function update_utility(i, data){
