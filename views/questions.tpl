@@ -769,7 +769,7 @@
 					}, 2000);
 				});
 			}
-			function addFunctions(i, data, mini) {
+			function addFunctions(i, data, mini,choice) {
 				var delta = Math.abs(mini).toString();
 				for (var key in data[i]) {
 					
@@ -936,7 +936,7 @@
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[num];
 						addGraph(num, data['data'], val_min, val_max, choice);
-						addFunctions(num, data['data'],val_min);
+						addFunctions(num, data['data'],val_min,choice);
 						};
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 						
@@ -956,16 +956,16 @@
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[Number(this.value)];
 						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
-						addFunctions(Number(this.value), data['data'],val_min);
+						addFunctions(Number(this.value), data['data'],val_min,choice);
 						};
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 						
 					});
 				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-				if (assess_session.attributes[indice].numero != 0){
+				if (assess_session.attributes[indice].numero != 10000){
 					if (assess_session.attributes[indice].fonction != ''){
 						addGraph(assess_session.attributes[indice].numero, data['data'], val_min, val_max, assess_session.attributes[indice].fonction);
-						addFunctions(assess_session.attributes[indice].numero, data['data'],val_min);
+						addFunctions(assess_session.attributes[indice].numero, data['data'],val_min,choice);
 					};
 				};
 				localStorage.setItem("assess_session", JSON.stringify(assess_session));
