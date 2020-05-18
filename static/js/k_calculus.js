@@ -843,8 +843,20 @@ function list(){
 				val_min=monAttribut.val_min,
 				mode = monAttribut.mode,
 				points_dict = monAttribut.questionnaire.points,
-				points=[];
-
+				points=[],
+				assess_session = JSON.parse(localStorage.getItem("assess_session")),
+				choice = assess_session.attributes[maList[_i].ID].fonction,
+				num= assess_session.attributes[maList[_i].ID].numero,
+				points2= assess_session.attributes[maList[_i].ID].points;
+	
+			if (choice==''){ 
+					choice = 'logarithmic';
+					};
+			if (points2==[]){ 
+					points2=points;
+					};
+			localStorage.setItem("assess_session", JSON.stringify(assess_session));
+					
 			for (key in points_dict) {
 				points.push([parseFloat(key), parseFloat(points_dict[key])]);
 			};
@@ -855,17 +867,6 @@ function list(){
 				
 				json_2_send["points"] = points;
 				$.post('ajax', JSON.stringify(json_2_send), function (data) {
-					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-					var choice = assess_session.attributes[maList[_i].ID].fonction;
-					var num= assess_session.attributes[maList[_i].ID].numero;
-					var points2= assess_session.attributes[maList[_i].ID].points;
-					if (choice==''){ 
-						choice = 'logarithmic';
-					};
-					if (points2==[]){ 
-						points2=points;
-					};
-					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 					
 					
 					$.post('ajax', JSON.stringify({
