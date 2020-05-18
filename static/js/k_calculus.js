@@ -879,7 +879,7 @@ function list(){
 					"width": 3,
 					"choice":choice,
 				}), function(data2) {
-					$('#charts_' + i').append('<div>' + data2 + '</div>');
+					$('#charts_' + i').append(data2);
 				});
 			}
 			
