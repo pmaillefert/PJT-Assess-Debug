@@ -828,7 +828,8 @@ function list(){
 	// We fill the table
 	for (var i=0; i < maList.length; i++){
 		
-		var indice = maList[i].ID
+		var indice = maList[i].ID;
+		
 		var monAttribut=assess_session.attributes[maList[i].ID_attribute],
 			text_table = '<tr>'+
 						'<td>K' + maList[i].ID + '</td>'+
@@ -904,7 +905,7 @@ function list(){
 						
 			
 	
-	};
+	}
 });
 		
 					
