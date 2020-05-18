@@ -6,9 +6,9 @@
 
 	<!---------------------- Scaling K_i coefficients ---------------------->
 	<div class="page-header">
-	  <h3>Scaling coefficients (K<sub>i</sub>)</h3>
+	  <h3>Scaling K<sub>i</sub> coefficients</h3>
 	</div>
-	
+
 	<div class="alert alert-info" role="alert" id="update_box" >
 	  <button type="button" class="btn btn-info" id="update"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
 	  <span id="update_attributes_number"></span> <span id="update_attributes_plurial">attributes are activated</span> but <span id="update_k_number"></span> <span id="update_k_number_plurial">are</span> used for the computation of the K<sub>i</sub>. You need to refresh the list of the K<sub>i</sub>. All the scaling constants’ values will be reset.
@@ -16,7 +16,7 @@
 
 	<div id="error_message"></div>
 	<div id="message"></div>
-	<div id="test></div>
+
 	<div id="button_method" style="text-align:center;">
 		<button type="button" class="btn btn-default btn-lg" id="button_multiplicative">Multiplicative</button>
 		<button type="button" class="btn btn-default btn-lg" id="button_multilinear">Multilinear</button>
@@ -43,7 +43,7 @@
 	<!---------------------- K computation ---------------------->
 	<div id="K_computation">
 		<div class="page-header">
-		  <h3>Computation of K</h3>
+		  <h3>K computation</h3>
 		</div>
 
 		<div class="alert alert-info" role="alert" id="calculatek_box_multiplicative" >
@@ -70,7 +70,7 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Attribute's ID</th>
+					<th>K</th>
 					<th>Attribute</th>
 					<th>Graph</th>
 					<th>Utility function</th>
@@ -111,11 +111,9 @@
 $(function() {
 	$('li.k').addClass("active");
 	var asses_session = JSON.parse(localStorage.getItem("asses_session"));
-
 	function isInArray(value, array) {
 		return array.indexOf(value) > -1;
 	}
-
 	//we toggle the button we used
 	for(var i=0; i<asses_session.k_calculus.length; i++) {
 		if(asses_session.k_calculus[i].active==true) {
