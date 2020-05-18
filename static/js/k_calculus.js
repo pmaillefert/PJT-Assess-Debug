@@ -885,8 +885,8 @@ function list(){
 			
 			
 			$.post('ajax', JSON.stringify(json_2_send), function(data) {
-				$('#charts').show();
-				$('#nouveaubloc').show()
+				
+				
 				if (val_min<0){
 					for (i in data['data']){
 						for (j in data['data'][i]['coord']){
