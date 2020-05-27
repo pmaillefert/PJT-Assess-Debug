@@ -34,11 +34,11 @@
 		</thead>
 		<tbody id="tableau_fct">
 			
-					'<tr>'
-						'<td id= "lechoix"></td>'
-						'<td id="main_graph1"></td>'
-						'<td id="main_graph2"></td>'
-					'</tr>'
+					<tr>
+						<td id= "lechoix"></td>
+						<td id="main_graph1"></td>
+						<td id="main_graph2"></td>
+					</tr>
 						
 		</tbody>
 	</table>
@@ -888,7 +888,7 @@
 					"width": 6,
 					"choice":choice,
 				}), function(data2) {
-					$('#main_graph').append(data2);
+					$('#main_graph1').append(data2);
 				});
 			}
 			function addGraph2(i, data, min, max) {
@@ -902,7 +902,7 @@
 					"width": 6,
 					
 				}), function(data2) {
-					$('#main_graph').append(data2);
+					$('#main_graph2').append(data2);
 				});
 			}
 			function availableRegressions(data) {
@@ -963,6 +963,10 @@
 					if (num!=10000){
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
+						$('#main_graph1').show().empty();
+						$('#main_graph2').show().empty();
+						$('#lechoix').show().empty();
+						$('#lechoix').append(choice);
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[num];
 						addGraph(num, data['data'], val_min, val_max, choice);
@@ -984,6 +988,10 @@
 					if (choice != ''){
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
+						$('#main_graph1').show().empty();
+						$('#main_graph2').show().empty();
+						$('#lechoix').show().empty();
+						$('#lechoix').append(choice);
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[Number(this.value)];
 						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
