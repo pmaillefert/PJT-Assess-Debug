@@ -879,6 +879,20 @@
 					$('#main_graph').append(data2);
 				});
 			}
+			function addGraph2(i, data, min, max) {
+				console.log("addgraph");
+				$.post('ajax', JSON.stringify({
+					"type": "svg",
+					"data": data[i],
+					"min": min,
+					"max": max,
+					"liste_cord": data[i]['coord'],
+					"width": 6,
+					
+				}), function(data2) {
+					$('#main_graph').append(data2);
+				});
+			}
 			function availableRegressions(data) {
 				console.log("availreg");
 				var text = '';
@@ -939,6 +953,7 @@
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[num];
 						addGraph(num, data['data'], val_min, val_max, choice);
+						addGraph2(num, data['data'], val_min, val_max);
 						addFunctions(num, data['data'],val_min,choice);
 						};
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
@@ -959,6 +974,7 @@
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[Number(this.value)];
 						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
+						addGraph2(Number(this.value), data['data'], val_min, val_max);
 						addFunctions(Number(this.value), data['data'],val_min,choice);
 						};
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
