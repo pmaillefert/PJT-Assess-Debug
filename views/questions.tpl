@@ -23,7 +23,7 @@
 </div>
 <div id ="nouveaubloc"><h6>Choose a function</h6></div>
 <div id="ton_choix"></div>
-<div id="main_graph" class="col-lg-5"></div>
+<div id="main_graph" class="col-lg-7"></div>
 <div id="functions" class="col-lg-7"></div>
 %include('header_end.tpl')
 %include('js.tpl')
