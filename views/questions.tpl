@@ -33,11 +33,17 @@
 			</tr>
 		</thead>
 		<tbody id="tableau_fct">
+			
+					'<tr>'+
+						'<td>'+ choice + '</td>'+
+						'<td id="main_graph1'"></td>'+
+						'<td id="main_graph2"></td>'+
+					'</tr>'
+						
 		</tbody>
 	</table>
 </div>
-
-<div id="main_graph" class="col-lg-7"></div>
+<div id="main_graph" class="col-lg-5"></div>
 <div id="functions" class="col-lg-7"></div>
 %include('header_end.tpl')
 %include('js.tpl')
@@ -913,7 +919,6 @@
 			$.post('ajax', JSON.stringify(json_2_send), function(data) {
 				$('#charts').show();
 				$('#nouveaubloc').show();
-				$('#tableau_fonctions').show();
 				if (val_min<0){
 					for (i in data['data']){
 						for (j in data['data'][i]['coord']){
@@ -939,16 +944,12 @@
 					$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 				}
 				
+				
 			
 				
 				
 				
-				text_table = '<tr>'+
-						'<td>'+ choice + '</td>'+
-						'<td id="main_graph1'"></td>'+
-						'<td id="main_graph2"></td>'+
-						'</tr>';
-						$('#tableau_fct').append(text_table);
+				
 				
 				$('.ice').on('click', function() {
 					$('#ton_choix').empty();
@@ -961,13 +962,8 @@
 					if (num!=10000){
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
-						$('#main_graph1').show().empty();
-						$('#main_graph2').show().empty();
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[num];
-						
-						
-				
 						addGraph(num, data['data'], val_min, val_max, choice);
 						addGraph2(num, data['data'], val_min, val_max);
 						addFunctions(num, data['data'],val_min,choice);
@@ -986,13 +982,9 @@
 					assess_session.attributes[indice].numero = Number(this.value);
 					if (choice != ''){
 						$('#main_graph').show().empty();
-						$('#main_graph2').show().empty();
-						$('#main_graph1').show().empty();
 						$('#functions').show().empty();
-						
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[Number(this.value)];
-						
 						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
 						addGraph2(Number(this.value), data['data'], val_min, val_max);
 						addFunctions(Number(this.value), data['data'],val_min,choice);
