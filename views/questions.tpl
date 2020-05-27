@@ -868,7 +868,7 @@
 			function addGraph(i, data, min, max, choice) {
 				console.log("addgraph");
 				$.post('ajax', JSON.stringify({
-					"type": "svg2",
+					"type": "svgg",
 					"data": data[i],
 					"min": min,
 					"max": max,
