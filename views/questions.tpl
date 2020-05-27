@@ -943,7 +943,12 @@
 				
 				
 				
-				
+				text_table = '<tr>'+
+						'<td>'+ choice + '</td>'+
+						'<td id="main_graph1'"></td>'+
+						'<td id="main_graph2"></td>'+
+						'</tr>';
+						$('#tableau_fct').append(text_table);
 				
 				$('.ice').on('click', function() {
 					$('#ton_choix').empty();
@@ -956,16 +961,12 @@
 					if (num!=10000){
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
-						
+						$('#main_graph1').show().empty();
+						$('#main_graph2').show().empty();
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[num];
 						
-						text_table = '<tr>'+
-						'<td>'+ choice + '</td>'+
-						'<td id="main_graph1'"></td>'+
-						'<td id="main_graph2"></td>'+
-						'</tr>';
-						$('#tableau_fct').append(text_table);
+						
 				
 						addGraph(num, data['data'], val_min, val_max, choice);
 						addGraph2(num, data['data'], val_min, val_max);
@@ -985,17 +986,12 @@
 					assess_session.attributes[indice].numero = Number(this.value);
 					if (choice != ''){
 						$('#main_graph').show().empty();
+						$('#main_graph2').show().empty();
+						$('#main_graph1').show().empty();
 						$('#functions').show().empty();
 						
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[Number(this.value)];
-						
-						text_table = '<tr>'+
-						'<td>'+ choice + '</td>'+
-						'<td id="main_graph1'"></td>'+
-						'<td id="main_graph2"></td>'+
-						'</tr>';
-						$('#tableau_fct').append(text_table);
 						
 						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
 						addGraph2(Number(this.value), data['data'], val_min, val_max);
