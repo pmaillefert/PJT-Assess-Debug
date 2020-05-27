@@ -26,6 +26,8 @@
 </div>
 <div id ="nouveaubloc"><h6>Choose a function</h6></div>
 <div id="ton_choix"></div>
+<div id="tableau_fonction"></div>
+
 
 
 <div id="main_graph" class="col-lg-5"></div>
@@ -47,6 +49,7 @@
 		$('#attribute_name').hide()
 		$('#charts').hide();
 		$('#main_graph').hide();
+		$('#tableau_fonction').hide();
 		$('#functions').hide();
 		$('#nouveaubloc').hide();
 		
@@ -907,6 +910,7 @@
 			$.post('ajax', JSON.stringify(json_2_send), function(data) {
 				$('#charts').show();
 				$('#nouveaubloc').show();
+				$('#tableau_fonction').show();
 				if (val_min<0){
 					for (i in data['data']){
 						for (j in data['data'][i]['coord']){
@@ -931,13 +935,10 @@
 					regressions_text = availableRegressions(data['data'][i]);
 					$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 				}
+				$('#tableau_fonction').append('<table id="tableau_fct" class="table"><thead><tr><th></th><th>The function you chose</th><th>All the functions</th></tr></thead></table>');
 				
-				
-			
-				
-				
-				
-				
+					
+					
 				
 				$('.ice').on('click', function() {
 					$('#ton_choix').empty();
@@ -952,6 +953,8 @@
 						$('#functions').show().empty();
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[num];
+						$('#tableau_fct').empty();
+						$('#tableau_fct').append('<tr><td><input type="radio" class="hoice" name="select" value=' + choice + '></td><td>' + addGraph(num, data['data'], val_min, val_max, choice) + '</td><td>' + addGraph2(num, data['data'], val_min, val_max); + '</td></tr>');
 						addGraph(num, data['data'], val_min, val_max, choice);
 						addGraph2(num, data['data'], val_min, val_max);
 						addFunctions(num, data['data'],val_min,choice);
@@ -973,6 +976,8 @@
 						$('#functions').show().empty();
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[Number(this.value)];
+						$('#tableau_fct').empty();
+						$('#tableau_fct').append('<tr><td><input type="radio" class="hoice" name="select" value=' + choice + '></td><td>' + addGraph(num, data['data'], val_min, val_max, choice) + '</td><td>' + addGraph2(num, data['data'], val_min, val_max); + '</td></tr>');
 						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
 						addGraph2(Number(this.value), data['data'], val_min, val_max);
 						addFunctions(Number(this.value), data['data'],val_min,choice);
