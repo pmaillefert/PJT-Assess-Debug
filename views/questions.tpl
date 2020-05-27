@@ -24,17 +24,17 @@
 <div id ="nouveaubloc"><h6>Choose a function</h6></div>
 <div id="ton_choix"></div>
 <div id="tableau_fonctions" >
-		<table class="table">
-			<thead>
-				<tr>
-					<th>K</th>
-					<th>Attribute</th>
-					<th>Graph</th>
-					<th>Utility function</th>
-				</tr>
-			</thead>
-			<tbody id="tableau_fct"></tbody>
-		</table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>your choice</th>
+				<th>Your utility function</th>
+				<th>All utility functions</th>
+			</tr>
+		</thead>
+		<tbody id="tableau_fct">
+		</tbody>
+	</table>
 </div>
 
 <div id="main_graph" class="col-lg-7"></div>
