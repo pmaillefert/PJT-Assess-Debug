@@ -882,7 +882,7 @@
 					"width": 6,
 					"choice":choice,
 				}), function(data2) {
-					$('#main_graph1').append(data2);
+					$('#main_graph').append(data2);
 				});
 			}
 			function addGraph2(i, data, min, max) {
@@ -896,7 +896,7 @@
 					"width": 6,
 					
 				}), function(data2) {
-					$('#main_graph2').append(data2);
+					$('#main_graph').append(data2);
 				});
 			}
 			function availableRegressions(data) {
