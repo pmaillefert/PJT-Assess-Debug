@@ -174,7 +174,7 @@ def ajax():
         liste_cord = query['liste_cord']
         width = query['width']
 	choice = query['choice']
-        return plot_2.generate_svg_plot(dictionary, min, max, liste_cord, width, choice)
+        return plot_2.generate_svg_plot2(dictionary, min, max, liste_cord, width, choice)
 	
     elif query['type'] == "svg_QUALI":
         dictionary = query['data']
