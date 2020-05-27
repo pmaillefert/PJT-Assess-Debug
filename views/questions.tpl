@@ -27,7 +27,7 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th>your choice</th>
+				
 				<th>Your utility function</th>
 				<th>All utility functions</th>
 			</tr>
@@ -35,7 +35,7 @@
 		<tbody id="tableau_fct">
 			
 					<tr>
-						<td id= "lechoix"></td>
+						
 						<td id="main_graph1"></td>
 						<td id="main_graph2"></td>
 					</tr>
@@ -965,8 +965,7 @@
 						$('#functions').show().empty();
 						$('#main_graph1').show().empty();
 						$('#main_graph2').show().empty();
-						$('#lechoix').show().empty();
-						$('#lechoix').append(choice);
+						
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[num];
 						addGraph(num, data['data'], val_min, val_max, choice);
@@ -990,8 +989,7 @@
 						$('#functions').show().empty();
 						$('#main_graph1').show().empty();
 						$('#main_graph2').show().empty();
-						$('#lechoix').show().empty();
-						$('#lechoix').append(choice);
+						
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[Number(this.value)];
 						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
