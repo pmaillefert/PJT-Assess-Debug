@@ -34,10 +34,10 @@
 		</thead>
 		<tbody id="tableau_fct">
 			
-					'<tr>'+
-						'<td>'+ choice + '</td>'+
-						'<td id="main_graph1'"></td>'+
-						'<td id="main_graph2"></td>'+
+					'<tr>'
+						'<td id= "lechoix"></td>'
+						'<td id="main_graph1"></td>'
+						'<td id="main_graph2"></td>'
 					'</tr>'
 						
 		</tbody>
