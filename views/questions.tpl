@@ -35,7 +35,7 @@
 			</thead>
 			<tbody id="tableau_fct"></tbody>
 		</table>
-	</div>
+</div>
 
 <div id="main_graph" class="col-lg-7"></div>
 <div id="functions" class="col-lg-7"></div>
@@ -956,7 +956,7 @@
 					if (num!=10000){
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
-						$('#tableau_fct').show.empty();
+						
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[num];
 						
@@ -986,7 +986,7 @@
 					if (choice != ''){
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
-						$('#tableau_fct').show.empty();
+						
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[Number(this.value)];
 						
