@@ -55,7 +55,7 @@
 	</div>
 	<!---------------------- Choose utility function for each attributes ---------------------->
 	<div class="page-header">
-	  <h3>Choose utility function for each attributes</h3>
+	  <h3>Utility function for each attributes</h3>
 	</div>
 
 	<div id="attribute" >
