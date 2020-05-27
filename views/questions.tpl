@@ -23,6 +23,20 @@
 </div>
 <div id ="nouveaubloc"><h6>Choose a function</h6></div>
 <div id="ton_choix"></div>
+<div id="tableau_fonctions" >
+		<table class="table">
+			<thead>
+				<tr>
+					<th>K</th>
+					<th>Attribute</th>
+					<th>Graph</th>
+					<th>Utility function</th>
+				</tr>
+			</thead>
+			<tbody id="tableau_fct"></tbody>
+		</table>
+	</div>
+
 <div id="main_graph" class="col-lg-7"></div>
 <div id="functions" class="col-lg-7"></div>
 %include('header_end.tpl')
@@ -40,6 +54,7 @@
 		$('#main_graph').hide();
 		$('#functions').hide();
 		$('#nouveaubloc').hide();
+		$('#tableau_fonctions').hide();
 		
 		
 		var assess_session = JSON.parse(localStorage.getItem("assess_session")),
@@ -867,7 +882,7 @@
 					"width": 6,
 					"choice":choice,
 				}), function(data2) {
-					$('#main_graph').append(data2);
+					$('#main_graph1').append(data2);
 				});
 			}
 			function addGraph2(i, data, min, max) {
@@ -881,7 +896,7 @@
 					"width": 6,
 					
 				}), function(data2) {
-					$('#main_graph').append(data2);
+					$('#main_graph2').append(data2);
 				});
 			}
 			function availableRegressions(data) {
@@ -898,6 +913,7 @@
 			$.post('ajax', JSON.stringify(json_2_send), function(data) {
 				$('#charts').show();
 				$('#nouveaubloc').show();
+				$('#tableau_fonctions').show();
 				if (val_min<0){
 					for (i in data['data']){
 						for (j in data['data'][i]['coord']){
@@ -923,7 +939,6 @@
 					$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 				}
 				
-				
 			
 				
 				
@@ -941,8 +956,17 @@
 					if (num!=10000){
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
+						$('#tableau_fct').show.empty();
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[num];
+						
+						text_table = '<tr>'+
+						'<td>'+ choice + '</td>'+
+						'<td id="main_graph1'"></td>'+
+						'<td id="main_graph2"></td>'+
+						'</tr>';
+						$('#tableau_fct').append(text_table);
+				
 						addGraph(num, data['data'], val_min, val_max, choice);
 						addGraph2(num, data['data'], val_min, val_max);
 						addFunctions(num, data['data'],val_min,choice);
@@ -962,8 +986,17 @@
 					if (choice != ''){
 						$('#main_graph').show().empty();
 						$('#functions').show().empty();
+						$('#tableau_fct').show.empty();
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[Number(this.value)];
+						
+						text_table = '<tr>'+
+						'<td>'+ choice + '</td>'+
+						'<td id="main_graph1'"></td>'+
+						'<td id="main_graph2"></td>'+
+						'</tr>';
+						$('#tableau_fct').append(text_table);
+						
 						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
 						addGraph2(Number(this.value), data['data'], val_min, val_max);
 						addFunctions(Number(this.value), data['data'],val_min,choice);
