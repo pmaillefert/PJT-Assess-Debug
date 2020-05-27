@@ -49,7 +49,7 @@
 <script>
 	$(function() {
 		$('li.questions').addClass("active");
-		$('#attribute_name').hide()
+		$('#attribute_name').hide();
 		$('#charts').hide();
 		$('#main_graph').hide();
 		$('#functions').hide();
