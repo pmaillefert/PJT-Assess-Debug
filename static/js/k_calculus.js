@@ -836,7 +836,8 @@ function list(){
 						'</tr>';
 
 		$('#table_attributes').append(text_table);
-
+		var choice = assess_session.attributes[maList[i].ID_attribute].fonction
+		
 		(function(_i) {
 			var json_2_send = {"type": "calc_util", "points":[]},
 				val_max=monAttribut.val_max,
@@ -844,6 +845,7 @@ function list(){
 				mode = monAttribut.mode,
 				points_dict = monAttribut.questionnaire.points,
 				points=[];
+				
 
 			for (key in points_dict) {
 				points.push([parseFloat(key), parseFloat(points_dict[key])]);
@@ -856,12 +858,13 @@ function list(){
 				json_2_send["points"] = points;
 				$.post('ajax', JSON.stringify(json_2_send), function (data) {
 					$.post('ajax', JSON.stringify({
-						"type": "svg",
+						"type": "svgg",
 						"data": data,
 						"min": val_min,
 						"max": val_max,
 						"liste_cord": points,
-						"width": 3
+						"width": 3,
+						"choice":choice,
 					}), function (data2) {
 
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
