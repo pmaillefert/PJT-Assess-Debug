@@ -872,7 +872,7 @@ function list(){
 						for (var key in data) {
 
 							var functions = "";
-							if (key == 'exp') {
+							if (key == 'exp') and if (choice == 'exponential') {
 								functions= '<label style="color:#401539"><input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'_exp"> Exponential (' + Math.round(data[key]['r2'] * 100) / 100 + ')</label><br/>';
 								$('#functions_' + _i).append(functions);
 								data[key]['type']='exp';
