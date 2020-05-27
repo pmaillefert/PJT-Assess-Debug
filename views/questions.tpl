@@ -1,6 +1,5 @@
 %include('header_init.tpl', heading='Assess utility functions')
 <h3 id="attribute_name"></h3>
-
 <div id="select">
 	<table class="table">
 		<thead>
@@ -18,38 +17,27 @@
 		</tbody>
 	</table>
 </div>
-
 <div id="trees"></div>
-
 <div id="charts">
 	<h2>Select the regression function you want to use</h2>
 </div>
 <div id ="nouveaubloc"><h6>Choose a function</h6></div>
 <div id="ton_choix"></div>
-<div id="tableau_fonction"></div>
-
-
-
 <div id="main_graph" class="col-lg-5"></div>
 <div id="functions" class="col-lg-7"></div>
-
 %include('header_end.tpl')
 %include('js.tpl')
-
 <script>
 	var tree_image = '{{ get_url("static", path="img/tree_choice.png") }}';
 </script>
-
 <!-- Tree object -->
 <script src="{{ get_url('static', path='js/tree.js') }}"></script>
-
 <script>
 	$(function() {
 		$('li.questions').addClass("active");
 		$('#attribute_name').hide()
 		$('#charts').hide();
 		$('#main_graph').hide();
-		$('#tableau_fonction').hide();
 		$('#functions').hide();
 		$('#nouveaubloc').hide();
 		
@@ -910,7 +898,6 @@
 			$.post('ajax', JSON.stringify(json_2_send), function(data) {
 				$('#charts').show();
 				$('#nouveaubloc').show();
-				$('#tableau_fonction').show();
 				if (val_min<0){
 					for (i in data['data']){
 						for (j in data['data'][i]['coord']){
@@ -935,10 +922,13 @@
 					regressions_text = availableRegressions(data['data'][i]);
 					$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
 				}
-				$('#tableau_fonction').append('<table id="tableau_fct" class="table"><thead><tr><th></th><th>The function you chose</th><th>All the functions</th></tr></thead></table>');
 				
-					
-					
+				
+			
+				
+				
+				
+				
 				
 				$('.ice').on('click', function() {
 					$('#ton_choix').empty();
@@ -953,8 +943,6 @@
 						$('#functions').show().empty();
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[num];
-						$('#tableau_fct').empty();
-						$('#tableau_fct').append('<tr><td><input type="radio" class="hoice" name="select" value=' + choice + '></td><td>' + addGraph(num, data['data'], val_min, val_max, choice) + '</td><td>' + addGraph2(num, data['data'], val_min, val_max); + '</td></tr>');
 						addGraph(num, data['data'], val_min, val_max, choice);
 						addGraph2(num, data['data'], val_min, val_max);
 						addFunctions(num, data['data'],val_min,choice);
@@ -976,8 +964,6 @@
 						$('#functions').show().empty();
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[Number(this.value)];
-						$('#tableau_fct').empty();
-						$('#tableau_fct').append('<tr><td><input type="radio" class="hoice" name="select" value=' + choice + '></td><td>' + addGraph(num, data['data'], val_min, val_max, choice) + '</td><td>' + addGraph2(num, data['data'], val_min, val_max); + '</td></tr>');
 						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
 						addGraph2(Number(this.value), data['data'], val_min, val_max);
 						addFunctions(Number(this.value), data['data'],val_min,choice);
@@ -1042,5 +1028,4 @@
 <!-- Library to copy into clipboard -->
 <script src="{{ get_url('static', path='js/clipboard.min.js') }}"></script>
 </body>
-
 </html>
