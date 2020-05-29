@@ -50,7 +50,7 @@ function list()
 	var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 
 	// We fill the table
-	for (var i=0; i <= assess_session.attributes.length; i++){
+	for (var i=0; i < assess_session.attributes.length; i++){
 
 		var text = '<tr><td>' + assess_session.attributes[i].name + '</td>';
 		text+='<td>'+ assess_session.attributes[i].unit + '</td>';
