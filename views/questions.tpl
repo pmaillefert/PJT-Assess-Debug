@@ -1056,7 +1056,7 @@
 					$('#choix_fonction').hide();
 					
 					$('#select').show();
-					$('#graph_choisi'+indice).empty();
+					
 					$('#main_graph1').empty();
 					$('#main_graph2').empty();
 					
