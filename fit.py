@@ -53,6 +53,7 @@ def regressions(liste_cord, dictionnaire={}):
         # test de la fonction d'utilite qui doit etre comprise entre 0 et 1
         test = True
         
+			
         if test:
             dictionnaire['exp'] = {}
             dictionnaire['exp']['a'] = a1
@@ -61,9 +62,11 @@ def regressions(liste_cord, dictionnaire={}):
             # calcul et affichage du mean squared error et du r2
             # print "Mean Squared Error exp : ", np.mean((y-funcexp(x,
             # *popt1))**2)
+            ss_res = np.dot((y - funcexp(x, a1, b1, c1)),
+                            (y - funcexp(x, a1, b1, c1)))
             
             # ajout du r2 dans le dictionnaire pour la regression exponentielle
-            dictionnaire['exp']['r2'] = c1
+            dictionnaire['exp']['r2'] = ss_res
     except:
         pass
 
