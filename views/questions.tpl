@@ -156,7 +156,7 @@
 				});
 			})(i);
 			for (var indice = 0; indice < assess_session.attributes.length; i++) {
-			if (!assess_session.attributes[indice].checked)
+			if (!assess_session.attributes[indice].checked) {
 			
 			var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 			var num = assess_session.attributes[indice].numero;
