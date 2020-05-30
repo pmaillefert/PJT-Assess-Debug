@@ -81,7 +81,7 @@
 		$('#functions').hide();
 		$('#nouveaubloc').hide();
 		$('#tableau_fonctions').hide();
-		
+		$('#choix_fonction').hide();
 		
 		var assess_session = JSON.parse(localStorage.getItem("assess_session")),
 			settings = assess_session.settings;
@@ -974,6 +974,8 @@
 				
 				
 				$('.ice').on('click', function() {
+			
+					$('#choix_fonction').show();
 					$('#ton_choix').empty();
 					var choice = this.value;
 					$('#ton_choix').append("You chose " + choice);
