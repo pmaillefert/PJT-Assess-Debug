@@ -36,7 +36,7 @@
 					<tr>
 						
 						<td id="ton_choix"></td>
-						<td><button type="button" class="btn btn-default btn-xs answer_quest_" id = "update" </td>
+						<td><button type="button" class="btn btn-default btn-xs answer_quest_" id = "update">Update</button> </td>
 					</tr>
 						
 		</tbody>
