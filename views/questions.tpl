@@ -1032,6 +1032,9 @@
 					$('#tableau_fonctions').hide();
 					$('#choix_fonction').hide();
 					$('#select').show();
+					$('#charts').empty;
+					$('#nouveaubloc').empty;
+					$('#tableau_fonctions').empty;
 					});
 			});
 		});
