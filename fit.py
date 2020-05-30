@@ -52,11 +52,8 @@ def regressions(liste_cord, dictionnaire={}):
         c1 = (1. / (1 - np.exp(b1 * (min - max))))
         # test de la fonction d'utilite qui doit etre comprise entre 0 et 1
         test = True
-        for i in x_test:
-            if funcexp(i, a1, b1, c1) < -0.02 or funcexp(i, a1, b1, c1) > 1.02:
-                test = False
-        if np.isnan(a1) or np.isnan(b1) or np.isnan(c1):
-            test = False
+        
+        
 			
         if test:
             dictionnaire['exp'] = {}
@@ -83,11 +80,8 @@ def regressions(liste_cord, dictionnaire={}):
         a2 = b2 * min**2 - min * ((1 + b2 * (max**2 - min**2)) / (max - min))
         c2 = (1 + b2 * (max**2 - min**2)) / (max - min)
         test = True
-        for i in x_test:
-            if funcquad(i, a2, b2, c2) < -0.02 or funcquad(i, a2, b2, c2) > 1.02:
-                test = False
-        if np.isnan(a2) or np.isnan(b2) or np.isnan(c2):
-            test = False
+        
+        
 			
         if test:
             dictionnaire['quad'] = {}
@@ -112,11 +106,8 @@ def regressions(liste_cord, dictionnaire={}):
         a3 = (1 - b3) / (max**(1 - b3) - min**(1 - b3))
         c3 = -(min**(1 - b3) - 1) / (max**(1 - b3) - min**(1 - b3))
         test = True
-        for i in x_test:
-            if funcpuis(i, a3, b3, c3) < -0.02 or funcpuis(i, a3, b3, c3) > 1.02:
-                test = False
-        if np.isnan(a3) or np.isnan(b3) or np.isnan(c3):
-            test = False
+        
+        
 			
         if test:
             dictionnaire['pow'] = {}
@@ -142,11 +133,8 @@ def regressions(liste_cord, dictionnaire={}):
         a4 = 1. / (np.log(b4 * max + c4) - np.log(b4 * min + c4))
         d4 = 1. / (1 - np.log(b4 * max + c4) / np.log(b4 * min + c4))
         test = True
-        for i in x_test:
-            if funclog(i, a4, b4, c4, d4) < -0.02 or funclog(i, a4, b4, c4, d4) > 1.02:
-                test = False
-        if np.isnan(a4) or np.isnan(b4) or np.isnan(c4) or np.isnan(d4):
-            test = False
+        
+        
 		
         if test:
             dictionnaire['log'] = {}
@@ -188,11 +176,8 @@ def regressions(liste_cord, dictionnaire={}):
         c6 = (np.log(np.log(1 - a6) / np.log(-a6))) / (np.log(max / min))
         b6 = -np.log(-a6) / (min**c6)
         test = True
-        for i in x_test:
-            if funcexpopower(i, a6, b6, c6) < -0.02 or funcexpopower(i, a6, b6, c6) > 1.02:
-                test = False
-        if np.isnan(a6) or np.isnan(b6) or np.isnan(c6):
-            test = False
+      
+        
 			
         if test:
             dictionnaire['expo-power'] = {}
