@@ -9,7 +9,7 @@
 				<th>Method</th>
 				<th>Utility function</th>
 				<th>Assess another point</th>
-				<th>Display utility graph</th>
+				<th>Display utility function</th>
 				<th>Reset assessements</th>
 			</tr>
 		</thead>
@@ -19,8 +19,9 @@
 </div>
 <div id="trees"></div>
 <div id="charts">
-	<h2>Select the regression function you want to use</h2>
+	<h2>Select the utility function you want to use</h2>
 </div>
+<div id= "attribute_name"></div>
 <div id ="nouveaubloc"><h6>Choose a function</h6></div>
 <div id="choix_fonction">
 	<table class="table">
@@ -82,6 +83,7 @@
 		$('#nouveaubloc').hide();
 		$('#tableau_fonctions').hide();
 		$('#choix_fonction').hide();
+		$('#attribute_name').hide();
 		
 		var assess_session = JSON.parse(localStorage.getItem("assess_session")),
 			settings = assess_session.settings;
@@ -1021,6 +1023,8 @@
 				$('#charts').show().empty();
 				$('#nouveaubloc').show().empty();
 				$('#tableau_fonctions').show();
+				$('#attribute_name').show().empty;
+				
 				if (val_min<0){
 					for (i in data['data']){
 						for (j in data['data'][i]['coord']){
@@ -1029,6 +1033,8 @@
 					};
 				}
 				var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+				
+				$('#attribute_name').append('<h2>' + assess_session.attributes[indice].name + '</h2>');
 				assess_session.attributes[indice].numero = 10000;
 				assess_session.attributes[indice].fonction = '';
 				
