@@ -1093,7 +1093,7 @@
 							};
 						};
 					};
-					$('#graph_choisi'+i+).show().empty();
+					$('#graph_choisi'+i).show().empty();
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 					
 				});
