@@ -208,7 +208,7 @@
 								addGraph3(num, data['data'], val_min, val_max, choice);
 							});
 		
-							addGraph3(num, data['data'], val_min, val_max, choice);
+							
 							
 							};
 						};
