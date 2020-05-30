@@ -52,11 +52,7 @@ def regressions(liste_cord, dictionnaire={}):
         c1 = (1. / (1 - np.exp(b1 * (min - max))))
         # test de la fonction d'utilite qui doit etre comprise entre 0 et 1
         test = True
-        for i in x_test:
-            if funcexp(i, a1, b1, c1) < -0.02 or funcexp(i, a1, b1, c1) > 1.02:
-                test = False
-        if np.isnan(a1) or np.isnan(b1) or np.isnan(c1):
-            test = False
+        
 			
         if test:
             dictionnaire['exp'] = {}
