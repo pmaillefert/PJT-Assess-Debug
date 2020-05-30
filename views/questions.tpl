@@ -22,6 +22,26 @@
 	<h2>Select the regression function you want to use</h2>
 </div>
 <div id ="nouveaubloc"><h6>Choose a function</h6></div>
+<div id="choix_fonction">
+	<table class="table">
+		<thead>
+			<tr>
+				
+				<th>Your choice</th>
+				<th>Update your choice</th>
+			</tr>
+		</thead>
+		<tbody id="tableau_fct">
+			
+					<tr>
+						
+						<td id="ton_choix"></td>
+						<td><button type="button" class="btn btn-default btn-xs answer_quest_" id = "update" </td>
+					</tr>
+						
+		</tbody>
+	</table>
+</div>
 <div id="ton_choix"></div>
 <div id="tableau_fonctions" >
 	<table class="table">
