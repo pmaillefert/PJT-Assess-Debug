@@ -102,20 +102,7 @@
 			};
 			json_2_send["points"] = points;
 	
-			$.post('ajax', JSON.stringify(json_2_send), function (data) {
-				$.post('ajax', JSON.stringify({
-					"type": "svgg",
-					"data": data[assess_session.attributes[i].numero],
-					"min": val_min,
-					"max": val_max,
-					"liste_cord": data[assess_session.attributes[i].numero]['coord'],
-					"width": 3,
-					"choice":assess_session.attributes[i].choice,
-				}), function (data2) {
-						
-						$('#graph_choisi' + _i).append('<div>' + data2 + '</div>');
-				};
-			});
+			
 			text_table += '<td><table style="width:100%"><tr><td>' + attribute.val_min + '</td><td> : </td><td>'+(attribute.mode=="Normal"?0:1)+'</td></tr>';
 			
 			if (attribute.method == "PE" || attribute.method == "LE"){
