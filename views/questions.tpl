@@ -97,7 +97,7 @@
 							 '<td id="graph_choisi'+i+'" ></td>';
 							 
 							 
-		var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+		
 		var num = assess_session.attributes[i].numero;
 		var choice = assess_session.attributes[i].fonction;
 		if (choice != '') {
@@ -130,8 +130,6 @@
 				
 		$.post('ajax', JSON.stringify(json_2_send), function(data) {
 			
-			addGraph3(num, data['data'], val_min, val_max, choice);
-					
 			function addGraph3(j, data, min, max, choice) {
 				console.log("addgraph");
 				$.post('ajax', JSON.stringify({
@@ -146,12 +144,13 @@
 					$('#graph_choisi' + i).append('<div>' + data2 + '</div>');
 				});
 			};
+			addGraph3(num, data['data'], val_min, val_max, choice);
 		});
 		
 			};
 		};
 	};
-			localStorage.setItem("assess_session", JSON.stringify(assess_session));
+			
 		
 			text_table += '<td><table style="width:100%"><tr><td>' + attribute.val_min + '</td><td> : </td><td>'+(attribute.mode=="Normal"?0:1)+'</td></tr>';
 			
