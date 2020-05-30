@@ -49,12 +49,11 @@ def regressions(liste_cord, dictionnaire={}):
         # ajout des coeeficients a, b et c dans le dictionnaire pour la regression
         # exponentielle
         b1 = popt1[0]
-        a1 = (1. / (np.exp(-b1 * max) - np.exp(-b1 * min)))
-        c1 = (1. / (1 - np.exp(b1 * (min - max))))
+        
         # test de la fonction d'utilite qui doit etre comprise entre 0 et 1
         test = True
         
-            dictionnaire['exp']['r2'] = b1
+        dictionnaire['exp']['r2'] = b1
     except:
         pass
 
