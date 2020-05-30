@@ -926,7 +926,7 @@
 					$('#main_graph2').append(data2);
 				});
 			}
-			function addGraph3(i, data, min, max, choice,indice) {
+			function addGraph3(i, data, min, max, choice) {
 				console.log("addgraph");
 				$.post('ajax', JSON.stringify({
 					"type": "svgg",
@@ -937,7 +937,7 @@
 					"width": 3,
 					"choice":choice,
 				}), function(data2) {
-					$("#graph_choisi"+indice+).append(data2);
+					$("#graph_choisi"+i+).append(data2);
 				});
 			}
 			function availableRegressions(data) {
@@ -1056,7 +1056,7 @@
 					var choice = assess_session.attributes[indice].fonction;
 					if (choice != '') {
 						if (num != 10000) {
-							addGraph3(num, data['data'], val_min, val_max, choice, indice);
+							addGraph3(num, data['data'], val_min, val_max, choice);
 							
 							};
 						};
