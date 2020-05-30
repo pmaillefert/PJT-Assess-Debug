@@ -42,7 +42,7 @@
 		</tbody>
 	</table>
 </div>
-<div id="ton_choix"></div>
+
 <div id="tableau_fonctions" >
 	<table class="table">
 		<thead>
