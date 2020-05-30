@@ -940,6 +940,7 @@
 			$.post('ajax', JSON.stringify(json_2_send), function(data) {
 				$('#charts').show().empty();
 				$('#nouveaubloc').show().empty();
+				$('#tableau_fonctions').show().empty();
 				
 				if (val_min<0){
 					for (i in data['data']){
@@ -972,10 +973,7 @@
 				
 				
 				
-				
 				$('.ice').on('click', function() {
-			
-					$('#choix_fonction').show();
 					$('#ton_choix').empty();
 					var choice = this.value;
 					$('#ton_choix').append("You chose " + choice);
@@ -1022,6 +1020,7 @@
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 						
 					});
+					
 				$('.comeback').click(function() {
 					$('li.questions').addClass("active");
 					$('#attribute_name').hide();
