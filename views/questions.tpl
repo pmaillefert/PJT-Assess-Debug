@@ -76,8 +76,8 @@
 							 '<td>' + attribute.method + '</td>'+
 							 '<td id="graph_choisi'+i+'" ></td>';
 							 
-		if  assess_session.attributes[i].numero != 10000 {
-			if  assess_session.attributes[i].choice != ''{
+		if  (assess_session.attributes[i].numero != 10000) {
+			if  (assess_session.attributes[i].choice != '') {
 			var     val_min = assess_session.attributes[i].val_min,
 				val_max = assess_session.attributes[i].val_max,
 				mode = assess_session.attributes[i].mode,
