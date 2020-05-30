@@ -1050,7 +1050,7 @@
 					$('#select').show();
 					$('#main_graph1').empty();
 					$('#main_graph2').empty();
-					$("#graph_choisi'+indice+'").empty();
+					
 					var num = assess_session.attributes[indice].numero;
 					var choice = assess_session.attributes[indice].fonction;
 					if (choice != '') {
