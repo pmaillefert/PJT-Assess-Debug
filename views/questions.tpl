@@ -940,8 +940,7 @@
 			$.post('ajax', JSON.stringify(json_2_send), function(data) {
 				$('#charts').show().empty();
 				$('#nouveaubloc').show().empty();
-				$('#main_graph1').empty();
-				$('#main_graph2').empty();
+				
 				if (val_min<0){
 					for (i in data['data']){
 						for (j in data['data'][i]['coord']){
