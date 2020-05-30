@@ -1033,10 +1033,7 @@
 					$('#choix_fonction').hide();
 					$('#select').show();
 					
-					$('#curves_choice').empty();
 					
-					$('#NEWcurves_choice').empty()
-					$('#tableau_fonctions').empty();
 					});
 			});
 		});
