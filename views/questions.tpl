@@ -951,7 +951,7 @@
 				for (var key in data) {
 					if (typeof(data[key]['r2']) !== 'undefined') {
 					
-						text = text + key + ': ' + Math.round(data[key]['r2'] * 1000000) / 1000000 + ', ';
+						text = text + key + ': ' + Math.round(data[key]['r2'] * 10000) / 10000 + ', ';
 					}
 					
 				}
@@ -981,7 +981,12 @@
 				
 				console.log(JSON.stringify(json_2_send));
 				$('#nouveaubloc').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
-				LISTE=['logarithmic','exponential','power','linear','quadratic','exponential-power'];
+				LISTE=[];
+				for (var key in data) {
+					if (typeof(data[key]['r2']) !== 'undefined') {
+					LISTE.append(key);
+					};
+				};
 				for (var i = 0; i < LISTE.length; i++) {
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="ice" name="select2" value=' +LISTE[i]+ '></td><td>' + LISTE[i] + '</td><tr>');
 				}
