@@ -7,7 +7,7 @@
 				<th>Attribute</th>
 				<th>Type</th>
 				<th>Method</th>
-				<th>Number of assessed points</th>
+				<th>Utility function</th>
 				<th>Assess another point</th>
 				<th>Display utility graph</th>
 				<th>Reset assessements</th>
