@@ -928,6 +928,20 @@
 					$('#main_graph2').append(data2);
 				});
 			}
+			function addGraph3(i, data, min, max, choice) {
+				console.log("addgraph");
+				$.post('ajax', JSON.stringify({
+					"type": "svgg",
+					"data": data[i],
+					"min": min,
+					"max": max,
+					"liste_cord": data[i]['coord'],
+					"width": 3,
+					"choice":choice,
+				}), function(data2) {
+					$('#graph_choisi' + indice).append('<div>' + data2 + '</div>');
+				});
+			}
 			
 			function availableRegressions(data) {
 				console.log("availreg");
@@ -1041,65 +1055,21 @@
 					
 					$('#main_graph1').empty();
 					$('#main_graph2').empty();
+					
 					var num = assess_session.attributes[indice].numero;
 					var choice = assess_session.attributes[indice].fonction;
 					if (choice != '') {
 						if (num != 10000) {
-							if (assess_session.attributes[indice].questionnaire.points != []) {
-				
-							var val_min = assess_session.attributes[indice].val_min,
-								val_max = assess_session.attributes[indice].val_max,
-								mode = assess_session.attributes[indice].mode,
-								points_dict = assess_session.attributes[indice].questionnaire.points,
-								points=[];
-			
-							for (key in points_dict) {
-								points.push([parseFloat(key), parseFloat(points_dict[key])]);
-							};
-			
-							points.push([val_min, (mode == "Normal" ? 0 : 1)]);
-							points.push([val_max, (mode == "Normal" ? 1 : 0)]);
-			
-							if (val_min<0) {
-								for (j in points) {
-									points[j][0]-=val_min;
-									console.log(points[j]);
-								};
-							}
-							var json_2_send = {
-								"type": "calc_util_multi"
-							};
-							json_2_send["points"] = points;
-				
-							$.post('ajax', JSON.stringify(json_2_send), function(data) {
-			
-								function addGraph3(j, data, min, max, choice) {
-									console.log("addgraph");
-									$.post('ajax', JSON.stringify({
-										"type": "svgg",
-										"data": data[j],
-										"min": min,
-										"max": max,
-										"liste_cord": data[j]['coord'],
-										"width": 3,
-										"choice":choice,
-										}), function(data2) {
-											$('#graph_choisi' + i).append('<div>' + data2 + '</div>');
-										});
-									};
-								addGraph3(num, data['data'], val_min, val_max, choice);
-							});
-		
+							addGraph3(num, data['data'], val_min, val_max, choice);
+							
 							};
 						};
-					};
-					$('#graph_choisi'+indice).show().empty();
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 					
-				});
+					
+					});
 			});
 		});
-	
 		
 		/// When you click on a QUALITATIVE utility function button
 		$('.calc_util_quali').click(function() {
