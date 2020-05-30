@@ -75,6 +75,9 @@
 							 '<td>' + attribute.type + '</td>'+
 							 '<td>' + attribute.method + '</td>'+
 							 '<td id="graph_choisi'+i+'" ></td>';
+							 
+		if  assess_session.attributes[i].numero != 10000 {
+			if  assess_session.attributes[i].choice != ''{
 			var     val_min = assess_session.attributes[i].val_min,
 				val_max = assess_session.attributes[i].val_max,
 				mode = assess_session.attributes[i].mode,
@@ -102,7 +105,8 @@
 			};
 			json_2_send["points"] = points;
 	
-			
+			};
+		};
 			text_table += '<td><table style="width:100%"><tr><td>' + attribute.val_min + '</td><td> : </td><td>'+(attribute.mode=="Normal"?0:1)+'</td></tr>';
 			
 			if (attribute.method == "PE" || attribute.method == "LE"){
