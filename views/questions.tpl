@@ -926,7 +926,7 @@
 					$('#main_graph2').append(data2);
 				});
 			}
-			function addGraph3(i, data, min, max, choice) {
+			function addGraph3(i, data, min, max, choice,indice) {
 				console.log("addgraph");
 				$.post('ajax', JSON.stringify({
 					"type": "svgg",
@@ -1056,7 +1056,7 @@
 					var choice = assess_session.attributes[indice].fonction;
 					if (choice != '') {
 						if (num != 10000) {
-							addGraph3(num, data['data'], val_min, val_max, choice);
+							addGraph3(num, data['data'], val_min, val_max, choice, indice);
 							
 							};
 						};
