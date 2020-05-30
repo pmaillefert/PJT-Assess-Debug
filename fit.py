@@ -98,8 +98,12 @@ def regressions(liste_cord, dictionnaire={}):
             dictionnaire['quad']['c'] = c2
             # print "Mean Squared Error quad : ", np.mean((y-funcquad(x,
             # *popt2))**2)
-            ss_res = np.dot((y - funcquad(x, a2, b2, c2)),
-                            (y - funcquad(x, a2, b2, c2)))
+            h=0
+	    for k in range(len(y)-1):
+		h+= (y[k] - funcquad(x[k], a2, b2, c2))**2
+            ss_res = h
+            ymean = np.mean(y)
+            ss_tot = np.dot((y - ymean), (y - ymean))
             ymean = np.mean(y)
             ss_tot = np.dot((y - ymean), (y - ymean))
             dictionnaire['quad']['r2'] = 1 - ss_res / ss_tot
@@ -127,10 +131,13 @@ def regressions(liste_cord, dictionnaire={}):
             dictionnaire['pow']['c'] = c3
             # print "Mean Squared Error puis : ", np.mean((y-funcpuis(x,
             # *popt3))**2)
-            ss_res = np.dot((y - funcpuis(x, a3, b3, c3)),
-                            (y - funcpuis(x, a3, b3, c3)))
+            h=0
+	    for k in range(len(y)-1):
+		h+= (y[k] - funcpuis(x[k], a3, b3, c3))**2
+            ss_res = h
             ymean = np.mean(y)
             ss_tot = np.dot((y - ymean), (y - ymean))
+            
             dictionnaire['pow']['r2'] = 1 - ss_res / ss_tot
     except:
         pass
@@ -158,8 +165,10 @@ def regressions(liste_cord, dictionnaire={}):
             dictionnaire['log']['d'] = d4
             # print "Mean Squared Error log : ", np.mean((y-funclog(x,
             # *popt4))**2)
-            ss_res = np.dot((y - funclog(x, a4, b4, c4, d4)),
-                            (y - funclog(x, a4, b4, c4, d4)))
+            h=0
+	    for k in range(len(y)-1):
+		h+= (y[k] - funclog(x[k], a4, b4, c4, d4))**2
+            ss_res = h
             ymean = np.mean(y)
             ss_tot = np.dot((y - ymean), (y - ymean))
             dictionnaire['log']['r2'] = 1 - ss_res / ss_tot
@@ -174,7 +183,10 @@ def regressions(liste_cord, dictionnaire={}):
         dictionnaire['lin']['a'] = a5
         dictionnaire['lin']['b'] = b5
         # print "Mean Squared Error lin: ", np.mean((y-funclin(x, *popt5))**2)
-        ss_res = np.dot((y - funclin(x, a5, b5)), (y - funclin(x, a5, b5)))
+        h=0
+	for k in range(len(y)-1):
+		h+= (y[k] - funclin(x[k], a5, b5))**2
+        ss_res = h
         ymean = np.mean(y)
         ss_tot = np.dot((y - ymean), (y - ymean))
         dictionnaire['lin']['r2'] = 1 - ss_res / ss_tot
@@ -201,8 +213,10 @@ def regressions(liste_cord, dictionnaire={}):
             dictionnaire['expo-power']['a'] = a6
             dictionnaire['expo-power']['b'] = b6
             dictionnaire['expo-power']['c'] = c6
-            ss_res = np.dot((y - funcexpopower(x, a6, b6, c6)),
-                            (y - funcexpopower(x, a6, b6, c6)))
+            h=0
+	    for k in range(len(y)-1):
+		h+= (y[k] - funcexpopower(x[k], a6, b6, c6))**2
+            ss_res = h
             ymean = np.mean(y)
             ss_tot = np.dot((y - ymean), (y - ymean))
             dictionnaire['expo-power']['r2'] = 1 - ss_res / ss_tot
