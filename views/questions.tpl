@@ -1031,11 +1031,12 @@
 						$('#main_graph1').show().empty();
 						$('#main_graph2').show().empty();
 						
+						
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[Number(this.value)];
 						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
 						addGraph2(Number(this.value), data['data'], val_min, val_max);
-						addGraph3(num, data['data'], val_min, val_max, choice);
+						addGraph3(Number(this.value), data['data'], val_min, val_max, choice);
 						addFunctions(Number(this.value), data['data'],val_min,choice);
 						};
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
@@ -1052,7 +1053,7 @@
 					$('#nouveaubloc').hide();
 					$('#tableau_fonctions').hide();
 					$('#choix_fonction').hide();
-					$('#graph_choisi'+indice).empty();
+					$('#graph_choisi'+indice).show().empty();
 					$('#select').show();
 					
 					$('#main_graph1').empty();
