@@ -906,7 +906,7 @@
 					"min": min,
 					"max": max,
 					"liste_cord": data[i]['coord'],
-					"width": 6,
+					"width": 5,
 					"choice":choice,
 				}), function(data2) {
 					$('#main_graph1').append(data2);
@@ -920,10 +920,24 @@
 					"min": min,
 					"max": max,
 					"liste_cord": data[i]['coord'],
-					"width": 6,
+					"width": 5,
 					
 				}), function(data2) {
 					$('#main_graph2').append(data2);
+				});
+			}
+			function addGraph3(i, data, min, max, choice) {
+				console.log("addgraph");
+				$.post('ajax', JSON.stringify({
+					"type": "svgg",
+					"data": data[i],
+					"min": min,
+					"max": max,
+					"liste_cord": data[i]['coord'],
+					"width": 3,
+					"choice":choice,
+				}), function(data2) {
+					$("#graph_choisi'+i+'").append(data2);
 				});
 			}
 			function availableRegressions(data) {
@@ -1024,6 +1038,7 @@
 					});
 					
 				$('.comeback').click(function() {
+					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
 					$('li.questions').addClass("active");
 					$('#attribute_name').hide();
 					$('#charts').hide();
@@ -1035,6 +1050,16 @@
 					$('#select').show();
 					$('#main_graph1').empty();
 					$('#main_graph2').empty();
+					$("#graph_choisi'+indice+'").empty();
+					var num = assess_session.attributes[indice].numero;
+					var choice = assess_session.attributes[indice].fonction;
+					if (choice != '') {
+						if (num != 10000) {
+							addGraph3(num, data['data'], val_min, val_max, choice);
+							
+							};
+						};
+					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 					
 					
 					});
