@@ -962,7 +962,7 @@
 				
 				if (typeof(data['quad']['r2']) !== 'undefined') {
 					text = text + 'quad' + ': ' + Math.round(data['quad']['r2'] * 10000) / 10000 + ', ';
-				}
+				};
 				return text;
 			}
 			
