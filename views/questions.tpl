@@ -1032,9 +1032,9 @@
 					$('#tableau_fonctions').hide();
 					$('#choix_fonction').hide();
 					$('#select').show();
-					$('#charts').removeAttribute(hoice);
-					$('#nouveaubloc').empty;
-					$('#tableau_fonctions').empty;
+					$('#charts').removeClass();
+					$('#nouveaubloc').removeClass();
+					$('#tableau_fonctions').removeClass();
 					});
 			});
 		});
