@@ -1032,11 +1032,11 @@
 					$('#tableau_fonctions').hide();
 					$('#choix_fonction').hide();
 					$('#select').show();
-					$('#curves_choice').removeClass();
 					
-					$('#NEWcurves_choice').removeClass();
+					$('#curves_choice').empty();
+					
 					$('#NEWcurves_choice').empty()
-					$('#tableau_fonctions').removeClass();
+					$('#tableau_fonctions').empty();
 					});
 			});
 		});
