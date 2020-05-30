@@ -951,7 +951,7 @@
 				for (var key in data) {
 					if (typeof(data[key]['r2']) !== 'undefined') {
 					
-						text = text + key + ': ' + Math.round(data[key]['r2'] * 10000) / 10000 + ', ';
+						text = text + key + ': ' + Math.round(data[key]['r2'] * 1000000) / 1000000 + ', ';
 					}
 					
 				}
