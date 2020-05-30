@@ -937,7 +937,7 @@
 					"width": 3,
 					"choice":choice,
 				}), function(data2) {
-					$("#graph_choisi'+indice+'").append(data2);
+					$("#graph_choisi"+indice+).append(data2);
 				});
 			}
 			function availableRegressions(data) {
@@ -1048,6 +1048,7 @@
 					$('#tableau_fonctions').hide();
 					$('#choix_fonction').hide();
 					$('#select').show();
+					$('#graph_choisi' + indice +).show();
 					$('#main_graph1').empty();
 					$('#main_graph2').empty();
 					
