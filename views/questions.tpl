@@ -1016,8 +1016,8 @@
 				$('#nouveaubloc').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
 				LISTE=['logarithmic','exponential','power','linear'];
 					if (data['data'][0]['quad'] !== undefined) {
-						LISTE.append('quadratic');
-						}
+						LISTE = ['logarithmic','exponential','power','linear','quadratic'];
+						};
 				for (var i = 0; i < LISTE.length; i++) {
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="ice" name="select2" value=' +LISTE[i]+ '></td><td>' + LISTE[i] + '</td><tr>');
 				}
