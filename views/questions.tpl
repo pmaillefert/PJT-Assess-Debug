@@ -155,7 +155,7 @@
 					window.location.reload();
 				});
 			})(i);
-			for (var indice = 0; indice < assess_session.attributes.length; i++) {
+			for (var indice = 0; indice < assess_session.attributes.length; indice++) {
 			if (!assess_session.attributes[indice].checked) {
 			
 			var assess_session = JSON.parse(localStorage.getItem("assess_session"));
