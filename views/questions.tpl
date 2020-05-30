@@ -36,7 +36,7 @@
 					<tr>
 						
 						<td id="ton_choix"></td>
-						<td><button type="button" class="btn btn-default btn-xs answer_quest_" id = "update">Update</button> </td>
+						<td><button type="button" class="btn btn-default comeback" id = "update">Update</button> </td>
 					</tr>
 						
 		</tbody>
@@ -1022,7 +1022,17 @@
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 						
 					});
-				
+				$('.comeback').click(function() {
+					$('li.questions').addClass("active");
+					$('#attribute_name').hide();
+					$('#charts').hide();
+					$('#main_graph').hide();
+					$('#functions').hide();
+					$('#nouveaubloc').hide();
+					$('#tableau_fonctions').hide();
+					$('#choix_fonction').hide();
+					$('#select').show();
+					});
 			});
 		});
 	
