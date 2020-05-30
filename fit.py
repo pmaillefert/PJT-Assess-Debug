@@ -39,7 +39,7 @@ def regressions(liste_cord, dictionnaire={}):
 
     # creation of the fitted curves
 
-   
+    try:
         # exponential function
         funcexpParam = lambda x, b: funcexp2(x, b, min, max)
         # fonction regression utilisant la funcexp du fichier functions.py
@@ -51,11 +51,14 @@ def regressions(liste_cord, dictionnaire={}):
         a1 = (1. / (np.exp(-b1 * max) - np.exp(-b1 * min)))
         c1 = (1. / (1 - np.exp(b1 * (min - max))))
         # test de la fonction d'utilite qui doit etre comprise entre 0 et 1
-        
-        
-        
+        test = True
+        for i in x_test:
+            if funcexp(i, a1, b1, c1) < -0.02 or funcexp(i, a1, b1, c1) > 1.02:
+                test = False
+        if np.isnan(a1) or np.isnan(b1) or np.isnan(c1):
+            test = False
 			
-        
+        if test:
             dictionnaire['exp'] = {}
             dictionnaire['exp']['a'] = a1
             dictionnaire['exp']['b'] = b1
@@ -69,14 +72,24 @@ def regressions(liste_cord, dictionnaire={}):
             ss_tot = np.dot((y - ymean), (y - ymean))
             # ajout du r2 dans le dictionnaire pour la regression exponentielle
             dictionnaire['exp']['r2'] = 1 - ss_res / ss_tot
-    
+    except:
+        pass
+
+    try:
         # Meme principe pour la quadratic function
         funcquadParam = lambda x, b: funcquad2(x, b, min, max)
         popt2, pcov2 = curve_fit(funcquadParam, x, y, [0.1])
         b2 = popt2[0]
         a2 = b2 * min**2 - min * ((1 + b2 * (max**2 - min**2)) / (max - min))
         c2 = (1 + b2 * (max**2 - min**2)) / (max - min)
-         
+        test = True
+        for i in x_test:
+            if funcquad(i, a2, b2, c2) < -0.02 or funcquad(i, a2, b2, c2) > 1.02:
+                test = False
+        if np.isnan(a2) or np.isnan(b2) or np.isnan(c2):
+            test = False
+			
+        if test:
             dictionnaire['quad'] = {}
             dictionnaire['quad']['a'] = a2
             dictionnaire['quad']['b'] = b2
@@ -88,14 +101,24 @@ def regressions(liste_cord, dictionnaire={}):
             ymean = np.mean(y)
             ss_tot = np.dot((y - ymean), (y - ymean))
             dictionnaire['quad']['r2'] = 1 - ss_res / ss_tot
-    
+    except:
+        pass
+
+    try:
         # Meme principe pour la puissance function
         funcpuisParam = lambda x, b: funcpuis2(x, b, min, max)
         popt3, pcov3 = curve_fit(funcpuisParam, x, y, [0.1])
         b3 = popt3[0]
         a3 = (1 - b3) / (max**(1 - b3) - min**(1 - b3))
         c3 = -(min**(1 - b3) - 1) / (max**(1 - b3) - min**(1 - b3))
-        
+        test = True
+        for i in x_test:
+            if funcpuis(i, a3, b3, c3) < -0.02 or funcpuis(i, a3, b3, c3) > 1.02:
+                test = False
+        if np.isnan(a3) or np.isnan(b3) or np.isnan(c3):
+            test = False
+			
+        if test:
             dictionnaire['pow'] = {}
             dictionnaire['pow']['a'] = a3
             dictionnaire['pow']['b'] = b3
@@ -107,7 +130,10 @@ def regressions(liste_cord, dictionnaire={}):
             ymean = np.mean(y)
             ss_tot = np.dot((y - ymean), (y - ymean))
             dictionnaire['pow']['r2'] = 1 - ss_res / ss_tot
-   
+    except:
+        pass
+
+    try:
         # Meme principe pour la logarithmic function
         funclogParam = lambda x, b, c: funclog2(x, b, c, min, max)
         popt4, pcov4 = curve_fit(funclogParam, x, y, [0.1, 0.1])
@@ -115,7 +141,14 @@ def regressions(liste_cord, dictionnaire={}):
         c4 = popt4[1]
         a4 = 1. / (np.log(b4 * max + c4) - np.log(b4 * min + c4))
         d4 = 1. / (1 - np.log(b4 * max + c4) / np.log(b4 * min + c4))
-        
+        test = True
+        for i in x_test:
+            if funclog(i, a4, b4, c4, d4) < -0.02 or funclog(i, a4, b4, c4, d4) > 1.02:
+                test = False
+        if np.isnan(a4) or np.isnan(b4) or np.isnan(c4) or np.isnan(d4):
+            test = False
+		
+        if test:
             dictionnaire['log'] = {}
             dictionnaire['log']['a'] = a4
             dictionnaire['log']['b'] = b4
@@ -128,7 +161,10 @@ def regressions(liste_cord, dictionnaire={}):
             ymean = np.mean(y)
             ss_tot = np.dot((y - ymean), (y - ymean))
             dictionnaire['log']['r2'] = 1 - ss_res / ss_tot
-   
+    except:
+        pass
+
+    try:
         # Meme principe pour la linear function
         a5 = 1. / (max - min)
         b5 = -min / (max - min)
@@ -140,7 +176,10 @@ def regressions(liste_cord, dictionnaire={}):
         ymean = np.mean(y)
         ss_tot = np.dot((y - ymean), (y - ymean))
         dictionnaire['lin']['r2'] = 1 - ss_res / ss_tot
-   
+    except:
+        pass
+
+    try:
         # Meme principe pour la expo-power function
         funcexpopowerParam = lambda x, a: funcexpopower2(x, a, min, max)
         popt6, pcov6 = curve_fit(
@@ -148,7 +187,14 @@ def regressions(liste_cord, dictionnaire={}):
         a6 = popt6[0]
         c6 = (np.log(np.log(1 - a6) / np.log(-a6))) / (np.log(max / min))
         b6 = -np.log(-a6) / (min**c6)
-        
+        test = True
+        for i in x_test:
+            if funcexpopower(i, a6, b6, c6) < -0.02 or funcexpopower(i, a6, b6, c6) > 1.02:
+                test = False
+        if np.isnan(a6) or np.isnan(b6) or np.isnan(c6):
+            test = False
+			
+        if test:
             dictionnaire['expo-power'] = {}
             dictionnaire['expo-power']['a'] = a6
             dictionnaire['expo-power']['b'] = b6
@@ -158,7 +204,8 @@ def regressions(liste_cord, dictionnaire={}):
             ymean = np.mean(y)
             ss_tot = np.dot((y - ymean), (y - ymean))
             dictionnaire['expo-power']['r2'] = 1 - ss_res / ss_tot
-    
+    except:
+        pass
     return dictionnaire
 
 
