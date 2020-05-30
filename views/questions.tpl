@@ -950,11 +950,15 @@
 				var text = '';
 				for (var key in data) {
 					if (typeof(data[key]['r2']) !== 'undefined') {
-					
-						text = text + key + ': ' + Math.round(data[key]['r2'] * 10000) / 10000 + ', ';
+						if (key != 'quad') {
+							text = text + key + ': ' + Math.round(data[key]['r2'] * 10000) / 10000 + ', ';
+						};
+						
+						
 					}
 					
 				}
+				text = text + 'quad' + ': ' + Math.round(data['quad']['r2'] * 10000) / 10000 + ', ';
 				return text;
 			}
 			
