@@ -976,6 +976,21 @@
 				return text;
 			}
 			
+			function availableRegressions2(data) {
+				console.log("availreg");
+				var text = '';
+				for (var key in data) {
+					if (typeof(data[key]['r2']) !== 'undefined') {
+						if (key != 'quad') {
+							if (key != 'expo-power') {
+							text = text + key + ': ' + Math.round(data[key]['r2'] * 10000) / 10000 + ', ';
+							}
+						}
+					}
+				}
+				return text;
+			}
+			
 			$.post('ajax', JSON.stringify(json_2_send), function(data) {
 				$('#charts').show().empty();
 				$('#nouveaubloc').show().empty();
@@ -1004,12 +1019,19 @@
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="ice" name="select2" value=' +LISTE[i]+ '></td><td>' + LISTE[i] + '</td><tr>');
 				}
 				$('#charts').append('<table id="curves_choice" class="table"><thead><tr><th></th><th>Points used</th><th>Available regressions: r2</th></tr></thead></table>');
+				if (data['data'][0]['quad'] == undefined) {
+					for (var i = 0; i < data['data'].length; i++) {
+						regressions_text = availableRegressions2(data['data'][i]);
+						$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
+					}
+				};
+				if (data['data'][0]['quad'] !== undefined) {
+				
 				for (var i = 0; i < data['data'].length; i++) {
-					regressions_text = availableRegressions(data['data'][i]);
-					$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
-				}
-				
-				
+						regressions_text = availableRegressions(data['data'][i]);
+						$('#curves_choice').append('<tr><td><input type="radio" class="hoice" name="select" value=' + i + '></td><td>' + data['data'][i]['points'] + '</td><td>' + regressions_text + '</td></tr>');
+					}
+				};
 			
 				
 				
