@@ -77,47 +77,7 @@
 							 '<td id= "graph_choisi ' + i + ' " >' '</td>';
 				
 			
-			var     val_min = assess_session.attributes[i].val_min,
-				val_max = assess_session.attributes[i].val_max,
-				mode = assess_session.attributes[i].mode,
-				points_dict = assess_session.attributes[i].questionnaire.points,
-				points=[];
 			
-			for (key in points_dict) {
-				points.push([parseFloat(key), parseFloat(points_dict[key])]);
-			};
-			
-			points.push([val_min, (mode == "Normal" ? 0 : 1)]);
-			points.push([val_max, (mode == "Normal" ? 1 : 0)]);
-			
-			if (val_min<0) {
-				for (j in points) {
-					points[j][0]-=val_min;
-					console.log(points[j]);
-				};
-			};
-			
-			
-			$('#graph_choisi' + _i).show().empty();
-			var json_2_send = {
-				"type": "calc_util_multi"
-			};
-			json_2_send["points"] = points;
-	
-			$.post('ajax', JSON.stringify(json_2_send), function (data) {
-				$.post('ajax', JSON.stringify({
-					"type": "svgg",
-					"data": data[assess_session.attributes[i].numero],
-					"min": val_min,
-					"max": val_max,
-					"liste_cord": data[assess_session.attributes[i].numero]['coord'],
-					"width": 3,
-					"choice":assess_session.attributes[i].choice,
-				}), function (data2) {
-						
-						$('#graph_choisi' + _i).append('<div>' + data2 + '</div>');
-				};
-			});
 			
 			
 			text_table += '<td><table style="width:100%"><tr><td>' + attribute.val_min + '</td><td> : </td><td>'+(attribute.mode=="Normal"?0:1)+'</td></tr>';
