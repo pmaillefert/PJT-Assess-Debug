@@ -1042,7 +1042,7 @@
 					
 				$('.comeback').click(function() {
 					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-					$('li.questions').addClass("active");
+					
 					$('#attribute_name').hide();
 					$('#charts').hide();
 					$('#main_graph').hide();
