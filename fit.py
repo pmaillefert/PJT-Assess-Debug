@@ -48,24 +48,16 @@ def regressions(liste_cord, dictionnaire={}):
         # ajout des coeeficients a, b et c dans le dictionnaire pour la regression
         # exponentielle
         b1 = popt1[0]
-        a1 = (1. / (np.exp(-b1 * max) - np.exp(-b1 * min)))
-        c1 = (1. / (1 - np.exp(b1 * (min - max))))
+        
         # test de la fonction d'utilite qui doit etre comprise entre 0 et 1
         test = True
         
 			
         if test:
             dictionnaire['exp'] = {}
-            dictionnaire['exp']['a'] = a1
+            
             dictionnaire['exp']['b'] = b1
-            dictionnaire['exp']['c'] = c1
-            # calcul et affichage du mean squared error et du r2
-            # print "Mean Squared Error exp : ", np.mean((y-funcexp(x,
-            # *popt1))**2)
-            ss_res = np.dot((y - funcexp(x, a1, b1, c1)),
-                            (y - funcexp(x, a1, b1, c1)))
-            ymean = np.mean(y)
-            ss_tot = np.dot((y - ymean), (y - ymean))
+            
             # ajout du r2 dans le dictionnaire pour la regression exponentielle
             dictionnaire['exp']['r2'] = b1
     except:
