@@ -40,7 +40,7 @@ def regressions(liste_cord, dictionnaire={}):
     # creation of the fitted curves
     dictionnaire = { 'exp' : {} ,'lin' : {},'log' : {},'pow' : {},'quad' : {},'expo-power' : {}}
     try:
-        # exponential function
+         # exponential function
         funcexpParam = lambda x, b: funcexp2(x, b, min, max)
         # fonction regression utilisant la funcexp du fichier functions.py
         popt1, pcov1 = curve_fit(funcexpParam, x, y, [0.1])
@@ -48,18 +48,22 @@ def regressions(liste_cord, dictionnaire={}):
         # ajout des coeeficients a, b et c dans le dictionnaire pour la regression
         # exponentielle
         b1 = popt1[0]
+        a1 = (1. / (np.exp(-b1 * max) - np.exp(-b1 * min)))
         
         # test de la fonction d'utilite qui doit etre comprise entre 0 et 1
         test = True
         
-			
         if test:
             dictionnaire['exp'] = {}
-            
+            dictionnaire['exp']['a'] = a1
             dictionnaire['exp']['b'] = b1
             
+            # calcul et affichage du mean squared error et du r2
+            # print "Mean Squared Error exp : ", np.mean((y-funcexp(x,
+            # *popt1))**2)
+            
             # ajout du r2 dans le dictionnaire pour la regression exponentielle
-            dictionnaire['exp']['r2'] = b1
+            dictionnaire['exp']['r2'] = a1
     except:
         pass
 
