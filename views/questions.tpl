@@ -442,24 +442,25 @@
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			///////////////////////////////////////////////////////////////// CEPV METHOD ////////////////////////////////////////////////////////////////
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			else if (method == 'CE_Variable_Prob') {
+                        else if (method == 'CE_Variable_Prob') {
 				(function() {
 					// VARIABLES
 					if (assess_session.attributes[indice].questionnaire.number == 0) {
-						var min_interval = val_min;
-						var max_interval = val_max;
-						p = 0.5;
-					} else if (assess_session.attributes[indice].questionnaire.number == 1) {
-						var min_interval = assess_session.attributes[indice].questionnaire.points[0][0];
+					        var min_interval = val_min;
 						var max_interval = val_max;
 						p = 0.25;
+					} else if (assess_session.attributes[indice].questionnaire.number == 1) {
+					        var min_interval = Object.keys(assess_session.attributes[indice].questionnaire.points)[0];
+						var max_interval = val_max;
+						p = 0.5;
 					} else if (assess_session.attributes[indice].questionnaire.number == 2) {
-						var min_interval = val_min;
-						var max_interval = assess_session.attributes[indice].questionnaire.points[0][0];
-						p = 0.75;
+		                               var max_interval = Object.keys(assess_session.attributes[indice].questionnaire.points)[0];
+					       var min_interval = val_min;
+					       p = 0.75;
 					}
 					var L = [0.75 * (max_interval - min_interval) + min_interval, 0.25 * (max_interval - min_interval) + min_interval];
 					var gain = Math.round(random_proba(L[0], L[1]));
+                                      
 					// INTERFACE
 					var arbre_cepv = new Arbre('cepv', '#trees', settings.display, "CE_PV");
 					// SETUP ARBRE GAUCHE
@@ -470,28 +471,22 @@
 					arbre_cepv.display();
 					arbre_cepv.update();
 					// we add the choice button
-					$('#trees').append('<button type="button" class="btn btn-default" id="gain">Certain gain</button><button type="button" class="btn btn-default" id="lottery">Lottery</button>')
+                                        $('#trees').append('<div class=choice style="text-align: center;"><p>Which option do you prefer?</p><button type="button" class="btn btn-default" id="gain">Certain gain</button><button type="button" class="btn btn-default" id="lottery">Lottery</button></div>')
+					
 					function utility_finder(gain) {
 						var points = assess_session.attributes[indice].questionnaire.points;
 						if (gain == val_min) {
-							if (mode == 'normal') {
-								return 0;
-							} else {
-								return 1;
-							}
+							return (mode == 'Normal' ? 0 : 1);
 						} else if (gain == val_max) {
-							if (mode == 'normal') {
-								return 1;
-							} else {
-								return 0;
-							}
+							return (mode == 'Normal' ? 1 : 0);
 						} else {
-							for (var i = 0; i < points.length; i++) {
-								if (points[i][0] == gain) {
-									return points[i][1];
+							for (var key in assess_session.attributes[indice].questionnaire.points) {
+								if (gain == key) {
+									return assess_session.attributes[indice].questionnaire.points[key];
 								}
-							}
-						}
+							};
+						};
+						
 					}
 					function treat_answer(data) {
 						min_interval = data.interval[0];
@@ -521,18 +516,23 @@
 						$('.final_validation').click(function() {
 							var final_gain = parseInt($('#final_proba').val());
 							var final_utility = arbre_cepv.questions_proba_haut * utility_finder(parseFloat(arbre_cepv.questions_val_max)) + (1 - arbre_cepv.questions_proba_haut) * utility_finder(parseFloat(arbre_cepv.questions_val_min));
+							console.log(final_utility)
+							console.log(parseFloat(arbre_cepv.questions_val_max))
+							console.log(parseFloat(arbre_cepv.questions_val_min))
 							console.log(arbre_cepv.questions_proba_haut);
 							console.log(utility_finder(parseFloat(arbre_cepv.questions_val_max)));
 							console.log(utility_finder(parseFloat(arbre_cepv.questions_val_min)));
-							if (final_gain <= max_interval && final_gain >= min_interval) {
+                                                        
+							if (final_gain <= parseFloat(arbre_cepv.questions_val_max) && final_gain >= parseFloat(arbre_cepv.questions_val_min)) {
 								// we save it
-								assess_session.attributes[indice].questionnaire.points.push([final_gain, final_utility]);
+								assess_session.attributes[indice].questionnaire.points[String(final_gain)]=parseFloat(final_utility);
 								assess_session.attributes[indice].questionnaire.number += 1;
 								// backup local
 								localStorage.setItem("assess_session", JSON.stringify(assess_session));
 								// we reload the page
 								window.location.reload();
 							}
+							
 						});
 					}
 					// HANDLE USERS ACTIONS
@@ -1055,28 +1055,52 @@
 				list_points.push(points[list_names[ii]]);
 			};
 			
-			function addGraph(data_graph, names_graph) {
-				$.post('ajax', 
-					JSON.stringify({
-						"type": "svg_QUALI",
-						"data": data_graph,
-						"list_names": names_graph,
-						"width": 6
-					}), 
-				function(data2) {
-					$('#main_graph').append(data2);
-				});
+			
+			console.log(list_points)
+			console.log(list_names)
+			$('#charts_quali').show();
+			$('#charts_quali').append('<table id="curves_choice" class="table"><thead><tr><th>Choices</th></tr></thead>');
+			$('#curves_choice').append('<tbody><tr><td style="text-align:center"><input class="Table_choice" type="radio" name="choice"  value="table">Table</td>')
+			$('#charts_quali').append("</table><div id='data_show'></div>")
+		
+			
+			function table_choice() {
+				
+				$('#main_graph').hide().empty();
+				$('#functions').hide().empty();
+				$('#data_show').show().empty();
+				$('#data_show').append('<table   style="  width:100%;"> <thead><tr><th>value</th><th>utility</th></tr></thead><tbody id="table_info"></tbody>');
+				for (var i = 0; i < list_points.length; i++) 
+				{
+				$('#table_info').append('<tr><td>'+list_names[i]+'</td><td>'+list_points[i]+'</td></tr>');
+				};
 			}
-			
-			$('#main_graph').show().empty();
-			addGraph(list_points, list_names);
-			
+			$('.Table_choice').on('click',table_choice);
+					
 		});
+				
 		
 	
 	});
 </script>
 <!-- Library to copy into clipboard -->
 <script src="{{ get_url('static', path='js/clipboard.min.js') }}"></script>
+<style>
+	table {
+	  font-family: arial, sans-serif;
+	  border-collapse: collapse;
+	  width: 100%;
+	}
+	
+	td, th {
+	  border: 1px solid #dddddd;
+	  text-align: left;
+	  padding: 8px;
+	}
+	
+	tr:nth-child(even) {
+	  background-color: #e2e2e2;
+	}
+	</style>
 </body>
 </html>
