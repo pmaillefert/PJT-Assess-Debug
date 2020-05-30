@@ -1032,6 +1032,7 @@
 					$('#tableau_fonctions').hide();
 					$('#choix_fonction').hide();
 					$('#select').show();
+					};
 			});
 		});
 	
