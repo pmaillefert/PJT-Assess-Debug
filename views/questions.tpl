@@ -937,7 +937,7 @@
 					"width": 3,
 					"choice":choice,
 				}), function(data2) {
-					$("#graph_choisi"+i+).append(data2);
+					$("#graph_choisi '+i+'").append(data2);
 				});
 			}
 			function availableRegressions(data) {
