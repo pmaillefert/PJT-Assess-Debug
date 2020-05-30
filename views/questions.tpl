@@ -74,7 +74,7 @@
 				text_table = '<tr><td>' + attribute.name + '</td>'+
 							 '<td>' + attribute.type + '</td>'+
 							 '<td>' + attribute.method + '</td>'+
-							 '<td id= "graph_choisi" >' '</td>';
+							 '<td id= "graph_choisi ' + i + ' " >' '</td>';
 				
 			
 			var val_min = assess_session.attributes[i].val_min,
@@ -95,7 +95,7 @@
 					points[j][0]-=val_min;
 					console.log(points[j]);
 				};
-			}
+			};
 			
 			
 			
@@ -115,9 +115,9 @@
 					"choice":assess_session.attributes[i].choice,
 				}), function (data2) {
 						
-						$('#graph_choisi').append('<div>' + data2 + '</div>');
+						$('#graph_choisi' + _i).append('<div>' + data2 + '</div>');
 				});
-			}
+			};
 			
 			text_table += '<td><table style="width:100%"><tr><td>' + attribute.val_min + '</td><td> : </td><td>'+(attribute.mode=="Normal"?0:1)+'</td></tr>';
 			
