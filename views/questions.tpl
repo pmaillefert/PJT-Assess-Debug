@@ -158,8 +158,8 @@
 			for (var indice = 0; indice < assess_session.attributes.length; indice++) {
 			if (!assess_session.attributes[indice].checked) {
 			
-			var assess_session = JSON.parse(localStorage.getItem("assess_session"));
-			var num = assess_session.attributes[indice].numero;
+					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+					var num = assess_session.attributes[indice].numero;
 					var choice = assess_session.attributes[indice].fonction;
 					if (choice != '') {
 						if (num != 10000) {
@@ -188,10 +188,10 @@
 								"type": "calc_util_multi"
 							};
 							json_2_send["points"] = points;
-							$('#graph_choisi'+indice).show().empty();
+							$('#graph_choisi'+indice).empty();
 							$.post('ajax', JSON.stringify(json_2_send), function(data) {
 			
-								function addGraph3(j, data, min, max, choice) {
+								function addGraph4(j, data, min, max, choice) {
 									console.log("addgraph");
 									$.post('ajax', JSON.stringify({
 										"type": "svgg",
@@ -205,7 +205,7 @@
 											$('#graph_choisi' + indice).append('<div>' + data2 + '</div>');
 										});
 									};
-								addGraph3(num, data['data'], val_min, val_max, choice);
+								addGraph4(num, data['data'], val_min, val_max, choice);
 							});
 		
 							
