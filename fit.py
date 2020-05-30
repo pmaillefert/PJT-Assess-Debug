@@ -175,7 +175,7 @@ def regressions(liste_cord, dictionnaire={}):
         ss_res = np.dot((y - funclin(x, a5, b5)), (y - funclin(x, a5, b5)))
         ymean = np.mean(y)
         ss_tot = np.dot((y - ymean), (y - ymean))
-        dictionnaire['lin']['r2'] = 1 - ss_res / ss_tot
+        dictionnaire['lin']['r2'] = 1 - ss_res 
     except:
         pass
 
