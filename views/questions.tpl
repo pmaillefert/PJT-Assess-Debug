@@ -151,7 +151,7 @@
 		};
 	};
 			
-			$('#graph_choisi').show().empty();
+			$('#graph_choisi'+i+).show().empty();
 			text_table += '<td><table style="width:100%"><tr><td>' + attribute.val_min + '</td><td> : </td><td>'+(attribute.mode=="Normal"?0:1)+'</td></tr>';
 			
 			if (attribute.method == "PE" || attribute.method == "LE"){
@@ -1095,9 +1095,61 @@
 					$('#main_graph1').empty();
 					$('#main_graph2').empty();
 					
-					
-					
-					});
+					var num = assess_session.attributes[i].numero;
+					var choice = assess_session.attributes[i].fonction;
+					if (choice != '') {
+						if (num != 10000) {
+				
+				
+							var val_min = assess_session.attributes[i].val_min,
+								val_max = assess_session.attributes[i].val_max,
+								mode = assess_session.attributes[i].mode,
+								points_dict = assess_session.attributes[i].questionnaire.points,
+								points=[];
+			
+							for (key in points_dict) {
+								points.push([parseFloat(key), parseFloat(points_dict[key])]);
+							};
+			
+							points.push([val_min, (mode == "Normal" ? 0 : 1)]);
+							points.push([val_max, (mode == "Normal" ? 1 : 0)]);
+			
+							if (val_min<0) {
+								for (j in points) {
+									points[j][0]-=val_min;
+									console.log(points[j]);
+								};
+							}
+							var json_2_send = {
+								"type": "calc_util_multi"
+							};
+							json_2_send["points"] = points;
+				
+							$.post('ajax', JSON.stringify(json_2_send), function(data) {
+			
+								function addGraph3(j, data, min, max, choice) {
+									console.log("addgraph");
+									$.post('ajax', JSON.stringify({
+										"type": "svgg",
+										"data": data[j],
+										"min": min,
+										"max": max,
+										"liste_cord": data[j]['coord'],
+										"width": 3,
+										"choice":choice,
+										}), function(data2) {
+											$('#graph_choisi' + i).append('<div>' + data2 + '</div>');
+										});
+									};
+								addGraph3(num, data['data'], val_min, val_max, choice);
+							});
+		
+			
+						};
+					};
+					$('#graph_choisi'+i+).show().empty();
+					localStorage.setItem("assess_session", JSON.stringify(assess_session));
+				});
 			});
 		});
 	
