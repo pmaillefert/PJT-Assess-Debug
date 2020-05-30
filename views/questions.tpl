@@ -954,7 +954,11 @@
 							if (key != 'expo-power') {
 							text = text + key + ': ' + Math.round(data[key]['r2'] * 10000) / 10000 + ', ';
 							}
-						};
+						}
+					}
+				};
+				for (var key in data) {
+					if (typeof(data[key]['r2']) !== 'undefined') {
 						if (key != 'lin') {
 							if (key != 'expo-power') {
 								if (key != 'pow') {
