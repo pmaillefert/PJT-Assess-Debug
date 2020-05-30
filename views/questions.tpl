@@ -1033,7 +1033,7 @@
 					$('#choix_fonction').hide();
 					$('#select').show();
 					$('#curves_choice').removeClass();
-					$('#curves_choice').empty();
+					
 					$('#NEWcurves_choice').removeClass();
 					$('#NEWcurves_choice').empty()
 					$('#tableau_fonctions').removeClass();
