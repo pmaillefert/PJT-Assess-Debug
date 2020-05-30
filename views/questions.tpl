@@ -951,12 +951,16 @@
 				for (var key in data) {
 					if (typeof(data[key]['r2']) !== 'undefined') {
 						if (key != 'quad') {
+							if (key != 'expo-power') {
 							text = text + key + ': ' + Math.round(data[key]['r2'] * 10000) / 10000 + ', ';
+							}
 						}
-						
 						
 					}
 					
+				};
+				if (typeof(data['quad']['r2']) !== 'undefined') {
+					text = text + 'quad' + ': ' + Math.round(data[key]['r2'] * 10000) / 10000 + ', ';
 				}
 				return text;
 			}
