@@ -1033,6 +1033,8 @@
 					$('#tableau_fonctions').hide();
 					$('#choix_fonction').hide();
 					$('#select').show();
+					$('#main_graph1').empty();
+					$('#main_graph2').empty();
 					
 					
 					});
