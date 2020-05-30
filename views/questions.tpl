@@ -949,8 +949,10 @@
 				console.log("availreg");
 				var text = '';
 				for (var key in data) {
+					if (typeof(data[key]['r2']) !== 'undefined') {
 					
-						text = text + key + ': ' + data[key]['r2']  + ', ';
+						text = text + key + ': ' + Math.round(data[key]['r2'] * 100) / 100 + ', ';
+					}
 					
 				}
 				return text;
