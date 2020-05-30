@@ -956,7 +956,7 @@
 				
 				console.log(JSON.stringify(json_2_send));
 				$('#nouveaubloc').append('<table id="NEWcurves_choice" class="table"><thead><tr><th></th><th> Functions </th></tr></thead></table>');
-				LISTE=['logarithmic','exponential','power','linear','quadratic'];
+				LISTE=['logarithmic','exponential','power','linear','quadratic','exponential-power'];
 				for (var i = 0; i < LISTE.length; i++) {
 					$('#NEWcurves_choice').append('<tr><td><input type="radio" class="ice" name="select2" value=' +LISTE[i]+ '></td><td>' + LISTE[i] + '</td><tr>');
 				}
@@ -1032,8 +1032,10 @@
 					$('#tableau_fonctions').hide();
 					$('#choix_fonction').hide();
 					$('#select').show();
-					$('#charts').removeClass();
-					$('#nouveaubloc').removeClass();
+					$('#curves_choice').removeClass();
+					$('#curves_choice').empty();
+					$('#NEWcurves_choice').removeClass();
+					$('#NEWcurves_choice').empty()
 					$('#tableau_fonctions').removeClass();
 					});
 			});
