@@ -74,7 +74,7 @@
 				text_table = '<tr><td>' + attribute.name + '</td>'+
 							 '<td>' + attribute.type + '</td>'+
 							 '<td>' + attribute.method + '</td>'+
-							 '<td id="graph_choisi'+i+'" >' + attribute.questionnaire.number + '</td>';
+							 '<td id="graph_choisi'+i+'" ></td>';
 							
 			text_table += '<td><table style="width:100%"><tr><td>' + attribute.val_min + '</td><td> : </td><td>'+(attribute.mode=="Normal"?0:1)+'</td></tr>';
 			
