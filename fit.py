@@ -38,7 +38,7 @@ def regressions(liste_cord, dictionnaire={}):
         max = float(x[-2])
 
     # creation of the fitted curves
-dictionnaire = { 'exp' : {} ,'lin' : {},'log' : {},'pow' : {},'quad' : {},'expo-power' : {}}
+    dictionnaire = { 'exp' : {} ,'lin' : {},'log' : {},'pow' : {},'quad' : {},'expo-power' : {}}
     try:
        
         test = True
