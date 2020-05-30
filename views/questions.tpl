@@ -151,7 +151,7 @@
 		};
 	};
 			
-			$('#graph_choisi').show.empty();
+			$('#graph_choisi').show().empty();
 			text_table += '<td><table style="width:100%"><tr><td>' + attribute.val_min + '</td><td> : </td><td>'+(attribute.mode=="Normal"?0:1)+'</td></tr>';
 			
 			if (attribute.method == "PE" || attribute.method == "LE"){
