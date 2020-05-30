@@ -77,7 +77,7 @@
 							 '<td id= "graph_choisi ' + i + ' " >' '</td>';
 				
 			
-			var val_min = assess_session.attributes[i].val_min,
+			var     val_min = assess_session.attributes[i].val_min,
 				val_max = assess_session.attributes[i].val_max,
 				mode = assess_session.attributes[i].mode,
 				points_dict = assess_session.attributes[i].questionnaire.points,
@@ -98,7 +98,7 @@
 			};
 			
 			
-			
+			$('#graph_choisi' + _i).show().empty();
 			var json_2_send = {
 				"type": "calc_util_multi"
 			};
@@ -116,8 +116,9 @@
 				}), function (data2) {
 						
 						$('#graph_choisi' + _i).append('<div>' + data2 + '</div>');
-				});
-			};
+				};
+			});
+			
 			
 			text_table += '<td><table style="width:100%"><tr><td>' + attribute.val_min + '</td><td> : </td><td>'+(attribute.mode=="Normal"?0:1)+'</td></tr>';
 			
