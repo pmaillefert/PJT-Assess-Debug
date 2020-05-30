@@ -1010,6 +1010,7 @@
 						assess_session.attributes[indice].pts = h[num];
 						addGraph(num, data['data'], val_min, val_max, choice);
 						addGraph2(num, data['data'], val_min, val_max);
+						addGraph3(num, data['data'], val_min, val_max, choice);
 						addFunctions(num, data['data'],val_min,choice);
 						};
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
@@ -1034,6 +1035,7 @@
 						assess_session.attributes[indice].pts = h[Number(this.value)];
 						addGraph(Number(this.value), data['data'], val_min, val_max, choice);
 						addGraph2(Number(this.value), data['data'], val_min, val_max);
+						addGraph3(num, data['data'], val_min, val_max, choice);
 						addFunctions(Number(this.value), data['data'],val_min,choice);
 						};
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
@@ -1056,15 +1058,7 @@
 					$('#main_graph1').empty();
 					$('#main_graph2').empty();
 					
-					var num = assess_session.attributes[indice].numero;
-					var choice = assess_session.attributes[indice].fonction;
-					if (choice != '') {
-						if (num != 10000) {
-							addGraph3(num, data['data'], val_min, val_max, choice);
-							
-							};
-						};
-					localStorage.setItem("assess_session", JSON.stringify(assess_session));
+					
 					
 					
 					});
