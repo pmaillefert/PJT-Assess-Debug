@@ -950,7 +950,7 @@
 				var text = '';
 				for (var key in data) {
 					
-						text = text + key + ': ' + Math.round(data[key]['r2'] * 100) / 100 + ', ';
+						text = text + key + ': ' + data[key]['r2']  + ', ';
 					
 				}
 				return text;
