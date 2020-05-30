@@ -71,7 +71,7 @@ def regressions(liste_cord, dictionnaire={}):
             ymean = np.mean(y)
             ss_tot = np.dot((y - ymean), (y - ymean))
             # ajout du r2 dans le dictionnaire pour la regression exponentielle
-            dictionnaire['exp']['r2'] = 1 - ss_res / ss_tot
+            dictionnaire['exp']['r2'] = 1 
     except:
         pass
 
