@@ -62,8 +62,7 @@ def regressions(liste_cord, dictionnaire={}):
             # calcul et affichage du mean squared error et du r2
             # print "Mean Squared Error exp : ", np.mean((y-funcexp(x,
             # *popt1))**2)
-            ss_res = np.dot(((y - funcexp(x, a1, b1, c1)).T),
-                            (y - funcexp(x, a1, b1, c1)))
+            ss_res = funcexp(x, a1, b1, c1)))
             ymean = np.mean(y)
             ss_tot = np.dot((y - ymean), (y - ymean))
             # ajout du r2 dans le dictionnaire pour la regression exponentielle
