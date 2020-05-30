@@ -1047,6 +1047,7 @@
 					$('#nouveaubloc').hide();
 					$('#tableau_fonctions').hide();
 					$('#choix_fonction').hide();
+					$('#graph_choisi'+indice).show().empty();
 					$('#select').show();
 					
 					$('#main_graph1').empty();
