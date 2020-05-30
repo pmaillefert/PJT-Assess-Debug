@@ -1005,6 +1005,7 @@
 						$('#functions').show().empty();
 						$('#main_graph1').show().empty();
 						$('#main_graph2').show().empty();
+						$('#graph_choisi'+indice).show().empty();
 						
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[num];
@@ -1030,7 +1031,7 @@
 						$('#functions').show().empty();
 						$('#main_graph1').show().empty();
 						$('#main_graph2').show().empty();
-						
+						$('#graph_choisi'+indice).show().empty();
 						
 						var h =data['data'];
 						assess_session.attributes[indice].pts = h[Number(this.value)];
@@ -1053,9 +1054,9 @@
 					$('#nouveaubloc').hide();
 					$('#tableau_fonctions').hide();
 					$('#choix_fonction').hide();
-					$('#graph_choisi'+indice).show().empty();
-					$('#select').show();
 					
+					$('#select').show();
+					$('#graph_choisi'+indice).empty();
 					$('#main_graph1').empty();
 					$('#main_graph2').empty();
 					
