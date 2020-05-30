@@ -1041,16 +1041,16 @@
 					
 					$('#main_graph1').empty();
 					$('#main_graph2').empty();
-					var num = assess_session.attributes[i].numero;
-					var choice = assess_session.attributes[i].fonction;
+					var num = assess_session.attributes[indice].numero;
+					var choice = assess_session.attributes[indice].fonction;
 					if (choice != '') {
 						if (num != 10000) {
-							if (assess_session.attributes[i].questionnaire.points != []) {
+							if (assess_session.attributes[indice].questionnaire.points != []) {
 				
-							var val_min = assess_session.attributes[i].val_min,
-								val_max = assess_session.attributes[i].val_max,
-								mode = assess_session.attributes[i].mode,
-								points_dict = assess_session.attributes[i].questionnaire.points,
+							var val_min = assess_session.attributes[indice].val_min,
+								val_max = assess_session.attributes[indice].val_max,
+								mode = assess_session.attributes[indice].mode,
+								points_dict = assess_session.attributes[indice].questionnaire.points,
 								points=[];
 			
 							for (key in points_dict) {
@@ -1093,7 +1093,7 @@
 							};
 						};
 					};
-					$('#graph_choisi'+i).show().empty();
+					$('#graph_choisi'+indice).show().empty();
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 					
 				});
