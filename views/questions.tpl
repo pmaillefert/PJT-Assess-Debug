@@ -102,7 +102,7 @@
 		var choice = assess_session.attributes[i].fonction;
 		if (choice != '') {
 			if (num != 10000) {
-				if (assess_session.attributes[i].questionnaire.points != []) {
+				
 				
 				var val_min = assess_session.attributes[i].val_min,
 				val_max = assess_session.attributes[i].val_max,
@@ -147,7 +147,7 @@
 			addGraph3(num, data['data'], val_min, val_max, choice);
 		});
 		
-			};
+			
 		};
 	};
 			
