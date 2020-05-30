@@ -1022,17 +1022,7 @@
 					localStorage.setItem("assess_session", JSON.stringify(assess_session));
 						
 					});
-				$('#update').click(function() {
-					$('li.questions').addClass("active");
-					$('#attribute_name').hide();
-					$('#charts').hide();
-					$('#main_graph').hide();
-					$('#functions').hide();
-					$('#nouveaubloc').hide();
-					$('#tableau_fonctions').hide();
-					$('#choix_fonction').hide();
-					$('#select').show();
-					};
+				
 			});
 		});
 	
