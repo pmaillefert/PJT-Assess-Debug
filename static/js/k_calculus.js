@@ -861,10 +861,10 @@ function list(){
 				
 				
 							$('#functions_' + _i).append('<table><thead><tr><th>choix</th><th>value</th><th>utility</th></tr></thead><tbody id="table_info"></tbody></table>');						
-							$('#table_info').append('<tr><td id="choix'+_i+k'"></td><td id="value'+_i+k'"></td><td id="utility'+_i+k'"></td></tr>');
-							$('#choix'+_i+k).append('<input type="radio" name="radio_'+_i+k'" id="checkbox_'+_i+k'">');
-							$('#value'+_i+k).append(+list_names[k]+);
-							$('#utility'+_i+k).append(+list_points[k]+);
+							$('#table_info').append('<tr><td id="choix'+_i+'numero'+k+'"></td><td id="value'+_i+'numero'+k+'"></td><td id="utility'+_i+'numero'+k+'"></td></tr>');
+							$('#choix'+_i+'numero'+k+).append('<input type="radio" name="radio_'+_i+k'" id="checkbox_'+_i+k'">');
+							$('#value'+_i+'numero'+k+).append(list_names[k]);
+							$('#utility'+_i+'numero'+k+).append(list_points[k]);
 				
 							nvxdico = { "type" :'quali', "a": list_points[k] };
 				
