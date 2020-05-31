@@ -843,19 +843,21 @@ function list(){
 				
 			
 				if (monAttribut.type == "Qualitative"){
-					$('#functions_' + _i).append('<table><thead><tr><th>choix</th><th>value</th><th>utility</th></tr></thead><tbody id="table_info"></tbody></table>');
+					
 					var val_min = monAttribut.val_min,
 						val_max = monAttribut.val_max,
 						val_med = monAttribut.val_med,
 						list_names = [].concat(val_min, val_med, val_max),
 						points = monAttribut.questionnaire.points,
 						list_points = [];
+					$('#functions_' + _i).append('<table><thead><tr><th> choix </th><th> value </th><th> utility </th></tr></thead><tbody id="table_info"></tbody></table>');
 					if (points.length > 0 && monAttribut.checked){
 						points[val_min] = 0; 
 						points[val_max] = 1; 
 						for (var ii=0, len=list_names.length; ii<len; ii++) {
 							list_points.push(points[list_names[ii]]);
 						};
+					$('#functions_' + _i).append('<table><thead><tr><th> choix </th><th> value </th><th> utility </th></tr></thead><tbody id="table_info"></tbody></table>');
 						for (var k = 0; k < list_points.length; k++){
 				
 				
