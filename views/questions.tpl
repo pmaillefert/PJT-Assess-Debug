@@ -21,6 +21,9 @@
 <div id="charts">
 	<h2>Select the utility function you want to use</h2>
 </div>
+<div id="charts_quali">
+	<h2>Select your choice </h2>
+</div>
 <div id= "attribute_name"></div>
 <div id ="nouveaubloc"><h6>Choose a function</h6></div>
 <div id="choix_fonction">
