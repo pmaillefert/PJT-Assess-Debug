@@ -851,7 +851,7 @@ function list(){
 						points = monAttribut.questionnaire.points,
 						list_points = [];
 					$('#functions_' + _i).append('<table><thead><tr><th>  choix  </th><th>  value  </th><th>  utility  </th></tr></thead><tbody id="table_info"></tbody></table>');
-					if (points.length > 0 && monAttribut.checked){
+					if (monAttribut.checked){
 						points[val_min] = 0; 
 						points[val_max] = 1; 
 						for (var ii=0; ii<list_names.length; ii++) {
