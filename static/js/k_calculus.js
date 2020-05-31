@@ -841,7 +841,7 @@ function list(){
 		(function(_i) {
 			
 				
-			if (monAttribut.checked){
+			
 				if (monAttribut.type == "Qualitative"){
 			
 					var val_min = monAttribut.val_min,
@@ -850,28 +850,28 @@ function list(){
 						list_names = [].concat(val_min, val_med, val_max),
 						points = monAttribut.questionnaire.points,
 						list_points = [];
-					points[val_min] = 0; 
-					points[val_max] = 1; 
-					for (var ii=0, len=list_names.length; ii<len; ii++) {
-						list_points.push(points[list_names[ii]]);
-					};
-					for (var k = 0; k < list_points.length; k++){
+					if (points.length > 0 && monAttribut.checked){
+						points[val_min] = 0; 
+						points[val_max] = 1; 
+						for (var ii=0, len=list_names.length; ii<len; ii++) {
+							list_points.push(points[list_names[ii]]);
+						};
+						for (var k = 0; k < list_points.length; k++){
 				
 				
 				
-						$('#functions_' + _i).append('<table><thead><tr><th>choix</th><th>value</th><th>utility</th></tr></thead>');
-						$('#functions_' + _i).append('<tbody id="table_info"></tbody></table>');
-						$('#table_info').append('<tr><td id="choix'+_i+k'"></td><td id="value'+_i+k'"></td><td id="utility'+_i+k'"></td></tr>');
-						$('#choix'+_i+k).append('<label style="color:#458C8C"><input type="radio" name="radio_'+_i+k'" id="checkbox_'+_i+k'">');
-						$('#value'+_i+k).append(+list_names[k]+);
-						$('#utility'+_i+k).append(+list_points[k]+);
+							$('#functions_' + _i).append('<table><thead><tr><th>choix</th><th>value</th><th>utility</th></tr></thead><tbody id="table_info"></tbody></table>');						
+							$('#table_info').append('<tr><td id="choix'+_i+k'"></td><td id="value'+_i+k'"></td><td id="utility'+_i+k'"></td></tr>');
+							$('#choix'+_i+k).append('<input type="radio" name="radio_'+_i+k'" id="checkbox_'+_i+k'">');
+							$('#value'+_i+k).append(+list_names[k]+);
+							$('#utility'+_i+k).append(+list_points[k]+);
 				
-						nvxdico = { "type" :'quali', "a": list_points[k] };
+							nvxdico = { "type" :'quali', "a": list_points[k] };
 				
-						(function(_data){$('#checkbox_'+_i+k).click(function(){update_utility(_i, _data)});})(nvxdico);
+							(function(_data){$('#checkbox_'+_i+k).click(function(){update_utility(_i, _data)});})(nvxdico);
+						};
 					};
 				};
-			};
 			if (monAttribut.type == "Quantitative"){
 			var json_2_send = {"type": "calc_util", "points":[]},
 				val_max=monAttribut.val_max,
