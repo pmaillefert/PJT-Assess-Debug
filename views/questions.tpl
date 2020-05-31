@@ -1190,6 +1190,8 @@
 					$('#retour_quali').hide();
 					$('#select').show();
 					
+					$('#charts_quali').empty();
+					$('#charts_quali').hide();
 					$('#main_graph1').empty();
 					$('#main_graph2').empty();
 					
