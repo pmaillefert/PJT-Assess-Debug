@@ -862,13 +862,13 @@ function list(){
 				
 							$('#functions_' + _i).append('<table><thead><tr><th>choix</th><th>value</th><th>utility</th></tr></thead><tbody id="table_info"></tbody></table>');						
 							$('#table_info').append('<tr><td id="choix'+_i+'numero'+k+'"></td><td id="value'+_i+'numero'+k+'"></td><td id="utility'+_i+'numero'+k+'"></td></tr>');
-							$('#choix'+_i+'numero'+k+).append('<input type="radio" name="radio_'+_i+k'" id="checkbox_'+_i+k'">');
-							$('#value'+_i+'numero'+k+).append(list_names[k]);
-							$('#utility'+_i+'numero'+k+).append(list_points[k]);
+							$('#choix'+_i+'numero'+k).append('<input type="radio" name="radio_'+_i+'numero'+k+'" id="checkbox_'+_i+'numero'+k+'">');
+							$('#value'+_i+'numero'+k).append(list_names[k]);
+							$('#utility'+_i+'numero'+k).append(list_points[k]);
 				
 							nvxdico = { "type" :'quali', "a": list_points[k] };
 				
-							(function(_data){$('#checkbox_'+_i+k).click(function(){update_utility(_i, _data)});})(nvxdico);
+							(function(_data){$('#checkbox_'+_i+'numero'+k).click(function(){update_utility(_i, _data)});})(nvxdico);
 						};
 					};
 				};
