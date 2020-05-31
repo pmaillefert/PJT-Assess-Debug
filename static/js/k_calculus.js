@@ -839,6 +839,40 @@ function list(){
 		
 		
 		(function(_i) {
+			
+				
+			if (monAttribut.checked){
+				if (monAttribut.type == "Qualitative"){
+			
+					var val_min = monAttribut.val_min,
+						val_max = monAttribut.val_max,
+						val_med = monAttribut.val_med,
+						list_names = [].concat(val_min, val_med, val_max),
+						points = monAttribut.questionnaire.points,
+						list_points = [];
+					points[val_min] = 0; 
+					points[val_max] = 1; 
+					for (var ii=0, len=list_names.length; ii<len; ii++) {
+						list_points.push(points[list_names[ii]]);
+					};
+					for (var k = 0; k < list_points.length; k++){
+				
+				
+				
+						$('#functions_' + _i).append('<table><thead><tr><th>choix</th><th>value</th><th>utility</th></tr></thead>');
+						$('#functions_' + _i).append('<tbody id="table_info"></tbody></table>');
+						$('#table_info').append('<tr><td id="choix'+_i+k'"></td><td id="value'+_i+k'"></td><td id="utility'+_i+k'"></td></tr>');
+						$('#choix'+_i+k).append('<label style="color:#458C8C"><input type="radio" name="radio_'+_i+k'" id="checkbox_'+_i+k'">');
+						$('#value'+_i+k).append(+list_names[k]+);
+						$('#utility'+_i+k).append(+list_points[k]+);
+				
+						nvxdico = { "type" :'quali', "a": list_points[k] };
+				
+						(function(_data){$('#checkbox_'+_i+k).click(function(){update_utility(_i, _data)});})(nvxdico);
+					};
+				};
+			};
+			if (monAttribut.type == "Quantitative"){
 			var json_2_send = {"type": "calc_util", "points":[]},
 				val_max=monAttribut.val_max,
 				val_min=monAttribut.val_min,
@@ -846,8 +880,7 @@ function list(){
 				points_dict = monAttribut.questionnaire.points,
 				points=[],
 			    	choice= monAttribut.fonction;
-				
-
+			
 			for (key in points_dict) {
 				points.push([parseFloat(key), parseFloat(points_dict[key])]);
 			};
@@ -869,37 +902,7 @@ function list(){
 					}), function (data2) {
 						
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
-						if (assess_session.attributes[_i].checked){
-							if (assess_session.attributes[_i].type == "Qualitative"){
-			
-								var val_min = assess_session.attributes[_i].val_min,
-									val_max = assess_session.attributes[_i].val_max,
-									val_med = assess_session.attributes[_i].val_med,
-									list_names = [].concat(val_min, val_med, val_max),
-									points = assess_session.attributes[_i].questionnaire.points,
-									list_points = [];
-								points[val_min] = 0; 
-								points[val_max] = 1; 
-								for (var ii=0, len=list_names.length; ii<len; ii++) {
-									list_points.push(points[list_names[ii]]);
-								};
-								for (var k = 0; k < list_points.length; k++){
-				
-				
-				
-									$('#functions_' + _i).append('<table><thead><tr><th>choix</th><th>value</th><th>utility</th></tr></thead>');
-									$('#functions_' + _i).append('<tbody id="table_info"></tbody></table>');
-									$('#table_info').append('<tr><td id="choix'+_i+k'"></td><td id="value'+_i+k'"></td><td id="utility'+_i+k'"></td></tr>');
-									$('#choix'+_i+k).append('<label style="color:#458C8C"><input type="radio" name="radio_'+_i+k'" id="checkbox_'+_i+k'">');
-									$('#value'+_i+k).append(+list_names[k]+);
-									$('#utility'+_i+k).append(+list_points[k]+);
-				
-									nvxdico = { "type" :'quali', "a": list_points[k] };
-				
-									(function(_data){$('#checkbox_'+_i+k).click(function(){update_utility(_i, _data)});})(nvxdico);
-								};
-							};
-						};
+						
 						for (var key in data) {
 
 							var functions = "";
@@ -955,6 +958,7 @@ function list(){
 				else if(!monAttribut.checked)
 					$('#charts_' + _i).append("The attribute is inactive");
 			}
+		};
 		})(i);
 	}
 }
