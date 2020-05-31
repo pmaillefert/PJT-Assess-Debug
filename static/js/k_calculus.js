@@ -864,7 +864,7 @@ function list(){
 				
 													
 							$('#table_info').append('<tr><td id="choix'+_i+'numero'+k+'"></td><td id="value'+_i+'numero'+k+'"></td><td id="utility'+_i+'numero'+k+'"></td></tr>');
-							$('#choix'+_i+'numero'+k).append('<input type="radio" name="radio_'+_i+'" id="checkbox_'+_i+'numero'+k+'">');
+							$('#choix'+_i+'numero'+k).append('<input type="radio" name="radio_'+_i+'numero'+k+'" id="checkbox_'+_i+'numero'+k+'">');
 							$('#value'+_i+'numero'+k).append(list_names[k]);
 							$('#utility'+_i+'numero'+k).append(list_points[k]);
 				
