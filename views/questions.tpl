@@ -24,6 +24,8 @@
 <div id="charts_quali">
 	<h2>Select your choice </h2>
 </div>
+<div id= "retour_quali" > <button type="button" class="btn btn-default comeback_quali" id = "update"> Go to main page </button> 
+</div>
 <div id= "attribute_name"></div>
 <div id ="nouveaubloc"><h6>Choose a function</h6></div>
 <div id="choix_fonction">
@@ -88,6 +90,8 @@
 		$('#choix_fonction').hide();
 		$('#attribute_name').hide();
 		$('#charts_quali').hide();
+		$('#retour_quali').hide();
+		
 		var assess_session = JSON.parse(localStorage.getItem("assess_session")),
 			settings = assess_session.settings;
 		// We fill the table of the existing attributes and assessments
@@ -1099,7 +1103,7 @@
 					});
 					
 				$('.comeback').click(function() {
-					var assess_session = JSON.parse(localStorage.getItem("assess_session"));
+					
 					
 					$('#attribute_name').hide();
 					$('#charts').hide();
@@ -1156,7 +1160,7 @@
 			$('#charts_quali').append('<table id="curves_choice_quali" class="table"><thead><tr><th>Choices</th></tr></thead>');
 			$('#curves_choice_quali').append('<tbody><tr><td style="text-align:center"><input class="Table_choice" type="radio" name="choice"  value="table">Table</td>')
 			$('#charts_quali').append("</table><div id='data_show'></div>")
-		
+			$('#retour_quali').show();
 			
 			function table_choice() {
 				
@@ -1172,6 +1176,27 @@
 			$('.Table_choice').on('click',table_choice);
 					
 		});
+		
+		$('.comeback_quali').click(function() {
+					
+					
+					$('#attribute_name').hide();
+					$('#charts').hide();
+					$('#main_graph').hide();
+					$('#functions').hide();
+					$('#nouveaubloc').hide();
+					$('#tableau_fonctions').hide();
+					$('#choix_fonction').hide();
+					$('#retour_quali').hide();
+					$('#select').show();
+					
+					$('#main_graph1').empty();
+					$('#main_graph2').empty();
+					
+					
+					
+					
+					});
 				
 		
 	
