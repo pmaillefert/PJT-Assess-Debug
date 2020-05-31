@@ -87,7 +87,7 @@
 		$('#tableau_fonctions').hide();
 		$('#choix_fonction').hide();
 		$('#attribute_name').hide();
-		
+		$('#charts_quali').hide();
 		var assess_session = JSON.parse(localStorage.getItem("assess_session")),
 			settings = assess_session.settings;
 		// We fill the table of the existing attributes and assessments
