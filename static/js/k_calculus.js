@@ -843,7 +843,7 @@ function list(){
 				
 			
 				if (monAttribut.type == "Qualitative"){
-			
+					$('#functions_' + _i).append('<table><thead><tr><th>choix</th><th>value</th><th>utility</th></tr></thead><tbody id="table_info"></tbody></table>');
 					var val_min = monAttribut.val_min,
 						val_max = monAttribut.val_max,
 						val_med = monAttribut.val_med,
@@ -872,6 +872,7 @@ function list(){
 						};
 					};
 				};
+			
 			if (monAttribut.type == "Quantitative"){
 			var json_2_send = {"type": "calc_util", "points":[]},
 				val_max=monAttribut.val_max,
