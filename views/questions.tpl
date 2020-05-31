@@ -1153,8 +1153,8 @@
 			console.log(list_points)
 			console.log(list_names)
 			$('#charts_quali').show();
-			$('#charts_quali').append('<table id="curves_choice" class="table"><thead><tr><th>Choices</th></tr></thead>');
-			$('#curves_choice').append('<tbody><tr><td style="text-align:center"><input class="Table_choice" type="radio" name="choice"  value="table">Table</td>')
+			$('#charts_quali').append('<table id="curves_choice_quali" class="table"><thead><tr><th>Choices</th></tr></thead>');
+			$('#curves_choice_quali').append('<tbody><tr><td style="text-align:center"><input class="Table_choice" type="radio" name="choice"  value="table">Table</td>')
 			$('#charts_quali').append("</table><div id='data_show'></div>")
 		
 			
