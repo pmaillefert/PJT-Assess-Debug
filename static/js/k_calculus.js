@@ -868,7 +868,7 @@ function list(){
 							$('#value'+_i+'numero'+k).append(list_names[k]);
 							$('#utility'+_i+'numero'+k).append(list_points[k]);
 				
-							nvxdico = { "type" :'quali', "a": list_points[k] };
+							nvxdico = { "type" :'quali', "a": list_points[k], "name" : monAttribut.name };
 				
 							(function(_data){$('#checkbox_'+_i+'numero'+k).click(function(){update_utility(_i, _data)});})(nvxdico);
 						};
