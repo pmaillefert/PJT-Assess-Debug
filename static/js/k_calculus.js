@@ -907,7 +907,7 @@ function list(){
 						$('#charts_' + _i).append('<div>' + data2 + '</div>');
 						
 						for (var key in data) {
-
+							data[key]['name']= monAttribut.name ;
 							var functions = "";
 							if (key == 'exp') {
 								if (choice == 'exponential') {
